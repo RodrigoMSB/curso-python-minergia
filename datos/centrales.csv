@@ -1,0 +1,21 @@
+central,tecnologia,region,potencia_mw,anio_inicio
+Central Rio Manso Alto,hidro,Biobio,420,1998
+Central Salto del Pehuen,hidro,Biobio,310,2004
+Central Quebrada Azul,hidro,Los Lagos,185,2011
+Central Lago Ventisquero,hidro,Los Lagos,96,2016
+Central Vega Escondida,hidro,Biobio,240,1995
+Parque Solar Pampa Alta,solar,Antofagasta,230,2017
+Parque Solar Llano Blanco,solar,Antofagasta,145,2019
+Parque Solar Salar Nuevo,solar,Atacama,195,2018
+Parque Solar Cerro Dorado,solar,Atacama,110,2021
+Parque Solar Media Luna,solar,Atacama,78,2023
+Eolica Cerro Negro,eolica,Coquimbo,160,2015
+Eolica Punta Ventosa,eolica,Coquimbo,124,2020
+Eolica Loma Larga,eolica,Biobio,98,2013
+Eolica Vientos del Sur,eolica,Los Lagos,142,2022
+Termoelectrica Bahia Norte,gas,Antofagasta,375,2007
+Termoelectrica Valle Central,gas,Metropolitana,290,2010
+Termoelectrica Puerto Nuevo,gas,Valparaiso,340,2003
+Termoelectrica Costa Brava,carbon,Valparaiso,480,1999
+Termoelectrica Peninsula Gris,carbon,Biobio,355,2001
+Diesel Respaldo Cordillera,diesel,Metropolitana,45,2012

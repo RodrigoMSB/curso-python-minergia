@@ -1,0 +1,601 @@
+central,fecha,tipo_evento,duracion_horas,observacion
+Parque Solar Llano Blanco,2024-01-01,preventivo,18,Durante el turno: el vencimiento de la pauta periodica en el tablero de control; se repone la disponibilidad de la unidad dentro del plazo.
+Termoelectrica Costa Brava,2024-01-01,inspeccion,5,Una observacion levantada en auditoria en el informe de termografia. Se levanta la observacion y se programa el seguimiento.
+Central Lago Ventisquero,2024-01-02,falla_mecanica,37,El operador reporta vibracion excesiva en el eje; se revisa la caja multiplicadora y se purga el circuito de lubricacion y se ajusta el torque.
+Eolica Cerro Negro,2024-01-03,inspeccion,4,Evento por una desviacion leve del parametro medido en la endoscopia del ducto; se registra la medicion en la ficha de la unidad.
+Parque Solar Media Luna,2024-01-04,falla_electrica,26,Evento por una caida brusca de tension en el aislador de linea; se energiza la barra en forma escalonada.
+Parque Solar Media Luna,2024-01-04,correctivo,39,Durante el turno: una reparacion mayor pendiente en la cuadrilla de intervencion; se repara el conjunto y se realiza la puesta en marcha.
+Parque Solar Pampa Alta,2024-01-04,preventivo,19,El operador reporta el cumplimiento del programa de mantenimiento; se revisa la pauta de rutina trimestral y se repone la disponibilidad de la unidad dentro del plazo.
+Central Lago Ventisquero,2024-01-05,inspeccion,4,Una lectura dentro de tolerancia en la endoscopia del ducto. Se completa el checklist sin desviaciones relevantes.
+Central Vega Escondida,2024-01-05,inspeccion,1,Un hallazgo menor sin indisponibilidad en la endoscopia del ducto. Se completa el checklist sin desviaciones relevantes.
+Parque Solar Cerro Dorado,2024-01-07,preventivo,13,Se registra el vencimiento de la pauta periodica en el filtro de admision durante la ronda del turno.
+Parque Solar Pampa Alta,2024-01-07,inspeccion,1,Evento por una observacion levantada en auditoria en la medicion de espesores; se registra la medicion en la ficha de la unidad.
+Parque Solar Pampa Alta,2024-01-08,preventivo,22,Se detecta el vencimiento de la pauta periodica en el plan anual de la unidad; se ejecuta la rutina programada y se actualiza el calendario.
+Diesel Respaldo Cordillera,2024-01-09,falla_electrica,46,Evento por una caida brusca de tension en el rele de proteccion; se reconecta el interruptor tras verificar la aislacion.
+Diesel Respaldo Cordillera,2024-01-09,correctivo,43,Se detecta la espera de un repuesto importado en la cuadrilla de intervencion; se completa la reparacion dentro del plazo comprometido.
+Termoelectrica Valle Central,2024-01-09,falla_electrica,30,Evento por corriente de fuga elevada en el transformador de poder; se aisla el circuito y se normaliza la tension.
+Termoelectrica Valle Central,2024-01-09,correctivo,8,Se completa la reparacion dentro del plazo comprometido tras detectar indisponibilidad forzada de la unidad en el modulo reemplazado.
+Diesel Respaldo Cordillera,2024-01-10,preventivo,23,Evento por las horas de operacion acumuladas en el plan anual de la unidad; se ejecuta la rutina programada y se actualiza el calendario.
+Termoelectrica Costa Brava,2024-01-12,falla_electrica,24,Se registra el disparo de la proteccion diferencial en el interruptor principal durante la ronda del turno.
+Diesel Respaldo Cordillera,2024-01-14,falla_mecanica,28,Evento por perdida de presion de aceite en el rodamiento del eje principal; se cambia el sello y se verifica la estanqueidad.
+Diesel Respaldo Cordillera,2024-01-14,correctivo,38,Evento por una reparacion mayor pendiente en la unidad fuera de servicio; se instala el repuesto y se ejecutan las pruebas de normalizacion.
+Eolica Punta Ventosa,2024-01-14,correctivo,64,La espera de un repuesto importado en el modulo reemplazado. Se instala el repuesto y se ejecutan las pruebas de normalizacion.
+Termoelectrica Costa Brava,2024-01-14,correctivo,46,Se registra indisponibilidad forzada de la unidad en la cuadrilla de intervencion durante la ronda del turno.
+Termoelectrica Bahia Norte,2024-01-16,falla_electrica,18,El operador reporta sobretension sostenida; se revisa el interruptor principal y se energiza la barra en forma escalonada.
+Parque Solar Cerro Dorado,2024-01-17,inspeccion,5,Se registra un hallazgo menor sin indisponibilidad en el checklist del recorrido durante la ronda del turno.
+Central Quebrada Azul,2024-01-18,inspeccion,6,Durante el turno: una observacion levantada en auditoria en el informe de termografia; se levanta la observacion y se programa el seguimiento.
+Central Vega Escondida,2024-01-18,correctivo,51,El operador reporta la espera de un repuesto importado; se revisa el modulo reemplazado y la cuadrilla interviene en terreno y devuelve la unidad al despacho.
+Eolica Vientos del Sur,2024-01-18,falla_mecanica,74,Se detecta desgaste anormal del rodamiento en el sistema de refrigeracion; se purga el circuito de lubricacion y se ajusta el torque.
+Termoelectrica Bahia Norte,2024-01-18,preventivo,8,Durante el turno: el ciclo de limpieza programado en el tablero de control; se ajusta el torque de los pernos y se limpia el tablero.
+Parque Solar Cerro Dorado,2024-01-19,inspeccion,8,Evento por un hallazgo menor sin indisponibilidad en el parametro fuera de tolerancia; se levanta la observacion y se programa el seguimiento.
+Parque Solar Media Luna,2024-01-19,correctivo,31,Reincidencia de la falla anterior en el modulo reemplazado. La cuadrilla interviene en terreno y devuelve la unidad al despacho.
+Central Quebrada Azul,2024-01-20,falla_mecanica,22,El operador reporta desgaste anormal del rodamiento; se revisa la turbina de baja presion y se purga el circuito de lubricacion y se ajusta el torque.
+Eolica Loma Larga,2024-01-20,evento_climatico,30,Se detecta granizo sobre la estructura en la estructura del parque; se descongelan las palas antes de reanudar la operacion.
+Central Quebrada Azul,2024-01-23,falla_mecanica,52,Durante el turno: desgaste anormal del rodamiento en el rodamiento del eje principal; se cambia el sello y se verifica la estanqueidad.
+Parque Solar Llano Blanco,2024-01-23,falla_electrica,6,Se detecta un arco electrico en el borne en el rele de proteccion; se reconecta el interruptor tras verificar la aislacion.
+Termoelectrica Peninsula Gris,2024-01-23,preventivo,21,El vencimiento de la pauta periodica en el tablero de control. Se cambia el aceite y el filtro segun la pauta del fabricante.
+Termoelectrica Peninsula Gris,2024-01-23,preventivo,20,Se cambia el aceite y el filtro segun la pauta del fabricante tras detectar el cumplimiento del programa de mantenimiento en el filtro de admision.
+Central Vega Escondida,2024-01-25,falla_mecanica,13,Se detecta desalineamiento del acoplamiento en la bomba de lubricacion; se reemplaza el rodamiento y se realinea el eje.
+Parque Solar Llano Blanco,2024-01-25,correctivo,49,Se registra la espera de un repuesto importado en el repuesto critico de bodega durante la ronda del turno.
+Parque Solar Media Luna,2024-01-27,correctivo,64,Evento por reincidencia de la falla anterior en la unidad fuera de servicio; la cuadrilla interviene en terreno y devuelve la unidad al despacho.
+Eolica Vientos del Sur,2024-01-28,inspeccion,3,El operador reporta una observacion levantada en auditoria; se revisa el informe de termografia y se completa el checklist sin desviaciones relevantes.
+Eolica Punta Ventosa,2024-01-29,preventivo,11,Se registra las horas de operacion acumuladas en el calendario de disponibilidad durante la ronda del turno.
+Termoelectrica Bahia Norte,2024-01-29,preventivo,4,El operador reporta las horas de operacion acumuladas; se revisa el plan anual de la unidad y se ajusta el torque de los pernos y se limpia el tablero.
+Central Lago Ventisquero,2024-01-31,inspeccion,5,Durante el turno: una observacion levantada en auditoria en el informe de termografia; se completa el checklist sin desviaciones relevantes.
+Central Rio Manso Alto,2024-01-31,preventivo,23,Evento por las horas de operacion acumuladas en el plan anual de la unidad; se repone la disponibilidad de la unidad dentro del plazo.
+Eolica Punta Ventosa,2024-01-31,evento_climatico,11,Se registra granizo sobre la estructura en la torre de medicion de viento durante la ronda del turno.
+Termoelectrica Puerto Nuevo,2024-01-31,preventivo,4,El operador reporta el vencimiento de la pauta periodica; se revisa el calendario de disponibilidad y se repone la disponibilidad de la unidad dentro del plazo.
+Termoelectrica Valle Central,2024-01-31,preventivo,24,Durante el turno: el vencimiento de la pauta periodica en el filtro de admision; se ejecuta la rutina programada y se actualiza el calendario.
+Parque Solar Cerro Dorado,2024-02-01,preventivo,17,El vencimiento de la pauta periodica en el tablero de control. Se ajusta el torque de los pernos y se limpia el tablero.
+Termoelectrica Puerto Nuevo,2024-02-01,correctivo,13,Se registra indisponibilidad forzada de la unidad en la unidad fuera de servicio durante la ronda del turno.
+Parque Solar Pampa Alta,2024-02-02,falla_electrica,9,Se registra un cortocircuito monofasico en el transformador de poder durante la ronda del turno.
+Termoelectrica Costa Brava,2024-02-03,inspeccion,7,Evento por una desviacion leve del parametro medido en la medicion de espesores; se levanta la observacion y se programa el seguimiento.
+Central Salto del Pehuen,2024-02-04,preventivo,22,El cumplimiento del programa de mantenimiento en el plan anual de la unidad. Se ajusta el torque de los pernos y se limpia el tablero.
+Termoelectrica Costa Brava,2024-02-04,preventivo,16,Se detecta las horas de operacion acumuladas en el plan anual de la unidad; se ejecuta la rutina programada y se actualiza el calendario.
+Diesel Respaldo Cordillera,2024-02-05,preventivo,6,Durante el turno: el ciclo de limpieza programado en el tablero de control; se cambia el aceite y el filtro segun la pauta del fabricante.
+Diesel Respaldo Cordillera,2024-02-05,correctivo,61,Se registra reincidencia de la falla anterior en la cuadrilla de intervencion durante la ronda del turno.
+Termoelectrica Puerto Nuevo,2024-02-05,falla_electrica,14,Se registra una caida brusca de tension en el aislador de linea durante la ronda del turno.
+Central Vega Escondida,2024-02-06,inspeccion,1,Evento por una observacion levantada en auditoria en el parametro fuera de tolerancia; se documenta el hallazgo y se emite el informe correspondiente.
+Parque Solar Salar Nuevo,2024-02-07,falla_electrica,31,Se detecta el disparo de la proteccion diferencial en el interruptor principal; se aisla el circuito y se normaliza la tension.
+Central Lago Ventisquero,2024-02-08,preventivo,9,Se detecta las horas de operacion acumuladas en el tablero de control; se ajusta el torque de los pernos y se limpia el tablero.
+Parque Solar Media Luna,2024-02-08,preventivo,11,Se detecta el ciclo de limpieza programado en el filtro de admision; se ajusta el torque de los pernos y se limpia el tablero.
+Central Salto del Pehuen,2024-02-09,preventivo,7,El cumplimiento del programa de mantenimiento en el filtro de admision. Se ajusta el torque de los pernos y se limpia el tablero.
+Eolica Punta Ventosa,2024-02-10,falla_electrica,25,El operador reporta un cortocircuito monofasico; se revisa la barra de media tension y se reemplaza el rele y se recalibra la proteccion.
+Parque Solar Salar Nuevo,2024-02-10,correctivo,30,La cuadrilla interviene en terreno y devuelve la unidad al despacho tras detectar reincidencia de la falla anterior en el equipo intervenido en taller.
+Central Salto del Pehuen,2024-02-11,correctivo,35,Evento por una reparacion mayor pendiente en el equipo intervenido en taller; se instala el repuesto y se ejecutan las pruebas de normalizacion.
+Eolica Cerro Negro,2024-02-11,inspeccion,3,Evento por un hallazgo menor sin indisponibilidad en el checklist del recorrido; se registra la medicion en la ficha de la unidad.
+Eolica Punta Ventosa,2024-02-12,correctivo,13,Se repara el conjunto y se realiza la puesta en marcha tras detectar reincidencia de la falla anterior en la unidad fuera de servicio.
+Central Lago Ventisquero,2024-02-14,preventivo,13,Se detecta las horas de operacion acumuladas en el filtro de admision; se ejecuta la rutina programada y se actualiza el calendario.
+Eolica Vientos del Sur,2024-02-14,falla_mecanica,94,Evento por temperatura elevada en el descanso en el alabe del rotor; se reemplaza el rodamiento y se realinea el eje.
+Diesel Respaldo Cordillera,2024-02-15,preventivo,10,Las horas de operacion acumuladas en el calendario de disponibilidad. Se cambia el aceite y el filtro segun la pauta del fabricante.
+Eolica Cerro Negro,2024-02-15,correctivo,61,Se completa la reparacion dentro del plazo comprometido tras detectar indisponibilidad forzada de la unidad en el modulo reemplazado.
+Eolica Loma Larga,2024-02-15,inspeccion,2,Se registra un hallazgo menor sin indisponibilidad en el informe de termografia durante la ronda del turno.
+Termoelectrica Bahia Norte,2024-02-15,falla_mecanica,54,Se equilibra el rotor y se repite la medicion de vibracion tras detectar vibracion excesiva en el eje en el alabe del rotor.
+Termoelectrica Bahia Norte,2024-02-15,falla_electrica,31,Se reconecta el interruptor tras verificar la aislacion tras detectar un arco electrico en el borne en el aislador de linea.
+Termoelectrica Bahia Norte,2024-02-15,correctivo,37,Se repara el conjunto y se realiza la puesta en marcha tras detectar una reparacion mayor pendiente en la unidad fuera de servicio.
+Central Lago Ventisquero,2024-02-16,preventivo,23,Evento por el vencimiento de la pauta periodica en el tablero de control; se cambia el aceite y el filtro segun la pauta del fabricante.
+Parque Solar Salar Nuevo,2024-02-16,preventivo,5,Se registra las horas de operacion acumuladas en el circuito de aceite durante la ronda del turno.
+Central Rio Manso Alto,2024-02-17,preventivo,4,El ciclo de limpieza programado en el calendario de disponibilidad. Se repone la disponibilidad de la unidad dentro del plazo.
+Central Vega Escondida,2024-02-17,inspeccion,6,Una desviacion leve del parametro medido en el registro fotografico de la unidad. Se registra la medicion en la ficha de la unidad.
+Diesel Respaldo Cordillera,2024-02-17,inspeccion,8,Durante el turno: un hallazgo menor sin indisponibilidad en el informe de termografia; se completa el checklist sin desviaciones relevantes.
+Eolica Loma Larga,2024-02-17,falla_electrica,8,El operador reporta corriente de fuga elevada; se revisa el alimentador de la subestacion y se reemplaza el rele y se recalibra la proteccion.
+Parque Solar Cerro Dorado,2024-02-17,preventivo,12,Se detecta el vencimiento de la pauta periodica en el circuito de aceite; se repone la disponibilidad de la unidad dentro del plazo.
+Eolica Vientos del Sur,2024-02-18,preventivo,12,Evento por el cumplimiento del programa de mantenimiento en el plan anual de la unidad; se cambia el aceite y el filtro segun la pauta del fabricante.
+Parque Solar Llano Blanco,2024-02-20,falla_mecanica,59,Se equilibra el rotor y se repite la medicion de vibracion tras detectar perdida de presion de aceite en la turbina de baja presion.
+Central Quebrada Azul,2024-02-21,preventivo,12,El operador reporta las horas de operacion acumuladas; se revisa el tablero de control y se ajusta el torque de los pernos y se limpia el tablero.
+Central Rio Manso Alto,2024-02-21,falla_electrica,18,Se detecta un arco electrico en el borne en el aislador de linea; se reemplaza el rele y se recalibra la proteccion.
+Diesel Respaldo Cordillera,2024-02-22,falla_mecanica,57,Se cambia el sello y se verifica la estanqueidad tras detectar vibracion excesiva en el eje en el sello mecanico.
+Eolica Vientos del Sur,2024-02-22,falla_mecanica,91,Se reemplaza el rodamiento y se realinea el eje tras detectar vibracion excesiva en el eje en el alabe del rotor.
+Parque Solar Llano Blanco,2024-02-22,preventivo,21,Se ajusta el torque de los pernos y se limpia el tablero tras detectar el ciclo de limpieza programado en el circuito de aceite.
+Central Quebrada Azul,2024-02-23,falla_mecanica,60,Se registra perdida de presion de aceite en el alabe del rotor durante la ronda del turno.
+Eolica Loma Larga,2024-02-23,evento_climatico,26,Se detecta acumulacion de hielo en las palas en la linea de evacuacion; se despeja el acceso tras la nevada y se revisa la torre.
+Termoelectrica Peninsula Gris,2024-02-25,correctivo,67,Se registra la espera de un repuesto importado en el modulo reemplazado durante la ronda del turno.
+Central Vega Escondida,2024-02-26,preventivo,12,Durante el turno: el ciclo de limpieza programado en el tablero de control; se cambia el aceite y el filtro segun la pauta del fabricante.
+Parque Solar Cerro Dorado,2024-02-27,inspeccion,2,Durante el turno: un hallazgo menor sin indisponibilidad en el checklist del recorrido; se documenta el hallazgo y se emite el informe correspondiente.
+Parque Solar Llano Blanco,2024-02-27,inspeccion,5,Una lectura dentro de tolerancia en el parametro fuera de tolerancia. Se registra la medicion en la ficha de la unidad.
+Parque Solar Pampa Alta,2024-02-28,inspeccion,8,El operador reporta una observacion levantada en auditoria; se revisa la endoscopia del ducto y se documenta el hallazgo y se emite el informe correspondiente.
+Eolica Loma Larga,2024-02-29,inspeccion,5,Evento por una lectura dentro de tolerancia en el checklist del recorrido; se levanta la observacion y se programa el seguimiento.
+Parque Solar Pampa Alta,2024-02-29,preventivo,7,Evento por el vencimiento de la pauta periodica en el calendario de disponibilidad; se repone la disponibilidad de la unidad dentro del plazo.
+Parque Solar Salar Nuevo,2024-02-29,preventivo,16,Se repone la disponibilidad de la unidad dentro del plazo tras detectar las horas de operacion acumuladas en el tablero de control.
+Eolica Vientos del Sur,2024-03-01,evento_climatico,32,El operador reporta lluvia y humedad extrema; se revisa la torre de medicion de viento y se despeja el acceso tras la nevada y se revisa la torre.
+Eolica Vientos del Sur,2024-03-01,falla_mecanica,72,Durante el turno: temperatura elevada en el descanso en el acoplamiento del generador; se reemplaza el rodamiento y se realinea el eje.
+Diesel Respaldo Cordillera,2024-03-03,correctivo,14,Durante el turno: la espera de un repuesto importado en el modulo reemplazado; se instala el repuesto y se ejecutan las pruebas de normalizacion.
+Termoelectrica Bahia Norte,2024-03-03,falla_electrica,32,El disparo de la proteccion diferencial en el rele de proteccion. Se reconecta el interruptor tras verificar la aislacion.
+Eolica Vientos del Sur,2024-03-04,correctivo,71,La espera de un repuesto importado en el equipo intervenido en taller. La cuadrilla interviene en terreno y devuelve la unidad al despacho.
+Eolica Punta Ventosa,2024-03-05,falla_mecanica,31,Evento por fatiga del material en el alabe en el sello mecanico; se reemplaza el rodamiento y se realinea el eje.
+Parque Solar Salar Nuevo,2024-03-05,correctivo,13,Se instala el repuesto y se ejecutan las pruebas de normalizacion tras detectar la espera de un repuesto importado en el conjunto reparado en terreno.
+Termoelectrica Bahia Norte,2024-03-05,correctivo,49,Se detecta indisponibilidad forzada de la unidad en el modulo reemplazado; se repara el conjunto y se realiza la puesta en marcha.
+Central Quebrada Azul,2024-03-06,preventivo,22,Evento por el cumplimiento del programa de mantenimiento en el calendario de disponibilidad; se repone la disponibilidad de la unidad dentro del plazo.
+Diesel Respaldo Cordillera,2024-03-06,correctivo,16,El operador reporta reincidencia de la falla anterior; se revisa el equipo intervenido en taller y se completa la reparacion dentro del plazo comprometido.
+Eolica Vientos del Sur,2024-03-06,preventivo,9,Evento por el cumplimiento del programa de mantenimiento en el calendario de disponibilidad; se ejecuta la rutina programada y se actualiza el calendario.
+Parque Solar Salar Nuevo,2024-03-07,evento_climatico,25,Durante el turno: nevada intensa en el acceso en el anemometro de la gondola; se inspecciona la estructura despues del frente de mal tiempo.
+Eolica Loma Larga,2024-03-08,correctivo,71,Evento por reincidencia de la falla anterior en el equipo intervenido en taller; se completa la reparacion dentro del plazo comprometido.
+Parque Solar Cerro Dorado,2024-03-09,falla_electrica,47,Se detecta una caida brusca de tension en el transformador de poder; se reconecta el interruptor tras verificar la aislacion.
+Parque Solar Cerro Dorado,2024-03-09,correctivo,71,El operador reporta reincidencia de la falla anterior; se revisa la cuadrilla de intervencion y la cuadrilla interviene en terreno y devuelve la unidad al despacho.
+Termoelectrica Bahia Norte,2024-03-09,falla_mecanica,27,Se detecta fatiga del material en el alabe en la caja multiplicadora; se reemplaza el rodamiento y se realinea el eje.
+Eolica Punta Ventosa,2024-03-10,falla_mecanica,52,Se detecta desalineamiento del acoplamiento en el sello mecanico; se reemplaza el rodamiento y se realinea el eje.
+Parque Solar Llano Blanco,2024-03-10,preventivo,8,Se repone la disponibilidad de la unidad dentro del plazo tras detectar el cumplimiento del programa de mantenimiento en el tablero de control.
+Parque Solar Media Luna,2024-03-10,inspeccion,3,Evento por una observacion levantada en auditoria en el informe de termografia; se levanta la observacion y se programa el seguimiento.
+Termoelectrica Costa Brava,2024-03-10,falla_electrica,45,El operador reporta un cortocircuito monofasico; se revisa la barra de media tension y se reemplaza el rele y se recalibra la proteccion.
+Termoelectrica Peninsula Gris,2024-03-10,falla_mecanica,70,Durante el turno: fatiga del material en el alabe en la bomba de lubricacion; se reemplaza el rodamiento y se realinea el eje.
+Central Rio Manso Alto,2024-03-11,preventivo,5,Evento por el ciclo de limpieza programado en el tablero de control; se ajusta el torque de los pernos y se limpia el tablero.
+Central Vega Escondida,2024-03-12,preventivo,20,Las horas de operacion acumuladas en el circuito de aceite. Se ajusta el torque de los pernos y se limpia el tablero.
+Central Vega Escondida,2024-03-12,inspeccion,3,El operador reporta una observacion levantada en auditoria; se revisa la endoscopia del ducto y se levanta la observacion y se programa el seguimiento.
+Termoelectrica Costa Brava,2024-03-13,correctivo,39,Se registra indisponibilidad forzada de la unidad en la unidad fuera de servicio durante la ronda del turno.
+Parque Solar Media Luna,2024-03-15,correctivo,67,Durante el turno: indisponibilidad forzada de la unidad en el conjunto reparado en terreno; se instala el repuesto y se ejecutan las pruebas de normalizacion.
+Termoelectrica Peninsula Gris,2024-03-15,inspeccion,6,Durante el turno: una desviacion leve del parametro medido en la medicion de espesores; se documenta el hallazgo y se emite el informe correspondiente.
+Eolica Vientos del Sur,2024-03-16,evento_climatico,33,Durante el turno: una tormenta electrica en la zona en el aerogenerador del sector norte; se detiene la unidad por viento y se espera mejor tiempo.
+Eolica Vientos del Sur,2024-03-16,falla_mecanica,92,Se purga el circuito de lubricacion y se ajusta el torque tras detectar desalineamiento del acoplamiento en el sello mecanico.
+Termoelectrica Peninsula Gris,2024-03-17,preventivo,10,El operador reporta el ciclo de limpieza programado; se revisa el circuito de aceite y se cambia el aceite y el filtro segun la pauta del fabricante.
+Parque Solar Salar Nuevo,2024-03-18,preventivo,11,Evento por las horas de operacion acumuladas en el circuito de aceite; se ejecuta la rutina programada y se actualiza el calendario.
+Termoelectrica Bahia Norte,2024-03-18,correctivo,20,Se instala el repuesto y se ejecutan las pruebas de normalizacion tras detectar reincidencia de la falla anterior en la unidad fuera de servicio.
+Termoelectrica Peninsula Gris,2024-03-18,correctivo,41,El operador reporta indisponibilidad forzada de la unidad; se revisa el modulo reemplazado y la cuadrilla interviene en terreno y devuelve la unidad al despacho.
+Termoelectrica Valle Central,2024-03-18,falla_electrica,28,Evento por una caida brusca de tension en el transformador de poder; se reemplaza el rele y se recalibra la proteccion.
+Termoelectrica Costa Brava,2024-03-22,correctivo,22,Se instala el repuesto y se ejecutan las pruebas de normalizacion tras detectar indisponibilidad forzada de la unidad en el conjunto reparado en terreno.
+Eolica Cerro Negro,2024-03-23,inspeccion,6,Se levanta la observacion y se programa el seguimiento tras detectar una lectura dentro de tolerancia en el informe de termografia.
+Central Salto del Pehuen,2024-03-24,preventivo,12,Evento por el cumplimiento del programa de mantenimiento en la pauta de rutina trimestral; se cambia el aceite y el filtro segun la pauta del fabricante.
+Central Vega Escondida,2024-03-24,preventivo,19,Durante el turno: el cumplimiento del programa de mantenimiento en el tablero de control; se cambia el aceite y el filtro segun la pauta del fabricante.
+Diesel Respaldo Cordillera,2024-03-24,inspeccion,4,Durante el turno: una lectura dentro de tolerancia en el checklist del recorrido; se registra la medicion en la ficha de la unidad.
+Parque Solar Cerro Dorado,2024-03-24,falla_electrica,17,Se energiza la barra en forma escalonada tras detectar un arco electrico en el borne en el rele de proteccion.
+Central Lago Ventisquero,2024-03-25,correctivo,13,Se repara el conjunto y se realiza la puesta en marcha tras detectar reincidencia de la falla anterior en el conjunto reparado en terreno.
+Eolica Cerro Negro,2024-03-27,inspeccion,8,El operador reporta una observacion levantada en auditoria; se revisa el parametro fuera de tolerancia y se completa el checklist sin desviaciones relevantes.
+Eolica Loma Larga,2024-03-27,preventivo,24,Evento por las horas de operacion acumuladas en el tablero de control; se ajusta el torque de los pernos y se limpia el tablero.
+Parque Solar Cerro Dorado,2024-03-27,correctivo,37,Durante el turno: indisponibilidad forzada de la unidad en la unidad fuera de servicio; se completa la reparacion dentro del plazo comprometido.
+Termoelectrica Peninsula Gris,2024-03-27,falla_mecanica,17,Evento por vibracion excesiva en el eje en el rodamiento del eje principal; se purga el circuito de lubricacion y se ajusta el torque.
+Eolica Punta Ventosa,2024-03-30,correctivo,7,Una reparacion mayor pendiente en el repuesto critico de bodega. Se repara el conjunto y se realiza la puesta en marcha.
+Termoelectrica Bahia Norte,2024-03-30,falla_electrica,27,Durante el turno: una caida brusca de tension en el pararrayos del patio; se reemplaza el rele y se recalibra la proteccion.
+Central Salto del Pehuen,2024-03-31,preventivo,13,Las horas de operacion acumuladas en el plan anual de la unidad. Se ejecuta la rutina programada y se actualiza el calendario.
+Eolica Punta Ventosa,2024-03-31,falla_electrica,37,Se detecta un arco electrico en el borne en el rele de proteccion; se reconecta el interruptor tras verificar la aislacion.
+Termoelectrica Peninsula Gris,2024-04-01,falla_mecanica,35,Perdida de presion de aceite en la turbina de baja presion. Se equilibra el rotor y se repite la medicion de vibracion.
+Central Salto del Pehuen,2024-04-02,preventivo,6,Se registra el vencimiento de la pauta periodica en el circuito de aceite durante la ronda del turno.
+Parque Solar Pampa Alta,2024-04-03,preventivo,10,Durante el turno: las horas de operacion acumuladas en el filtro de admision; se repone la disponibilidad de la unidad dentro del plazo.
+Eolica Cerro Negro,2024-04-07,evento_climatico,3,Se detecta granizo sobre la estructura en el sistema de orientacion; se detiene la unidad por viento y se espera mejor tiempo.
+Eolica Cerro Negro,2024-04-07,falla_mecanica,62,Se equilibra el rotor y se repite la medicion de vibracion tras detectar desgaste anormal del rodamiento en el sello mecanico.
+Eolica Loma Larga,2024-04-07,evento_climatico,31,Evento por rafagas de viento sobre el limite operativo en la linea de evacuacion; se despeja el acceso tras la nevada y se revisa la torre.
+Eolica Loma Larga,2024-04-07,falla_mecanica,49,Evento por desalineamiento del acoplamiento en la bomba de lubricacion; se cambia el sello y se verifica la estanqueidad.
+Eolica Punta Ventosa,2024-04-07,evento_climatico,4,Se registra una tormenta electrica en la zona en la estructura del parque durante la ronda del turno.
+Eolica Vientos del Sur,2024-04-07,falla_electrica,35,Un cortocircuito monofasico en el rele de proteccion. Se energiza la barra en forma escalonada.
+Central Vega Escondida,2024-04-08,falla_mecanica,78,Durante el turno: fatiga del material en el alabe en la turbina de baja presion; se cambia el sello y se verifica la estanqueidad.
+Termoelectrica Costa Brava,2024-04-08,preventivo,18,Se registra el vencimiento de la pauta periodica en el circuito de aceite durante la ronda del turno.
+Eolica Vientos del Sur,2024-04-09,correctivo,47,El operador reporta una reparacion mayor pendiente; se revisa el modulo reemplazado y se instala el repuesto y se ejecutan las pruebas de normalizacion.
+Central Quebrada Azul,2024-04-10,inspeccion,5,Durante el turno: una observacion levantada en auditoria en el parametro fuera de tolerancia; se levanta la observacion y se programa el seguimiento.
+Diesel Respaldo Cordillera,2024-04-10,falla_mecanica,66,Vibracion excesiva en el eje en la caja multiplicadora. Se cambia el sello y se verifica la estanqueidad.
+Eolica Loma Larga,2024-04-10,falla_mecanica,95,Perdida de presion de aceite en la turbina de baja presion. Se reemplaza el rodamiento y se realinea el eje.
+Termoelectrica Costa Brava,2024-04-10,inspeccion,6,Un hallazgo menor sin indisponibilidad en el checklist del recorrido. Se completa el checklist sin desviaciones relevantes.
+Eolica Vientos del Sur,2024-04-12,preventivo,5,Durante el turno: las horas de operacion acumuladas en el circuito de aceite; se repone la disponibilidad de la unidad dentro del plazo.
+Eolica Vientos del Sur,2024-04-12,evento_climatico,14,Granizo sobre la estructura en el aerogenerador del sector norte. Se descongelan las palas antes de reanudar la operacion.
+Eolica Vientos del Sur,2024-04-12,falla_mecanica,32,Se detecta desalineamiento del acoplamiento en la caja multiplicadora; se purga el circuito de lubricacion y se ajusta el torque.
+Parque Solar Llano Blanco,2024-04-12,falla_mecanica,96,Se detecta desgaste anormal del rodamiento en la turbina de baja presion; se purga el circuito de lubricacion y se ajusta el torque.
+Eolica Loma Larga,2024-04-14,evento_climatico,33,Se registra granizo sobre la estructura en la estructura del parque durante la ronda del turno.
+Eolica Loma Larga,2024-04-14,falla_mecanica,82,Desgaste anormal del rodamiento en la bomba de lubricacion. Se equilibra el rotor y se repite la medicion de vibracion.
+Termoelectrica Puerto Nuevo,2024-04-14,preventivo,4,Durante el turno: el ciclo de limpieza programado en el filtro de admision; se repone la disponibilidad de la unidad dentro del plazo.
+Termoelectrica Costa Brava,2024-04-15,falla_electrica,13,Evento por un cortocircuito monofasico en el transformador de poder; se reemplaza el rele y se recalibra la proteccion.
+Central Salto del Pehuen,2024-04-16,falla_mecanica,44,El operador reporta fatiga del material en el alabe; se revisa el acoplamiento del generador y se cambia el sello y se verifica la estanqueidad.
+Eolica Vientos del Sur,2024-04-16,inspeccion,2,Se registra una lectura dentro de tolerancia en el informe de termografia durante la ronda del turno.
+Termoelectrica Costa Brava,2024-04-16,correctivo,63,Se registra la espera de un repuesto importado en el repuesto critico de bodega durante la ronda del turno.
+Eolica Loma Larga,2024-04-18,falla_electrica,5,Evento por un cortocircuito monofasico en el transformador de poder; se reemplaza el rele y se recalibra la proteccion.
+Termoelectrica Puerto Nuevo,2024-04-18,inspeccion,7,Evento por una lectura dentro de tolerancia en el registro fotografico de la unidad; se levanta la observacion y se programa el seguimiento.
+Eolica Loma Larga,2024-04-19,falla_electrica,27,El operador reporta un cortocircuito monofasico; se revisa el alimentador de la subestacion y se energiza la barra en forma escalonada.
+Eolica Loma Larga,2024-04-19,correctivo,34,La espera de un repuesto importado en el equipo intervenido en taller. Se completa la reparacion dentro del plazo comprometido.
+Eolica Loma Larga,2024-04-21,correctivo,14,El operador reporta reincidencia de la falla anterior; se revisa la cuadrilla de intervencion y se instala el repuesto y se ejecutan las pruebas de normalizacion.
+Termoelectrica Peninsula Gris,2024-04-21,falla_mecanica,67,Se purga el circuito de lubricacion y se ajusta el torque tras detectar temperatura elevada en el descanso en el acoplamiento del generador.
+Central Lago Ventisquero,2024-04-22,correctivo,28,Evento por indisponibilidad forzada de la unidad en la unidad fuera de servicio; la cuadrilla interviene en terreno y devuelve la unidad al despacho.
+Eolica Cerro Negro,2024-04-22,preventivo,12,Se detecta el vencimiento de la pauta periodica en la pauta de rutina trimestral; se ajusta el torque de los pernos y se limpia el tablero.
+Eolica Punta Ventosa,2024-04-22,evento_climatico,10,Nevada intensa en el acceso en el sistema de orientacion. Se detiene la unidad por viento y se espera mejor tiempo.
+Termoelectrica Bahia Norte,2024-04-24,preventivo,5,Se detecta el vencimiento de la pauta periodica en el filtro de admision; se repone la disponibilidad de la unidad dentro del plazo.
+Central Rio Manso Alto,2024-04-25,falla_electrica,47,Se registra corriente de fuga elevada en el interruptor principal durante la ronda del turno.
+Central Rio Manso Alto,2024-04-26,correctivo,8,Durante el turno: una reparacion mayor pendiente en el conjunto reparado en terreno; la cuadrilla interviene en terreno y devuelve la unidad al despacho.
+Diesel Respaldo Cordillera,2024-04-27,preventivo,21,Se registra las horas de operacion acumuladas en el tablero de control durante la ronda del turno.
+Termoelectrica Valle Central,2024-04-27,preventivo,16,Se registra el cumplimiento del programa de mantenimiento en el tablero de control durante la ronda del turno.
+Eolica Cerro Negro,2024-04-28,preventivo,12,Las horas de operacion acumuladas en el calendario de disponibilidad. Se repone la disponibilidad de la unidad dentro del plazo.
+Parque Solar Salar Nuevo,2024-04-28,evento_climatico,22,El operador reporta rafagas de viento sobre el limite operativo; se revisa la torre de medicion de viento y se inspecciona la estructura despues del frente de mal tiempo.
+Parque Solar Salar Nuevo,2024-04-28,falla_mecanica,85,Se purga el circuito de lubricacion y se ajusta el torque tras detectar perdida de presion de aceite en el sistema de refrigeracion.
+Eolica Loma Larga,2024-04-29,evento_climatico,7,Evento por una tormenta electrica en la zona en la linea de evacuacion; se inspecciona la estructura despues del frente de mal tiempo.
+Parque Solar Llano Blanco,2024-04-29,inspeccion,8,Se detecta una desviacion leve del parametro medido en la endoscopia del ducto; se completa el checklist sin desviaciones relevantes.
+Parque Solar Media Luna,2024-04-29,preventivo,19,El vencimiento de la pauta periodica en el plan anual de la unidad. Se ajusta el torque de los pernos y se limpia el tablero.
+Parque Solar Pampa Alta,2024-04-30,inspeccion,1,Se completa el checklist sin desviaciones relevantes tras detectar un hallazgo menor sin indisponibilidad en el checklist del recorrido.
+Parque Solar Cerro Dorado,2024-05-01,falla_mecanica,44,Se detecta vibracion excesiva en el eje en el sello mecanico; se reemplaza el rodamiento y se realinea el eje.
+Parque Solar Media Luna,2024-05-01,preventivo,10,Se registra las horas de operacion acumuladas en el circuito de aceite durante la ronda del turno.
+Termoelectrica Bahia Norte,2024-05-01,correctivo,14,El operador reporta indisponibilidad forzada de la unidad; se revisa la unidad fuera de servicio y se repara el conjunto y se realiza la puesta en marcha.
+Central Salto del Pehuen,2024-05-02,evento_climatico,20,El operador reporta una tormenta electrica en la zona; se revisa la torre de medicion de viento y se descongelan las palas antes de reanudar la operacion.
+Termoelectrica Costa Brava,2024-05-03,correctivo,24,Indisponibilidad forzada de la unidad en el repuesto critico de bodega. La cuadrilla interviene en terreno y devuelve la unidad al despacho.
+Termoelectrica Costa Brava,2024-05-05,correctivo,67,El operador reporta reincidencia de la falla anterior; se revisa el modulo reemplazado y se repara el conjunto y se realiza la puesta en marcha.
+Central Rio Manso Alto,2024-05-06,falla_electrica,37,Se reconecta el interruptor tras verificar la aislacion tras detectar sobretension sostenida en el pararrayos del patio.
+Central Rio Manso Alto,2024-05-07,correctivo,42,Se detecta reincidencia de la falla anterior en el repuesto critico de bodega; se instala el repuesto y se ejecutan las pruebas de normalizacion.
+Parque Solar Media Luna,2024-05-07,inspeccion,4,Se registra un hallazgo menor sin indisponibilidad en la endoscopia del ducto durante la ronda del turno.
+Eolica Cerro Negro,2024-05-08,falla_mecanica,67,Se registra temperatura elevada en el descanso en la caja multiplicadora durante la ronda del turno.
+Central Quebrada Azul,2024-05-10,evento_climatico,12,Evento por lluvia y humedad extrema en el aerogenerador del sector norte; se despeja el acceso tras la nevada y se revisa la torre.
+Central Quebrada Azul,2024-05-10,falla_mecanica,60,Durante el turno: perdida de presion de aceite en el sello mecanico; se reemplaza el rodamiento y se realinea el eje.
+Eolica Punta Ventosa,2024-05-11,preventivo,18,El operador reporta el vencimiento de la pauta periodica; se revisa el tablero de control y se cambia el aceite y el filtro segun la pauta del fabricante.
+Termoelectrica Costa Brava,2024-05-12,correctivo,34,El operador reporta una reparacion mayor pendiente; se revisa el equipo intervenido en taller y se instala el repuesto y se ejecutan las pruebas de normalizacion.
+Diesel Respaldo Cordillera,2024-05-13,evento_climatico,35,Evento por nevada intensa en el acceso en el aerogenerador del sector norte; se descongelan las palas antes de reanudar la operacion.
+Eolica Cerro Negro,2024-05-13,evento_climatico,9,Se detecta acumulacion de hielo en las palas en el anemometro de la gondola; se despeja el acceso tras la nevada y se revisa la torre.
+Eolica Cerro Negro,2024-05-13,falla_mecanica,88,El operador reporta vibracion excesiva en el eje; se revisa el rodamiento del eje principal y se reemplaza el rodamiento y se realinea el eje.
+Parque Solar Pampa Alta,2024-05-13,preventivo,18,El operador reporta el cumplimiento del programa de mantenimiento; se revisa el plan anual de la unidad y se repone la disponibilidad de la unidad dentro del plazo.
+Termoelectrica Puerto Nuevo,2024-05-14,inspeccion,6,Se registra una lectura dentro de tolerancia en el registro fotografico de la unidad durante la ronda del turno.
+Eolica Loma Larga,2024-05-15,evento_climatico,13,Se detecta lluvia y humedad extrema en el anemometro de la gondola; se despeja el acceso tras la nevada y se revisa la torre.
+Eolica Loma Larga,2024-05-15,falla_mecanica,71,Se equilibra el rotor y se repite la medicion de vibracion tras detectar fatiga del material en el alabe en la caja multiplicadora.
+Eolica Vientos del Sur,2024-05-15,evento_climatico,4,El operador reporta nevada intensa en el acceso; se revisa la linea de evacuacion y se detiene la unidad por viento y se espera mejor tiempo.
+Eolica Vientos del Sur,2024-05-15,falla_mecanica,38,Se detecta desgaste anormal del rodamiento en la bomba de lubricacion; se reemplaza el rodamiento y se realinea el eje.
+Central Lago Ventisquero,2024-05-16,preventivo,17,Durante el turno: el vencimiento de la pauta periodica en la pauta de rutina trimestral; se ajusta el torque de los pernos y se limpia el tablero.
+Eolica Punta Ventosa,2024-05-16,evento_climatico,19,Evento por una tormenta electrica en la zona en la linea de evacuacion; se descongelan las palas antes de reanudar la operacion.
+Termoelectrica Bahia Norte,2024-05-16,preventivo,13,Se registra el vencimiento de la pauta periodica en el filtro de admision durante la ronda del turno.
+Eolica Cerro Negro,2024-05-17,preventivo,19,Se ajusta el torque de los pernos y se limpia el tablero tras detectar las horas de operacion acumuladas en el filtro de admision.
+Termoelectrica Peninsula Gris,2024-05-18,inspeccion,6,Durante el turno: una observacion levantada en auditoria en el informe de termografia; se registra la medicion en la ficha de la unidad.
+Termoelectrica Valle Central,2024-05-18,evento_climatico,35,Se descongelan las palas antes de reanudar la operacion tras detectar rafagas de viento sobre el limite operativo en la torre de medicion de viento.
+Eolica Loma Larga,2024-05-21,inspeccion,1,Se registra una desviacion leve del parametro medido en el parametro fuera de tolerancia durante la ronda del turno.
+Central Salto del Pehuen,2024-05-23,preventivo,11,Durante el turno: las horas de operacion acumuladas en el filtro de admision; se repone la disponibilidad de la unidad dentro del plazo.
+Eolica Punta Ventosa,2024-05-23,inspeccion,3,Se registra la medicion en la ficha de la unidad tras detectar un hallazgo menor sin indisponibilidad en el registro fotografico de la unidad.
+Termoelectrica Peninsula Gris,2024-05-23,falla_mecanica,46,El operador reporta perdida de presion de aceite; se revisa la bomba de lubricacion y se cambia el sello y se verifica la estanqueidad.
+Termoelectrica Puerto Nuevo,2024-05-23,preventivo,7,El operador reporta el cumplimiento del programa de mantenimiento; se revisa el filtro de admision y se ejecuta la rutina programada y se actualiza el calendario.
+Eolica Cerro Negro,2024-05-24,evento_climatico,24,Se detiene la unidad por viento y se espera mejor tiempo tras detectar una tormenta electrica en la zona en la linea de evacuacion.
+Termoelectrica Bahia Norte,2024-05-24,falla_mecanica,38,El operador reporta temperatura elevada en el descanso; se revisa el acoplamiento del generador y se purga el circuito de lubricacion y se ajusta el torque.
+Eolica Punta Ventosa,2024-05-25,evento_climatico,15,El operador reporta granizo sobre la estructura; se revisa el aerogenerador del sector norte y se inspecciona la estructura despues del frente de mal tiempo.
+Eolica Punta Ventosa,2024-05-25,falla_mecanica,24,Durante el turno: fatiga del material en el alabe en el sello mecanico; se purga el circuito de lubricacion y se ajusta el torque.
+Central Salto del Pehuen,2024-05-26,inspeccion,2,Un hallazgo menor sin indisponibilidad en la endoscopia del ducto. Se completa el checklist sin desviaciones relevantes.
+Central Rio Manso Alto,2024-05-28,inspeccion,7,El operador reporta una desviacion leve del parametro medido; se revisa el checklist del recorrido y se completa el checklist sin desviaciones relevantes.
+Eolica Cerro Negro,2024-05-29,evento_climatico,9,Se registra rafagas de viento sobre el limite operativo en el sistema de orientacion durante la ronda del turno.
+Parque Solar Media Luna,2024-05-30,evento_climatico,4,Durante el turno: rafagas de viento sobre el limite operativo en el anemometro de la gondola; se detiene la unidad por viento y se espera mejor tiempo.
+Parque Solar Media Luna,2024-05-30,falla_mecanica,82,Se detecta perdida de presion de aceite en el acoplamiento del generador; se cambia el sello y se verifica la estanqueidad.
+Termoelectrica Peninsula Gris,2024-05-30,falla_mecanica,85,Durante el turno: desgaste anormal del rodamiento en el rodamiento del eje principal; se reemplaza el rodamiento y se realinea el eje.
+Termoelectrica Puerto Nuevo,2024-05-30,falla_electrica,47,Se reconecta el interruptor tras verificar la aislacion tras detectar sobretension sostenida en el alimentador de la subestacion.
+Central Vega Escondida,2024-05-31,preventivo,8,Se detecta el ciclo de limpieza programado en el circuito de aceite; se ajusta el torque de los pernos y se limpia el tablero.
+Parque Solar Media Luna,2024-05-31,inspeccion,2,Evento por una lectura dentro de tolerancia en el registro fotografico de la unidad; se documenta el hallazgo y se emite el informe correspondiente.
+Eolica Loma Larga,2024-06-01,falla_electrica,32,Se reconecta el interruptor tras verificar la aislacion tras detectar corriente de fuga elevada en el interruptor principal.
+Eolica Vientos del Sur,2024-06-02,evento_climatico,31,Se inspecciona la estructura despues del frente de mal tiempo tras detectar una tormenta electrica en la zona en el aerogenerador del sector norte.
+Eolica Vientos del Sur,2024-06-02,falla_mecanica,35,Perdida de presion de aceite en el alabe del rotor. Se reemplaza el rodamiento y se realinea el eje.
+Parque Solar Cerro Dorado,2024-06-02,falla_mecanica,37,Se reemplaza el rodamiento y se realinea el eje tras detectar temperatura elevada en el descanso en el sistema de refrigeracion.
+Termoelectrica Puerto Nuevo,2024-06-02,correctivo,63,Evento por la espera de un repuesto importado en el modulo reemplazado; se repara el conjunto y se realiza la puesta en marcha.
+Central Rio Manso Alto,2024-06-03,inspeccion,2,El operador reporta una observacion levantada en auditoria; se revisa el parametro fuera de tolerancia y se documenta el hallazgo y se emite el informe correspondiente.
+Central Vega Escondida,2024-06-03,correctivo,59,Indisponibilidad forzada de la unidad en el equipo intervenido en taller. Se completa la reparacion dentro del plazo comprometido.
+Parque Solar Pampa Alta,2024-06-03,falla_electrica,34,Evento por un cortocircuito monofasico en el pararrayos del patio; se reemplaza el rele y se recalibra la proteccion.
+Central Quebrada Azul,2024-06-04,evento_climatico,27,Se descongelan las palas antes de reanudar la operacion tras detectar acumulacion de hielo en las palas en la estructura del parque.
+Central Quebrada Azul,2024-06-04,falla_mecanica,29,Se registra vibracion excesiva en el eje en el alabe del rotor durante la ronda del turno.
+Diesel Respaldo Cordillera,2024-06-04,preventivo,12,Evento por el ciclo de limpieza programado en la pauta de rutina trimestral; se cambia el aceite y el filtro segun la pauta del fabricante.
+Eolica Punta Ventosa,2024-06-04,evento_climatico,20,Se detecta lluvia y humedad extrema en la estructura del parque; se despeja el acceso tras la nevada y se revisa la torre.
+Eolica Punta Ventosa,2024-06-04,falla_mecanica,28,Se detecta perdida de presion de aceite en el acoplamiento del generador; se reemplaza el rodamiento y se realinea el eje.
+Termoelectrica Bahia Norte,2024-06-04,evento_climatico,14,El operador reporta rafagas de viento sobre el limite operativo; se revisa el aerogenerador del sector norte y se despeja el acceso tras la nevada y se revisa la torre.
+Central Rio Manso Alto,2024-06-05,preventivo,17,Se registra el ciclo de limpieza programado en el calendario de disponibilidad durante la ronda del turno.
+Central Vega Escondida,2024-06-05,falla_mecanica,22,Se detecta desalineamiento del acoplamiento en el acoplamiento del generador; se reemplaza el rodamiento y se realinea el eje.
+Eolica Vientos del Sur,2024-06-08,evento_climatico,24,Se detecta acumulacion de hielo en las palas en la torre de medicion de viento; se descongelan las palas antes de reanudar la operacion.
+Parque Solar Cerro Dorado,2024-06-08,preventivo,4,Se detecta el cumplimiento del programa de mantenimiento en el tablero de control; se ejecuta la rutina programada y se actualiza el calendario.
+Parque Solar Pampa Alta,2024-06-09,preventivo,24,Durante el turno: el vencimiento de la pauta periodica en el calendario de disponibilidad; se cambia el aceite y el filtro segun la pauta del fabricante.
+Termoelectrica Puerto Nuevo,2024-06-09,inspeccion,6,Se registra un hallazgo menor sin indisponibilidad en el checklist del recorrido durante la ronda del turno.
+Parque Solar Salar Nuevo,2024-06-10,falla_mecanica,52,Se detecta desgaste anormal del rodamiento en el acoplamiento del generador; se purga el circuito de lubricacion y se ajusta el torque.
+Eolica Loma Larga,2024-06-11,falla_electrica,34,Durante el turno: corriente de fuga elevada en el banco de condensadores; se aisla el circuito y se normaliza la tension.
+Parque Solar Media Luna,2024-06-12,falla_electrica,37,Se aisla el circuito y se normaliza la tension tras detectar un arco electrico en el borne en el rele de proteccion.
+Parque Solar Media Luna,2024-06-12,correctivo,10,Se instala el repuesto y se ejecutan las pruebas de normalizacion tras detectar indisponibilidad forzada de la unidad en el conjunto reparado en terreno.
+Termoelectrica Costa Brava,2024-06-12,falla_mecanica,18,Vibracion excesiva en el eje en el alabe del rotor. Se reemplaza el rodamiento y se realinea el eje.
+Diesel Respaldo Cordillera,2024-06-13,evento_climatico,13,El operador reporta lluvia y humedad extrema; se revisa la torre de medicion de viento y se despeja el acceso tras la nevada y se revisa la torre.
+Diesel Respaldo Cordillera,2024-06-13,falla_mecanica,43,El operador reporta desalineamiento del acoplamiento; se revisa el rodamiento del eje principal y se reemplaza el rodamiento y se realinea el eje.
+Eolica Loma Larga,2024-06-13,correctivo,7,Se registra una reparacion mayor pendiente en el equipo intervenido en taller durante la ronda del turno.
+Eolica Punta Ventosa,2024-06-13,inspeccion,2,Evento por una lectura dentro de tolerancia en el informe de termografia; se registra la medicion en la ficha de la unidad.
+Parque Solar Salar Nuevo,2024-06-13,preventivo,4,El vencimiento de la pauta periodica en el plan anual de la unidad. Se cambia el aceite y el filtro segun la pauta del fabricante.
+Termoelectrica Costa Brava,2024-06-13,preventivo,23,El cumplimiento del programa de mantenimiento en el calendario de disponibilidad. Se ejecuta la rutina programada y se actualiza el calendario.
+Termoelectrica Valle Central,2024-06-13,inspeccion,4,Se detecta una lectura dentro de tolerancia en el informe de termografia; se registra la medicion en la ficha de la unidad.
+Termoelectrica Valle Central,2024-06-13,preventivo,11,El cumplimiento del programa de mantenimiento en el circuito de aceite. Se ajusta el torque de los pernos y se limpia el tablero.
+Parque Solar Salar Nuevo,2024-06-15,falla_electrica,32,Se detecta corriente de fuga elevada en el pararrayos del patio; se reemplaza el rele y se recalibra la proteccion.
+Termoelectrica Puerto Nuevo,2024-06-15,preventivo,11,El operador reporta las horas de operacion acumuladas; se revisa el tablero de control y se ejecuta la rutina programada y se actualiza el calendario.
+Central Salto del Pehuen,2024-06-16,inspeccion,4,Evento por una observacion levantada en auditoria en el informe de termografia; se completa el checklist sin desviaciones relevantes.
+Eolica Cerro Negro,2024-06-16,evento_climatico,29,El operador reporta granizo sobre la estructura; se revisa el anemometro de la gondola y se inspecciona la estructura despues del frente de mal tiempo.
+Eolica Cerro Negro,2024-06-16,falla_mecanica,48,Se reemplaza el rodamiento y se realinea el eje tras detectar temperatura elevada en el descanso en la caja multiplicadora.
+Termoelectrica Puerto Nuevo,2024-06-16,correctivo,68,Se registra reincidencia de la falla anterior en el conjunto reparado en terreno durante la ronda del turno.
+Termoelectrica Peninsula Gris,2024-06-17,inspeccion,4,Durante el turno: una observacion levantada en auditoria en la endoscopia del ducto; se registra la medicion en la ficha de la unidad.
+Central Quebrada Azul,2024-06-19,inspeccion,1,El operador reporta un hallazgo menor sin indisponibilidad; se revisa el informe de termografia y se levanta la observacion y se programa el seguimiento.
+Parque Solar Media Luna,2024-06-19,falla_electrica,5,Evento por el disparo de la proteccion diferencial en el interruptor principal; se energiza la barra en forma escalonada.
+Termoelectrica Valle Central,2024-06-20,correctivo,28,Se detecta una reparacion mayor pendiente en el conjunto reparado en terreno; se completa la reparacion dentro del plazo comprometido.
+Central Quebrada Azul,2024-06-21,inspeccion,2,Evento por una lectura dentro de tolerancia en el parametro fuera de tolerancia; se levanta la observacion y se programa el seguimiento.
+Central Quebrada Azul,2024-06-21,falla_mecanica,14,Durante el turno: temperatura elevada en el descanso en la bomba de lubricacion; se reemplaza el rodamiento y se realinea el eje.
+Termoelectrica Puerto Nuevo,2024-06-21,preventivo,4,Se registra las horas de operacion acumuladas en el plan anual de la unidad durante la ronda del turno.
+Eolica Loma Larga,2024-06-22,evento_climatico,5,Durante el turno: rafagas de viento sobre el limite operativo en el sistema de orientacion; se inspecciona la estructura despues del frente de mal tiempo.
+Parque Solar Cerro Dorado,2024-06-22,correctivo,20,Reincidencia de la falla anterior en el repuesto critico de bodega. La cuadrilla interviene en terreno y devuelve la unidad al despacho.
+Termoelectrica Bahia Norte,2024-06-23,preventivo,5,Se registra el cumplimiento del programa de mantenimiento en el circuito de aceite durante la ronda del turno.
+Termoelectrica Valle Central,2024-06-23,correctivo,24,Se detecta indisponibilidad forzada de la unidad en la cuadrilla de intervencion; se instala el repuesto y se ejecutan las pruebas de normalizacion.
+Diesel Respaldo Cordillera,2024-06-24,correctivo,16,Indisponibilidad forzada de la unidad en el equipo intervenido en taller. Se repara el conjunto y se realiza la puesta en marcha.
+Parque Solar Cerro Dorado,2024-06-24,correctivo,49,Se registra una reparacion mayor pendiente en el repuesto critico de bodega durante la ronda del turno.
+Eolica Loma Larga,2024-06-25,evento_climatico,12,Evento por acumulacion de hielo en las palas en la torre de medicion de viento; se descongelan las palas antes de reanudar la operacion.
+Eolica Punta Ventosa,2024-06-25,evento_climatico,5,Se registra rafagas de viento sobre el limite operativo en el aerogenerador del sector norte durante la ronda del turno.
+Parque Solar Salar Nuevo,2024-06-25,falla_electrica,13,Se aisla el circuito y se normaliza la tension tras detectar sobretension sostenida en la barra de media tension.
+Central Rio Manso Alto,2024-06-26,falla_electrica,42,El operador reporta el disparo de la proteccion diferencial; se revisa el alimentador de la subestacion y se reconecta el interruptor tras verificar la aislacion.
+Diesel Respaldo Cordillera,2024-06-26,correctivo,31,Se instala el repuesto y se ejecutan las pruebas de normalizacion tras detectar reincidencia de la falla anterior en el modulo reemplazado.
+Eolica Punta Ventosa,2024-06-26,evento_climatico,13,El operador reporta una tormenta electrica en la zona; se revisa el anemometro de la gondola y se inspecciona la estructura despues del frente de mal tiempo.
+Eolica Punta Ventosa,2024-06-26,falla_mecanica,59,Se reemplaza el rodamiento y se realinea el eje tras detectar desgaste anormal del rodamiento en el alabe del rotor.
+Parque Solar Media Luna,2024-06-26,correctivo,56,Se repara el conjunto y se realiza la puesta en marcha tras detectar una reparacion mayor pendiente en el repuesto critico de bodega.
+Parque Solar Salar Nuevo,2024-06-26,correctivo,33,El operador reporta reincidencia de la falla anterior; se revisa el repuesto critico de bodega y se completa la reparacion dentro del plazo comprometido.
+Eolica Vientos del Sur,2024-06-27,evento_climatico,27,El operador reporta una tormenta electrica en la zona; se revisa el sistema de orientacion y se inspecciona la estructura despues del frente de mal tiempo.
+Eolica Vientos del Sur,2024-06-27,falla_mecanica,37,El operador reporta perdida de presion de aceite; se revisa el alabe del rotor y se cambia el sello y se verifica la estanqueidad.
+Termoelectrica Peninsula Gris,2024-06-27,evento_climatico,29,Se inspecciona la estructura despues del frente de mal tiempo tras detectar nevada intensa en el acceso en el aerogenerador del sector norte.
+Central Rio Manso Alto,2024-06-30,preventivo,10,Se cambia el aceite y el filtro segun la pauta del fabricante tras detectar las horas de operacion acumuladas en la pauta de rutina trimestral.
+Termoelectrica Valle Central,2024-06-30,correctivo,67,Indisponibilidad forzada de la unidad en la unidad fuera de servicio. La cuadrilla interviene en terreno y devuelve la unidad al despacho.
+Diesel Respaldo Cordillera,2024-07-01,inspeccion,3,Durante el turno: una observacion levantada en auditoria en la medicion de espesores; se documenta el hallazgo y se emite el informe correspondiente.
+Eolica Vientos del Sur,2024-07-01,evento_climatico,19,Se despeja el acceso tras la nevada y se revisa la torre tras detectar una tormenta electrica en la zona en la torre de medicion de viento.
+Central Lago Ventisquero,2024-07-02,inspeccion,5,Se detecta una lectura dentro de tolerancia en la medicion de espesores; se completa el checklist sin desviaciones relevantes.
+Eolica Vientos del Sur,2024-07-02,falla_mecanica,17,Se registra desgaste anormal del rodamiento en la caja multiplicadora durante la ronda del turno.
+Termoelectrica Valle Central,2024-07-02,falla_mecanica,74,Se reemplaza el rodamiento y se realinea el eje tras detectar desgaste anormal del rodamiento en el acoplamiento del generador.
+Central Salto del Pehuen,2024-07-03,correctivo,37,Indisponibilidad forzada de la unidad en el repuesto critico de bodega. Se instala el repuesto y se ejecutan las pruebas de normalizacion.
+Eolica Cerro Negro,2024-07-03,preventivo,11,El operador reporta las horas de operacion acumuladas; se revisa el circuito de aceite y se cambia el aceite y el filtro segun la pauta del fabricante.
+Termoelectrica Puerto Nuevo,2024-07-04,evento_climatico,9,Durante el turno: rafagas de viento sobre el limite operativo en la torre de medicion de viento; se inspecciona la estructura despues del frente de mal tiempo.
+Parque Solar Cerro Dorado,2024-07-05,evento_climatico,26,Se registra lluvia y humedad extrema en el sistema de orientacion durante la ronda del turno.
+Parque Solar Salar Nuevo,2024-07-05,falla_electrica,40,Se registra un cortocircuito monofasico en el interruptor principal durante la ronda del turno.
+Central Lago Ventisquero,2024-07-06,evento_climatico,21,Evento por lluvia y humedad extrema en la torre de medicion de viento; se detiene la unidad por viento y se espera mejor tiempo.
+Central Lago Ventisquero,2024-07-06,falla_mecanica,50,Evento por desalineamiento del acoplamiento en el rodamiento del eje principal; se cambia el sello y se verifica la estanqueidad.
+Central Vega Escondida,2024-07-06,preventivo,13,El operador reporta el cumplimiento del programa de mantenimiento; se revisa el circuito de aceite y se ajusta el torque de los pernos y se limpia el tablero.
+Diesel Respaldo Cordillera,2024-07-06,correctivo,66,Se instala el repuesto y se ejecutan las pruebas de normalizacion tras detectar la espera de un repuesto importado en la cuadrilla de intervencion.
+Parque Solar Cerro Dorado,2024-07-06,preventivo,5,Las horas de operacion acumuladas en la pauta de rutina trimestral. Se cambia el aceite y el filtro segun la pauta del fabricante.
+Termoelectrica Peninsula Gris,2024-07-06,preventivo,4,Se ajusta el torque de los pernos y se limpia el tablero tras detectar el ciclo de limpieza programado en el tablero de control.
+Central Rio Manso Alto,2024-07-07,preventivo,7,Durante el turno: el ciclo de limpieza programado en el plan anual de la unidad; se ajusta el torque de los pernos y se limpia el tablero.
+Termoelectrica Valle Central,2024-07-07,falla_electrica,28,El operador reporta un cortocircuito monofasico; se revisa la barra de media tension y se reemplaza el rele y se recalibra la proteccion.
+Eolica Punta Ventosa,2024-07-08,evento_climatico,21,Durante el turno: granizo sobre la estructura en la torre de medicion de viento; se descongelan las palas antes de reanudar la operacion.
+Eolica Vientos del Sur,2024-07-08,evento_climatico,13,Se detecta granizo sobre la estructura en el aerogenerador del sector norte; se descongelan las palas antes de reanudar la operacion.
+Parque Solar Salar Nuevo,2024-07-08,correctivo,44,Durante el turno: la espera de un repuesto importado en la unidad fuera de servicio; la cuadrilla interviene en terreno y devuelve la unidad al despacho.
+Termoelectrica Peninsula Gris,2024-07-08,correctivo,26,Indisponibilidad forzada de la unidad en el conjunto reparado en terreno. La cuadrilla interviene en terreno y devuelve la unidad al despacho.
+Diesel Respaldo Cordillera,2024-07-09,inspeccion,1,Durante el turno: un hallazgo menor sin indisponibilidad en el parametro fuera de tolerancia; se levanta la observacion y se programa el seguimiento.
+Termoelectrica Valle Central,2024-07-09,correctivo,11,Evento por la espera de un repuesto importado en el modulo reemplazado; se completa la reparacion dentro del plazo comprometido.
+Parque Solar Media Luna,2024-07-10,falla_mecanica,17,El operador reporta desalineamiento del acoplamiento; se revisa el alabe del rotor y se reemplaza el rodamiento y se realinea el eje.
+Parque Solar Media Luna,2024-07-10,inspeccion,6,Se registra una observacion levantada en auditoria en la endoscopia del ducto durante la ronda del turno.
+Termoelectrica Bahia Norte,2024-07-10,inspeccion,6,El operador reporta un hallazgo menor sin indisponibilidad; se revisa la medicion de espesores y se levanta la observacion y se programa el seguimiento.
+Termoelectrica Peninsula Gris,2024-07-11,falla_mecanica,31,El operador reporta temperatura elevada en el descanso; se revisa el sistema de refrigeracion y se equilibra el rotor y se repite la medicion de vibracion.
+Central Quebrada Azul,2024-07-12,inspeccion,3,Se registra una desviacion leve del parametro medido en el informe de termografia durante la ronda del turno.
+Termoelectrica Valle Central,2024-07-12,falla_electrica,3,Evento por el disparo de la proteccion diferencial en el transformador de poder; se reemplaza el rele y se recalibra la proteccion.
+Eolica Cerro Negro,2024-07-13,preventivo,7,Evento por las horas de operacion acumuladas en el tablero de control; se cambia el aceite y el filtro segun la pauta del fabricante.
+Parque Solar Cerro Dorado,2024-07-13,falla_electrica,20,Se registra una caida brusca de tension en el interruptor principal durante la ronda del turno.
+Termoelectrica Peninsula Gris,2024-07-13,preventivo,8,El operador reporta el vencimiento de la pauta periodica; se revisa el tablero de control y se cambia el aceite y el filtro segun la pauta del fabricante.
+Parque Solar Cerro Dorado,2024-07-14,correctivo,44,Evento por la espera de un repuesto importado en el modulo reemplazado; la cuadrilla interviene en terreno y devuelve la unidad al despacho.
+Parque Solar Llano Blanco,2024-07-14,correctivo,24,Reincidencia de la falla anterior en el repuesto critico de bodega. La cuadrilla interviene en terreno y devuelve la unidad al despacho.
+Termoelectrica Peninsula Gris,2024-07-14,inspeccion,1,Se registra la medicion en la ficha de la unidad tras detectar una observacion levantada en auditoria en el informe de termografia.
+Eolica Loma Larga,2024-07-15,correctivo,14,Se instala el repuesto y se ejecutan las pruebas de normalizacion tras detectar una reparacion mayor pendiente en el modulo reemplazado.
+Eolica Vientos del Sur,2024-07-15,evento_climatico,9,Se detecta rafagas de viento sobre el limite operativo en el aerogenerador del sector norte; se descongelan las palas antes de reanudar la operacion.
+Termoelectrica Valle Central,2024-07-15,falla_mecanica,47,Se detecta temperatura elevada en el descanso en el sistema de refrigeracion; se equilibra el rotor y se repite la medicion de vibracion.
+Central Quebrada Azul,2024-07-16,falla_mecanica,41,El operador reporta temperatura elevada en el descanso; se revisa el rodamiento del eje principal y se purga el circuito de lubricacion y se ajusta el torque.
+Eolica Vientos del Sur,2024-07-16,evento_climatico,12,Durante el turno: acumulacion de hielo en las palas en la linea de evacuacion; se descongelan las palas antes de reanudar la operacion.
+Eolica Vientos del Sur,2024-07-16,falla_mecanica,92,Fatiga del material en el alabe en el acoplamiento del generador. Se equilibra el rotor y se repite la medicion de vibracion.
+Eolica Punta Ventosa,2024-07-17,evento_climatico,6,Se detiene la unidad por viento y se espera mejor tiempo tras detectar rafagas de viento sobre el limite operativo en la linea de evacuacion.
+Central Vega Escondida,2024-07-18,preventivo,12,Durante el turno: el vencimiento de la pauta periodica en el tablero de control; se ejecuta la rutina programada y se actualiza el calendario.
+Eolica Cerro Negro,2024-07-19,evento_climatico,12,Evento por rafagas de viento sobre el limite operativo en la linea de evacuacion; se despeja el acceso tras la nevada y se revisa la torre.
+Central Vega Escondida,2024-07-20,inspeccion,5,Evento por un hallazgo menor sin indisponibilidad en el informe de termografia; se registra la medicion en la ficha de la unidad.
+Diesel Respaldo Cordillera,2024-07-20,correctivo,58,La cuadrilla interviene en terreno y devuelve la unidad al despacho tras detectar una reparacion mayor pendiente en el repuesto critico de bodega.
+Eolica Cerro Negro,2024-07-21,preventivo,7,Evento por las horas de operacion acumuladas en el tablero de control; se cambia el aceite y el filtro segun la pauta del fabricante.
+Parque Solar Cerro Dorado,2024-07-21,inspeccion,4,Evento por una lectura dentro de tolerancia en el parametro fuera de tolerancia; se documenta el hallazgo y se emite el informe correspondiente.
+Parque Solar Pampa Alta,2024-07-22,falla_electrica,14,Evento por el disparo de la proteccion diferencial en el aislador de linea; se reconecta el interruptor tras verificar la aislacion.
+Termoelectrica Costa Brava,2024-07-22,evento_climatico,5,El operador reporta acumulacion de hielo en las palas; se revisa el aerogenerador del sector norte y se detiene la unidad por viento y se espera mejor tiempo.
+Termoelectrica Costa Brava,2024-07-22,falla_mecanica,36,Se detecta temperatura elevada en el descanso en la bomba de lubricacion; se purga el circuito de lubricacion y se ajusta el torque.
+Central Vega Escondida,2024-07-23,preventivo,9,Evento por las horas de operacion acumuladas en el circuito de aceite; se cambia el aceite y el filtro segun la pauta del fabricante.
+Parque Solar Pampa Alta,2024-07-23,correctivo,9,Se detecta indisponibilidad forzada de la unidad en el conjunto reparado en terreno; se instala el repuesto y se ejecutan las pruebas de normalizacion.
+Central Rio Manso Alto,2024-07-24,correctivo,65,Evento por la espera de un repuesto importado en el repuesto critico de bodega; se instala el repuesto y se ejecutan las pruebas de normalizacion.
+Eolica Vientos del Sur,2024-07-25,evento_climatico,17,Evento por acumulacion de hielo en las palas en el aerogenerador del sector norte; se detiene la unidad por viento y se espera mejor tiempo.
+Termoelectrica Costa Brava,2024-07-25,falla_electrica,22,Corriente de fuga elevada en la barra de media tension. Se reconecta el interruptor tras verificar la aislacion.
+Central Lago Ventisquero,2024-07-26,inspeccion,6,Evento por una desviacion leve del parametro medido en la endoscopia del ducto; se levanta la observacion y se programa el seguimiento.
+Diesel Respaldo Cordillera,2024-07-26,correctivo,26,El operador reporta indisponibilidad forzada de la unidad; se revisa el modulo reemplazado y se repara el conjunto y se realiza la puesta en marcha.
+Termoelectrica Costa Brava,2024-07-26,correctivo,22,El operador reporta una reparacion mayor pendiente; se revisa el equipo intervenido en taller y la cuadrilla interviene en terreno y devuelve la unidad al despacho.
+Eolica Cerro Negro,2024-07-27,evento_climatico,30,Se inspecciona la estructura despues del frente de mal tiempo tras detectar granizo sobre la estructura en la torre de medicion de viento.
+Parque Solar Pampa Alta,2024-07-27,falla_mecanica,13,Se registra perdida de presion de aceite en la caja multiplicadora durante la ronda del turno.
+Termoelectrica Bahia Norte,2024-07-27,preventivo,24,Se detecta el cumplimiento del programa de mantenimiento en la pauta de rutina trimestral; se ajusta el torque de los pernos y se limpia el tablero.
+Central Vega Escondida,2024-07-28,correctivo,41,Se completa la reparacion dentro del plazo comprometido tras detectar indisponibilidad forzada de la unidad en el equipo intervenido en taller.
+Eolica Cerro Negro,2024-07-28,correctivo,71,El operador reporta indisponibilidad forzada de la unidad; se revisa la cuadrilla de intervencion y se repara el conjunto y se realiza la puesta en marcha.
+Eolica Punta Ventosa,2024-07-28,evento_climatico,20,El operador reporta granizo sobre la estructura; se revisa la estructura del parque y se despeja el acceso tras la nevada y se revisa la torre.
+Eolica Punta Ventosa,2024-07-28,falla_mecanica,56,Se cambia el sello y se verifica la estanqueidad tras detectar temperatura elevada en el descanso en el acoplamiento del generador.
+Central Lago Ventisquero,2024-07-29,falla_electrica,20,Se reemplaza el rele y se recalibra la proteccion tras detectar corriente de fuga elevada en el rele de proteccion.
+Eolica Cerro Negro,2024-07-29,falla_mecanica,61,Vibracion excesiva en el eje en la turbina de baja presion. Se equilibra el rotor y se repite la medicion de vibracion.
+Termoelectrica Puerto Nuevo,2024-07-29,correctivo,51,Se instala el repuesto y se ejecutan las pruebas de normalizacion tras detectar la espera de un repuesto importado en la cuadrilla de intervencion.
+Central Quebrada Azul,2024-07-30,falla_mecanica,90,El operador reporta vibracion excesiva en el eje; se revisa la bomba de lubricacion y se equilibra el rotor y se repite la medicion de vibracion.
+Eolica Vientos del Sur,2024-07-30,evento_climatico,10,Se despeja el acceso tras la nevada y se revisa la torre tras detectar rafagas de viento sobre el limite operativo en el anemometro de la gondola.
+Termoelectrica Peninsula Gris,2024-07-30,falla_mecanica,11,Evento por temperatura elevada en el descanso en el rodamiento del eje principal; se reemplaza el rodamiento y se realinea el eje.
+Central Lago Ventisquero,2024-07-31,correctivo,45,Se detecta una reparacion mayor pendiente en el repuesto critico de bodega; se completa la reparacion dentro del plazo comprometido.
+Eolica Loma Larga,2024-07-31,inspeccion,1,Durante el turno: una desviacion leve del parametro medido en el checklist del recorrido; se documenta el hallazgo y se emite el informe correspondiente.
+Eolica Punta Ventosa,2024-07-31,falla_mecanica,46,El operador reporta perdida de presion de aceite; se revisa el acoplamiento del generador y se reemplaza el rodamiento y se realinea el eje.
+Eolica Punta Ventosa,2024-07-31,evento_climatico,25,El operador reporta nevada intensa en el acceso; se revisa la linea de evacuacion y se despeja el acceso tras la nevada y se revisa la torre.
+Eolica Punta Ventosa,2024-07-31,falla_mecanica,70,Evento por perdida de presion de aceite en el rodamiento del eje principal; se reemplaza el rodamiento y se realinea el eje.
+Parque Solar Pampa Alta,2024-07-31,evento_climatico,13,Una tormenta electrica en la zona en la torre de medicion de viento. Se detiene la unidad por viento y se espera mejor tiempo.
+Parque Solar Pampa Alta,2024-07-31,falla_mecanica,26,Se registra temperatura elevada en el descanso en el rodamiento del eje principal durante la ronda del turno.
+Termoelectrica Puerto Nuevo,2024-07-31,inspeccion,3,Se registra un hallazgo menor sin indisponibilidad en el parametro fuera de tolerancia durante la ronda del turno.
+Central Salto del Pehuen,2024-08-01,preventivo,12,Se detecta las horas de operacion acumuladas en el plan anual de la unidad; se repone la disponibilidad de la unidad dentro del plazo.
+Eolica Vientos del Sur,2024-08-01,correctivo,53,El operador reporta la espera de un repuesto importado; se revisa el conjunto reparado en terreno y se repara el conjunto y se realiza la puesta en marcha.
+Parque Solar Llano Blanco,2024-08-02,inspeccion,7,Una lectura dentro de tolerancia en el informe de termografia. Se documenta el hallazgo y se emite el informe correspondiente.
+Parque Solar Pampa Alta,2024-08-03,preventivo,22,El ciclo de limpieza programado en la pauta de rutina trimestral. Se ajusta el torque de los pernos y se limpia el tablero.
+Eolica Punta Ventosa,2024-08-04,inspeccion,5,El operador reporta una desviacion leve del parametro medido; se revisa el registro fotografico de la unidad y se completa el checklist sin desviaciones relevantes.
+Central Quebrada Azul,2024-08-05,correctivo,51,El operador reporta reincidencia de la falla anterior; se revisa el repuesto critico de bodega y se repara el conjunto y se realiza la puesta en marcha.
+Diesel Respaldo Cordillera,2024-08-05,preventivo,15,Se detecta el vencimiento de la pauta periodica en el tablero de control; se repone la disponibilidad de la unidad dentro del plazo.
+Eolica Punta Ventosa,2024-08-06,evento_climatico,28,Evento por rafagas de viento sobre el limite operativo en la estructura del parque; se inspecciona la estructura despues del frente de mal tiempo.
+Eolica Punta Ventosa,2024-08-06,falla_mecanica,18,Se equilibra el rotor y se repite la medicion de vibracion tras detectar desgaste anormal del rodamiento en la caja multiplicadora.
+Eolica Vientos del Sur,2024-08-06,falla_mecanica,24,Se purga el circuito de lubricacion y se ajusta el torque tras detectar fatiga del material en el alabe en el sistema de refrigeracion.
+Eolica Loma Larga,2024-08-09,evento_climatico,22,Evento por rafagas de viento sobre el limite operativo en el sistema de orientacion; se inspecciona la estructura despues del frente de mal tiempo.
+Termoelectrica Valle Central,2024-08-09,falla_electrica,13,El operador reporta una caida brusca de tension; se revisa el rele de proteccion y se aisla el circuito y se normaliza la tension.
+Central Rio Manso Alto,2024-08-11,preventivo,10,Las horas de operacion acumuladas en el plan anual de la unidad. Se repone la disponibilidad de la unidad dentro del plazo.
+Eolica Loma Larga,2024-08-11,inspeccion,1,Se documenta el hallazgo y se emite el informe correspondiente tras detectar una desviacion leve del parametro medido en el checklist del recorrido.
+Eolica Vientos del Sur,2024-08-12,inspeccion,2,Se registra la medicion en la ficha de la unidad tras detectar una desviacion leve del parametro medido en el registro fotografico de la unidad.
+Central Lago Ventisquero,2024-08-16,correctivo,70,Reincidencia de la falla anterior en la cuadrilla de intervencion. Se instala el repuesto y se ejecutan las pruebas de normalizacion.
+Eolica Cerro Negro,2024-08-17,evento_climatico,15,Se detecta una tormenta electrica en la zona en la linea de evacuacion; se detiene la unidad por viento y se espera mejor tiempo.
+Termoelectrica Puerto Nuevo,2024-08-17,correctivo,28,Se registra una reparacion mayor pendiente en el repuesto critico de bodega durante la ronda del turno.
+Eolica Cerro Negro,2024-08-18,evento_climatico,9,Evento por lluvia y humedad extrema en la torre de medicion de viento; se detiene la unidad por viento y se espera mejor tiempo.
+Eolica Cerro Negro,2024-08-18,falla_mecanica,47,Desalineamiento del acoplamiento en el acoplamiento del generador. Se reemplaza el rodamiento y se realinea el eje.
+Parque Solar Llano Blanco,2024-08-18,falla_electrica,22,Durante el turno: un cortocircuito monofasico en el rele de proteccion; se reemplaza el rele y se recalibra la proteccion.
+Eolica Loma Larga,2024-08-19,evento_climatico,4,Se registra granizo sobre la estructura en el anemometro de la gondola durante la ronda del turno.
+Eolica Loma Larga,2024-08-19,falla_mecanica,77,Vibracion excesiva en el eje en la turbina de baja presion. Se reemplaza el rodamiento y se realinea el eje.
+Parque Solar Salar Nuevo,2024-08-19,evento_climatico,34,Se registra acumulacion de hielo en las palas en el sistema de orientacion durante la ronda del turno.
+Parque Solar Salar Nuevo,2024-08-19,falla_mecanica,23,Se registra desgaste anormal del rodamiento en la bomba de lubricacion durante la ronda del turno.
+Termoelectrica Costa Brava,2024-08-19,correctivo,43,Durante el turno: reincidencia de la falla anterior en el modulo reemplazado; la cuadrilla interviene en terreno y devuelve la unidad al despacho.
+Parque Solar Llano Blanco,2024-08-20,correctivo,8,Se registra la espera de un repuesto importado en el modulo reemplazado durante la ronda del turno.
+Central Salto del Pehuen,2024-08-21,correctivo,16,Evento por la espera de un repuesto importado en el repuesto critico de bodega; se repara el conjunto y se realiza la puesta en marcha.
+Central Quebrada Azul,2024-08-22,correctivo,30,Se instala el repuesto y se ejecutan las pruebas de normalizacion tras detectar reincidencia de la falla anterior en el conjunto reparado en terreno.
+Termoelectrica Valle Central,2024-08-22,inspeccion,5,Un hallazgo menor sin indisponibilidad en el informe de termografia. Se levanta la observacion y se programa el seguimiento.
+Eolica Vientos del Sur,2024-08-23,preventivo,18,Evento por el ciclo de limpieza programado en el filtro de admision; se repone la disponibilidad de la unidad dentro del plazo.
+Parque Solar Salar Nuevo,2024-08-23,falla_electrica,14,Un arco electrico en el borne en el interruptor principal. Se reemplaza el rele y se recalibra la proteccion.
+Parque Solar Llano Blanco,2024-08-24,preventivo,19,Evento por las horas de operacion acumuladas en la pauta de rutina trimestral; se repone la disponibilidad de la unidad dentro del plazo.
+Eolica Loma Larga,2024-08-25,evento_climatico,36,Se detecta lluvia y humedad extrema en el sistema de orientacion; se inspecciona la estructura despues del frente de mal tiempo.
+Parque Solar Salar Nuevo,2024-08-26,correctivo,22,Se registra una reparacion mayor pendiente en la cuadrilla de intervencion durante la ronda del turno.
+Termoelectrica Bahia Norte,2024-08-26,falla_mecanica,81,Durante el turno: desalineamiento del acoplamiento en el acoplamiento del generador; se purga el circuito de lubricacion y se ajusta el torque.
+Central Vega Escondida,2024-08-27,correctivo,40,El operador reporta reincidencia de la falla anterior; se revisa el equipo intervenido en taller y se completa la reparacion dentro del plazo comprometido.
+Termoelectrica Valle Central,2024-08-27,falla_mecanica,66,El operador reporta fatiga del material en el alabe; se revisa el alabe del rotor y se reemplaza el rodamiento y se realinea el eje.
+Central Vega Escondida,2024-08-29,evento_climatico,15,Se detecta lluvia y humedad extrema en el aerogenerador del sector norte; se despeja el acceso tras la nevada y se revisa la torre.
+Central Vega Escondida,2024-08-29,falla_mecanica,12,Se cambia el sello y se verifica la estanqueidad tras detectar perdida de presion de aceite en el acoplamiento del generador.
+Eolica Punta Ventosa,2024-08-30,correctivo,33,El operador reporta una reparacion mayor pendiente; se revisa la unidad fuera de servicio y la cuadrilla interviene en terreno y devuelve la unidad al despacho.
+Parque Solar Media Luna,2024-08-30,preventivo,5,Durante el turno: el ciclo de limpieza programado en el circuito de aceite; se cambia el aceite y el filtro segun la pauta del fabricante.
+Termoelectrica Costa Brava,2024-08-30,correctivo,6,Se registra una reparacion mayor pendiente en el repuesto critico de bodega durante la ronda del turno.
+Termoelectrica Puerto Nuevo,2024-08-30,falla_mecanica,16,Evento por desgaste anormal del rodamiento en el alabe del rotor; se equilibra el rotor y se repite la medicion de vibracion.
+Termoelectrica Puerto Nuevo,2024-08-31,correctivo,62,Evento por indisponibilidad forzada de la unidad en la unidad fuera de servicio; se repara el conjunto y se realiza la puesta en marcha.
+Eolica Cerro Negro,2024-09-01,inspeccion,5,Evento por un hallazgo menor sin indisponibilidad en la endoscopia del ducto; se completa el checklist sin desviaciones relevantes.
+Parque Solar Media Luna,2024-09-01,preventivo,16,El cumplimiento del programa de mantenimiento en el circuito de aceite. Se ajusta el torque de los pernos y se limpia el tablero.
+Diesel Respaldo Cordillera,2024-09-02,preventivo,21,Se ejecuta la rutina programada y se actualiza el calendario tras detectar las horas de operacion acumuladas en el tablero de control.
+Eolica Loma Larga,2024-09-03,falla_mecanica,44,Evento por desgaste anormal del rodamiento en el acoplamiento del generador; se equilibra el rotor y se repite la medicion de vibracion.
+Parque Solar Media Luna,2024-09-03,inspeccion,8,El operador reporta una observacion levantada en auditoria; se revisa el registro fotografico de la unidad y se levanta la observacion y se programa el seguimiento.
+Parque Solar Media Luna,2024-09-03,inspeccion,5,Se registra la medicion en la ficha de la unidad tras detectar una desviacion leve del parametro medido en la medicion de espesores.
+Central Salto del Pehuen,2024-09-04,falla_electrica,23,El operador reporta corriente de fuga elevada; se revisa el aislador de linea y se energiza la barra en forma escalonada.
+Eolica Vientos del Sur,2024-09-04,inspeccion,5,Durante el turno: una desviacion leve del parametro medido en el checklist del recorrido; se levanta la observacion y se programa el seguimiento.
+Termoelectrica Bahia Norte,2024-09-04,correctivo,42,Una reparacion mayor pendiente en el equipo intervenido en taller. La cuadrilla interviene en terreno y devuelve la unidad al despacho.
+Eolica Cerro Negro,2024-09-05,correctivo,8,Durante el turno: reincidencia de la falla anterior en el equipo intervenido en taller; se repara el conjunto y se realiza la puesta en marcha.
+Parque Solar Pampa Alta,2024-09-05,preventivo,23,Se registra el ciclo de limpieza programado en el circuito de aceite durante la ronda del turno.
+Termoelectrica Bahia Norte,2024-09-06,falla_electrica,38,Se registra sobretension sostenida en el banco de condensadores durante la ronda del turno.
+Diesel Respaldo Cordillera,2024-09-07,falla_electrica,21,Durante el turno: sobretension sostenida en el banco de condensadores; se reemplaza el rele y se recalibra la proteccion.
+Parque Solar Salar Nuevo,2024-09-08,preventivo,22,Evento por las horas de operacion acumuladas en la pauta de rutina trimestral; se ajusta el torque de los pernos y se limpia el tablero.
+Central Rio Manso Alto,2024-09-11,preventivo,16,Evento por las horas de operacion acumuladas en el filtro de admision; se cambia el aceite y el filtro segun la pauta del fabricante.
+Central Quebrada Azul,2024-09-13,preventivo,15,El operador reporta el cumplimiento del programa de mantenimiento; se revisa el plan anual de la unidad y se ajusta el torque de los pernos y se limpia el tablero.
+Parque Solar Pampa Alta,2024-09-17,falla_electrica,29,Durante el turno: una caida brusca de tension en el interruptor principal; se aisla el circuito y se normaliza la tension.
+Central Lago Ventisquero,2024-09-19,inspeccion,6,Una lectura dentro de tolerancia en el registro fotografico de la unidad. Se completa el checklist sin desviaciones relevantes.
+Central Quebrada Azul,2024-09-19,preventivo,23,El operador reporta las horas de operacion acumuladas; se revisa el plan anual de la unidad y se ajusta el torque de los pernos y se limpia el tablero.
+Central Rio Manso Alto,2024-09-19,preventivo,14,Se registra el ciclo de limpieza programado en el calendario de disponibilidad durante la ronda del turno.
+Central Vega Escondida,2024-09-19,preventivo,8,Durante el turno: las horas de operacion acumuladas en la pauta de rutina trimestral; se ajusta el torque de los pernos y se limpia el tablero.
+Parque Solar Pampa Alta,2024-09-19,correctivo,18,Reincidencia de la falla anterior en la unidad fuera de servicio. Se instala el repuesto y se ejecutan las pruebas de normalizacion.
+Diesel Respaldo Cordillera,2024-09-21,preventivo,21,Se cambia el aceite y el filtro segun la pauta del fabricante tras detectar el cumplimiento del programa de mantenimiento en el calendario de disponibilidad.
+Parque Solar Llano Blanco,2024-09-21,preventivo,19,Se ajusta el torque de los pernos y se limpia el tablero tras detectar el ciclo de limpieza programado en la pauta de rutina trimestral.
+Central Vega Escondida,2024-09-22,falla_mecanica,93,El operador reporta desgaste anormal del rodamiento; se revisa el alabe del rotor y se cambia el sello y se verifica la estanqueidad.
+Eolica Loma Larga,2024-09-23,inspeccion,3,Se registra un hallazgo menor sin indisponibilidad en el informe de termografia durante la ronda del turno.
+Parque Solar Pampa Alta,2024-09-23,inspeccion,3,Evento por una observacion levantada en auditoria en el informe de termografia; se documenta el hallazgo y se emite el informe correspondiente.
+Central Vega Escondida,2024-09-24,falla_electrica,7,El operador reporta un arco electrico en el borne; se revisa el alimentador de la subestacion y se reconecta el interruptor tras verificar la aislacion.
+Central Vega Escondida,2024-09-24,correctivo,28,Durante el turno: la espera de un repuesto importado en la cuadrilla de intervencion; se repara el conjunto y se realiza la puesta en marcha.
+Central Lago Ventisquero,2024-09-25,falla_electrica,9,Se detecta un cortocircuito monofasico en el pararrayos del patio; se aisla el circuito y se normaliza la tension.
+Parque Solar Pampa Alta,2024-09-26,inspeccion,7,El operador reporta una observacion levantada en auditoria; se revisa la medicion de espesores y se registra la medicion en la ficha de la unidad.
+Parque Solar Salar Nuevo,2024-09-26,preventivo,14,Se ejecuta la rutina programada y se actualiza el calendario tras detectar el cumplimiento del programa de mantenimiento en el tablero de control.
+Eolica Cerro Negro,2024-09-28,evento_climatico,5,Se registra rafagas de viento sobre el limite operativo en el anemometro de la gondola durante la ronda del turno.
+Eolica Cerro Negro,2024-09-28,falla_mecanica,60,Se registra fatiga del material en el alabe en el rodamiento del eje principal durante la ronda del turno.
+Termoelectrica Costa Brava,2024-09-28,falla_electrica,3,El operador reporta sobretension sostenida; se revisa el aislador de linea y se energiza la barra en forma escalonada.
+Central Salto del Pehuen,2024-09-29,falla_mecanica,30,Durante el turno: desgaste anormal del rodamiento en el sello mecanico; se reemplaza el rodamiento y se realinea el eje.
+Central Vega Escondida,2024-09-30,preventivo,14,Se ajusta el torque de los pernos y se limpia el tablero tras detectar el vencimiento de la pauta periodica en el tablero de control.
+Termoelectrica Costa Brava,2024-09-30,correctivo,46,El operador reporta la espera de un repuesto importado; se revisa el repuesto critico de bodega y se instala el repuesto y se ejecutan las pruebas de normalizacion.
+Eolica Vientos del Sur,2024-10-01,inspeccion,8,Se completa el checklist sin desviaciones relevantes tras detectar una desviacion leve del parametro medido en la endoscopia del ducto.
+Central Rio Manso Alto,2024-10-03,falla_electrica,29,Evento por corriente de fuga elevada en la barra de media tension; se aisla el circuito y se normaliza la tension.
+Central Salto del Pehuen,2024-10-03,falla_electrica,31,Se registra una caida brusca de tension en el transformador de poder durante la ronda del turno.
+Central Salto del Pehuen,2024-10-03,correctivo,28,Una reparacion mayor pendiente en la unidad fuera de servicio. Se repara el conjunto y se realiza la puesta en marcha.
+Parque Solar Cerro Dorado,2024-10-03,falla_electrica,42,Durante el turno: un arco electrico en el borne en el alimentador de la subestacion; se reconecta el interruptor tras verificar la aislacion.
+Parque Solar Cerro Dorado,2024-10-03,correctivo,68,Reincidencia de la falla anterior en el equipo intervenido en taller. Se repara el conjunto y se realiza la puesta en marcha.
+Termoelectrica Puerto Nuevo,2024-10-03,correctivo,28,La cuadrilla interviene en terreno y devuelve la unidad al despacho tras detectar reincidencia de la falla anterior en el modulo reemplazado.
+Eolica Loma Larga,2024-10-04,evento_climatico,13,El operador reporta granizo sobre la estructura; se revisa el anemometro de la gondola y se descongelan las palas antes de reanudar la operacion.
+Eolica Loma Larga,2024-10-04,falla_mecanica,25,Evento por desgaste anormal del rodamiento en el sello mecanico; se purga el circuito de lubricacion y se ajusta el torque.
+Eolica Punta Ventosa,2024-10-04,evento_climatico,35,Se despeja el acceso tras la nevada y se revisa la torre tras detectar rafagas de viento sobre el limite operativo en el anemometro de la gondola.
+Central Rio Manso Alto,2024-10-05,correctivo,60,Indisponibilidad forzada de la unidad en el equipo intervenido en taller. Se completa la reparacion dentro del plazo comprometido.
+Eolica Cerro Negro,2024-10-05,preventivo,21,Se detecta el vencimiento de la pauta periodica en el tablero de control; se repone la disponibilidad de la unidad dentro del plazo.
+Eolica Cerro Negro,2024-10-06,falla_mecanica,70,Se detecta desalineamiento del acoplamiento en el alabe del rotor; se cambia el sello y se verifica la estanqueidad.
+Central Rio Manso Alto,2024-10-09,evento_climatico,31,Se detecta acumulacion de hielo en las palas en el anemometro de la gondola; se despeja el acceso tras la nevada y se revisa la torre.
+Central Rio Manso Alto,2024-10-09,falla_mecanica,41,Se registra desalineamiento del acoplamiento en el alabe del rotor durante la ronda del turno.
+Central Salto del Pehuen,2024-10-09,correctivo,35,Se registra la espera de un repuesto importado en el conjunto reparado en terreno durante la ronda del turno.
+Parque Solar Salar Nuevo,2024-10-09,correctivo,49,La espera de un repuesto importado en el modulo reemplazado. Se instala el repuesto y se ejecutan las pruebas de normalizacion.
+Termoelectrica Costa Brava,2024-10-09,preventivo,5,Evento por las horas de operacion acumuladas en el circuito de aceite; se repone la disponibilidad de la unidad dentro del plazo.
+Central Lago Ventisquero,2024-10-10,preventivo,15,Durante el turno: el ciclo de limpieza programado en el plan anual de la unidad; se ajusta el torque de los pernos y se limpia el tablero.
+Termoelectrica Puerto Nuevo,2024-10-10,inspeccion,5,Se registra la medicion en la ficha de la unidad tras detectar una desviacion leve del parametro medido en la endoscopia del ducto.
+Diesel Respaldo Cordillera,2024-10-12,preventivo,13,El operador reporta las horas de operacion acumuladas; se revisa el circuito de aceite y se ejecuta la rutina programada y se actualiza el calendario.
+Parque Solar Llano Blanco,2024-10-13,falla_electrica,7,El operador reporta el disparo de la proteccion diferencial; se revisa el interruptor principal y se energiza la barra en forma escalonada.
+Parque Solar Salar Nuevo,2024-10-13,inspeccion,1,Durante el turno: una lectura dentro de tolerancia en la endoscopia del ducto; se documenta el hallazgo y se emite el informe correspondiente.
+Central Quebrada Azul,2024-10-14,preventivo,8,Se detecta el vencimiento de la pauta periodica en el filtro de admision; se repone la disponibilidad de la unidad dentro del plazo.
+Central Rio Manso Alto,2024-10-14,inspeccion,2,El operador reporta una desviacion leve del parametro medido; se revisa el registro fotografico de la unidad y se documenta el hallazgo y se emite el informe correspondiente.
+Parque Solar Llano Blanco,2024-10-14,correctivo,63,Se completa la reparacion dentro del plazo comprometido tras detectar la espera de un repuesto importado en el modulo reemplazado.
+Central Rio Manso Alto,2024-10-15,inspeccion,8,Durante el turno: una lectura dentro de tolerancia en el informe de termografia; se registra la medicion en la ficha de la unidad.
+Central Quebrada Azul,2024-10-17,inspeccion,7,Una desviacion leve del parametro medido en el parametro fuera de tolerancia. Se registra la medicion en la ficha de la unidad.
+Parque Solar Media Luna,2024-10-18,falla_mecanica,10,Desalineamiento del acoplamiento en la bomba de lubricacion. Se reemplaza el rodamiento y se realinea el eje.
+Eolica Loma Larga,2024-10-20,falla_mecanica,95,Se equilibra el rotor y se repite la medicion de vibracion tras detectar temperatura elevada en el descanso en el rodamiento del eje principal.
+Termoelectrica Bahia Norte,2024-10-20,correctivo,60,Se detecta reincidencia de la falla anterior en el repuesto critico de bodega; se completa la reparacion dentro del plazo comprometido.
+Eolica Vientos del Sur,2024-10-21,inspeccion,4,Se levanta la observacion y se programa el seguimiento tras detectar una desviacion leve del parametro medido en el parametro fuera de tolerancia.
+Eolica Vientos del Sur,2024-10-21,preventivo,18,Evento por el cumplimiento del programa de mantenimiento en la pauta de rutina trimestral; se repone la disponibilidad de la unidad dentro del plazo.
+Parque Solar Media Luna,2024-10-21,inspeccion,8,Se completa el checklist sin desviaciones relevantes tras detectar una desviacion leve del parametro medido en la medicion de espesores.
+Termoelectrica Bahia Norte,2024-10-21,preventivo,21,Evento por el ciclo de limpieza programado en la pauta de rutina trimestral; se ejecuta la rutina programada y se actualiza el calendario.
+Parque Solar Salar Nuevo,2024-10-22,preventivo,17,Las horas de operacion acumuladas en el tablero de control. Se cambia el aceite y el filtro segun la pauta del fabricante.
+Termoelectrica Costa Brava,2024-10-22,inspeccion,8,El operador reporta una observacion levantada en auditoria; se revisa la endoscopia del ducto y se documenta el hallazgo y se emite el informe correspondiente.
+Eolica Punta Ventosa,2024-10-23,preventivo,15,El vencimiento de la pauta periodica en el plan anual de la unidad. Se repone la disponibilidad de la unidad dentro del plazo.
+Central Salto del Pehuen,2024-10-25,evento_climatico,18,Se detecta acumulacion de hielo en las palas en el sistema de orientacion; se inspecciona la estructura despues del frente de mal tiempo.
+Central Salto del Pehuen,2024-10-25,falla_mecanica,87,Evento por vibracion excesiva en el eje en la turbina de baja presion; se reemplaza el rodamiento y se realinea el eje.
+Parque Solar Cerro Dorado,2024-10-25,inspeccion,1,El operador reporta una desviacion leve del parametro medido; se revisa el registro fotografico de la unidad y se completa el checklist sin desviaciones relevantes.
+Termoelectrica Puerto Nuevo,2024-10-25,correctivo,72,Se completa la reparacion dentro del plazo comprometido tras detectar la espera de un repuesto importado en la unidad fuera de servicio.
+Parque Solar Llano Blanco,2024-10-27,falla_electrica,38,Durante el turno: el disparo de la proteccion diferencial en el pararrayos del patio; se reconecta el interruptor tras verificar la aislacion.
+Central Rio Manso Alto,2024-10-29,inspeccion,8,Se detecta un hallazgo menor sin indisponibilidad en el registro fotografico de la unidad; se levanta la observacion y se programa el seguimiento.
+Eolica Cerro Negro,2024-10-29,inspeccion,8,Una lectura dentro de tolerancia en la endoscopia del ducto. Se registra la medicion en la ficha de la unidad.
+Parque Solar Llano Blanco,2024-10-29,correctivo,22,El operador reporta indisponibilidad forzada de la unidad; se revisa el modulo reemplazado y se repara el conjunto y se realiza la puesta en marcha.
+Parque Solar Pampa Alta,2024-10-29,preventivo,19,Se ejecuta la rutina programada y se actualiza el calendario tras detectar el ciclo de limpieza programado en el filtro de admision.
+Central Lago Ventisquero,2024-10-30,inspeccion,5,Una observacion levantada en auditoria en el informe de termografia. Se completa el checklist sin desviaciones relevantes.
+Termoelectrica Puerto Nuevo,2024-10-30,preventivo,5,El operador reporta el cumplimiento del programa de mantenimiento; se revisa el circuito de aceite y se repone la disponibilidad de la unidad dentro del plazo.
+Termoelectrica Peninsula Gris,2024-11-01,preventivo,7,El operador reporta el ciclo de limpieza programado; se revisa el circuito de aceite y se ajusta el torque de los pernos y se limpia el tablero.
+Eolica Loma Larga,2024-11-02,evento_climatico,18,Lluvia y humedad extrema en el aerogenerador del sector norte. Se despeja el acceso tras la nevada y se revisa la torre.
+Eolica Loma Larga,2024-11-02,falla_mecanica,84,El operador reporta temperatura elevada en el descanso; se revisa la bomba de lubricacion y se cambia el sello y se verifica la estanqueidad.
+Parque Solar Salar Nuevo,2024-11-02,preventivo,15,Se repone la disponibilidad de la unidad dentro del plazo tras detectar el vencimiento de la pauta periodica en el filtro de admision.
+Parque Solar Llano Blanco,2024-11-04,inspeccion,5,Durante el turno: un hallazgo menor sin indisponibilidad en la endoscopia del ducto; se documenta el hallazgo y se emite el informe correspondiente.
+Eolica Cerro Negro,2024-11-05,correctivo,14,La espera de un repuesto importado en el conjunto reparado en terreno. La cuadrilla interviene en terreno y devuelve la unidad al despacho.
+Parque Solar Llano Blanco,2024-11-05,evento_climatico,29,Durante el turno: granizo sobre la estructura en el anemometro de la gondola; se descongelan las palas antes de reanudar la operacion.
+Parque Solar Cerro Dorado,2024-11-06,preventivo,15,Durante el turno: el ciclo de limpieza programado en el calendario de disponibilidad; se ejecuta la rutina programada y se actualiza el calendario.
+Eolica Cerro Negro,2024-11-08,evento_climatico,11,Se registra nevada intensa en el acceso en el anemometro de la gondola durante la ronda del turno.
+Eolica Cerro Negro,2024-11-08,falla_mecanica,29,Se detecta desalineamiento del acoplamiento en el alabe del rotor; se cambia el sello y se verifica la estanqueidad.
+Eolica Loma Larga,2024-11-10,falla_electrica,12,Evento por un cortocircuito monofasico en la barra de media tension; se reemplaza el rele y se recalibra la proteccion.
+Eolica Loma Larga,2024-11-10,correctivo,33,Se instala el repuesto y se ejecutan las pruebas de normalizacion tras detectar la espera de un repuesto importado en el modulo reemplazado.
+Parque Solar Pampa Alta,2024-11-10,inspeccion,3,Una observacion levantada en auditoria en el informe de termografia. Se registra la medicion en la ficha de la unidad.
+Parque Solar Llano Blanco,2024-11-11,preventivo,12,Se registra el vencimiento de la pauta periodica en la pauta de rutina trimestral durante la ronda del turno.
+Parque Solar Pampa Alta,2024-11-11,correctivo,65,Se detecta una reparacion mayor pendiente en el equipo intervenido en taller; se instala el repuesto y se ejecutan las pruebas de normalizacion.
+Parque Solar Cerro Dorado,2024-11-14,correctivo,57,La cuadrilla interviene en terreno y devuelve la unidad al despacho tras detectar indisponibilidad forzada de la unidad en el modulo reemplazado.
+Central Quebrada Azul,2024-11-16,preventivo,24,Se ejecuta la rutina programada y se actualiza el calendario tras detectar las horas de operacion acumuladas en la pauta de rutina trimestral.
+Termoelectrica Bahia Norte,2024-11-16,falla_mecanica,27,Se registra vibracion excesiva en el eje en la bomba de lubricacion durante la ronda del turno.
+Termoelectrica Puerto Nuevo,2024-11-16,inspeccion,6,Durante el turno: una desviacion leve del parametro medido en el parametro fuera de tolerancia; se registra la medicion en la ficha de la unidad.
+Parque Solar Llano Blanco,2024-11-17,inspeccion,5,Se detecta una lectura dentro de tolerancia en el checklist del recorrido; se levanta la observacion y se programa el seguimiento.
+Diesel Respaldo Cordillera,2024-11-18,preventivo,16,Durante el turno: el ciclo de limpieza programado en el filtro de admision; se ejecuta la rutina programada y se actualiza el calendario.
+Termoelectrica Peninsula Gris,2024-11-19,preventivo,24,Se detecta las horas de operacion acumuladas en la pauta de rutina trimestral; se ejecuta la rutina programada y se actualiza el calendario.
+Termoelectrica Valle Central,2024-11-19,preventivo,22,Se detecta el vencimiento de la pauta periodica en el circuito de aceite; se ajusta el torque de los pernos y se limpia el tablero.
+Parque Solar Media Luna,2024-11-20,correctivo,31,Durante el turno: la espera de un repuesto importado en el repuesto critico de bodega; se completa la reparacion dentro del plazo comprometido.
+Termoelectrica Valle Central,2024-11-20,preventivo,10,Durante el turno: el cumplimiento del programa de mantenimiento en el filtro de admision; se ejecuta la rutina programada y se actualiza el calendario.
+Eolica Punta Ventosa,2024-11-21,preventivo,19,Se detecta las horas de operacion acumuladas en el plan anual de la unidad; se cambia el aceite y el filtro segun la pauta del fabricante.
+Central Lago Ventisquero,2024-11-22,preventivo,19,Se cambia el aceite y el filtro segun la pauta del fabricante tras detectar el cumplimiento del programa de mantenimiento en el calendario de disponibilidad.
+Eolica Punta Ventosa,2024-11-22,preventivo,19,Se repone la disponibilidad de la unidad dentro del plazo tras detectar el ciclo de limpieza programado en el tablero de control.
+Termoelectrica Valle Central,2024-11-22,correctivo,21,Se completa la reparacion dentro del plazo comprometido tras detectar una reparacion mayor pendiente en el repuesto critico de bodega.
+Parque Solar Salar Nuevo,2024-11-23,inspeccion,1,Evento por una desviacion leve del parametro medido en la endoscopia del ducto; se completa el checklist sin desviaciones relevantes.
+Central Rio Manso Alto,2024-11-25,falla_electrica,37,El operador reporta una caida brusca de tension; se revisa el banco de condensadores y se reemplaza el rele y se recalibra la proteccion.
+Parque Solar Llano Blanco,2024-11-25,preventivo,18,Durante el turno: las horas de operacion acumuladas en el tablero de control; se cambia el aceite y el filtro segun la pauta del fabricante.
+Parque Solar Salar Nuevo,2024-11-25,falla_electrica,8,Evento por sobretension sostenida en la barra de media tension; se aisla el circuito y se normaliza la tension.
+Eolica Vientos del Sur,2024-11-26,inspeccion,1,Durante el turno: un hallazgo menor sin indisponibilidad en el checklist del recorrido; se registra la medicion en la ficha de la unidad.
+Eolica Cerro Negro,2024-11-27,evento_climatico,28,Durante el turno: granizo sobre la estructura en el anemometro de la gondola; se inspecciona la estructura despues del frente de mal tiempo.
+Central Rio Manso Alto,2024-11-28,correctivo,63,Se detecta reincidencia de la falla anterior en la unidad fuera de servicio; se completa la reparacion dentro del plazo comprometido.
+Eolica Vientos del Sur,2024-11-28,preventivo,5,Se repone la disponibilidad de la unidad dentro del plazo tras detectar el ciclo de limpieza programado en el calendario de disponibilidad.
+Parque Solar Salar Nuevo,2024-11-28,correctivo,41,La cuadrilla interviene en terreno y devuelve la unidad al despacho tras detectar una reparacion mayor pendiente en el repuesto critico de bodega.
+Termoelectrica Costa Brava,2024-11-28,falla_mecanica,53,Se detecta temperatura elevada en el descanso en la caja multiplicadora; se cambia el sello y se verifica la estanqueidad.
+Central Lago Ventisquero,2024-11-29,inspeccion,6,Se documenta el hallazgo y se emite el informe correspondiente tras detectar una desviacion leve del parametro medido en el registro fotografico de la unidad.
+Parque Solar Llano Blanco,2024-11-30,inspeccion,5,Una observacion levantada en auditoria en el informe de termografia. Se completa el checklist sin desviaciones relevantes.
+Parque Solar Salar Nuevo,2024-12-01,inspeccion,2,El operador reporta un hallazgo menor sin indisponibilidad; se revisa el informe de termografia y se completa el checklist sin desviaciones relevantes.
+Eolica Punta Ventosa,2024-12-02,correctivo,10,Evento por reincidencia de la falla anterior en el modulo reemplazado; se completa la reparacion dentro del plazo comprometido.
+Central Salto del Pehuen,2024-12-03,inspeccion,7,Durante el turno: un hallazgo menor sin indisponibilidad en la medicion de espesores; se registra la medicion en la ficha de la unidad.
+Diesel Respaldo Cordillera,2024-12-03,falla_electrica,22,Durante el turno: un cortocircuito monofasico en el alimentador de la subestacion; se aisla el circuito y se normaliza la tension.
+Termoelectrica Valle Central,2024-12-03,inspeccion,8,Durante el turno: una lectura dentro de tolerancia en el checklist del recorrido; se levanta la observacion y se programa el seguimiento.
+Diesel Respaldo Cordillera,2024-12-05,correctivo,12,Una reparacion mayor pendiente en el conjunto reparado en terreno. Se repara el conjunto y se realiza la puesta en marcha.
+Eolica Loma Larga,2024-12-06,correctivo,65,Durante el turno: una reparacion mayor pendiente en la unidad fuera de servicio; la cuadrilla interviene en terreno y devuelve la unidad al despacho.
+Eolica Punta Ventosa,2024-12-06,falla_electrica,39,Durante el turno: el disparo de la proteccion diferencial en el banco de condensadores; se aisla el circuito y se normaliza la tension.
+Parque Solar Cerro Dorado,2024-12-06,inspeccion,4,El operador reporta una lectura dentro de tolerancia; se revisa la medicion de espesores y se documenta el hallazgo y se emite el informe correspondiente.
+Termoelectrica Bahia Norte,2024-12-06,falla_electrica,9,Evento por sobretension sostenida en el pararrayos del patio; se reemplaza el rele y se recalibra la proteccion.
+Termoelectrica Bahia Norte,2024-12-06,correctivo,69,Se completa la reparacion dentro del plazo comprometido tras detectar la espera de un repuesto importado en la unidad fuera de servicio.
+Eolica Loma Larga,2024-12-07,inspeccion,6,Se detecta una observacion levantada en auditoria en el checklist del recorrido; se documenta el hallazgo y se emite el informe correspondiente.
+Central Rio Manso Alto,2024-12-09,falla_mecanica,58,Se detecta temperatura elevada en el descanso en la turbina de baja presion; se purga el circuito de lubricacion y se ajusta el torque.
+Eolica Punta Ventosa,2024-12-09,correctivo,56,Se detecta indisponibilidad forzada de la unidad en el equipo intervenido en taller; se instala el repuesto y se ejecutan las pruebas de normalizacion.
+Termoelectrica Valle Central,2024-12-11,falla_mecanica,36,Vibracion excesiva en el eje en el sistema de refrigeracion. Se cambia el sello y se verifica la estanqueidad.
+Eolica Punta Ventosa,2024-12-14,falla_electrica,21,El operador reporta un cortocircuito monofasico; se revisa el interruptor principal y se energiza la barra en forma escalonada.
+Termoelectrica Valle Central,2024-12-15,correctivo,10,Evento por indisponibilidad forzada de la unidad en el repuesto critico de bodega; se completa la reparacion dentro del plazo comprometido.
+Eolica Cerro Negro,2024-12-16,preventivo,11,Se registra el cumplimiento del programa de mantenimiento en la pauta de rutina trimestral durante la ronda del turno.
+Central Lago Ventisquero,2024-12-20,preventivo,8,Se registra el vencimiento de la pauta periodica en la pauta de rutina trimestral durante la ronda del turno.
+Termoelectrica Costa Brava,2024-12-21,falla_electrica,44,Evento por un arco electrico en el borne en el pararrayos del patio; se reconecta el interruptor tras verificar la aislacion.
+Termoelectrica Costa Brava,2024-12-21,correctivo,28,Durante el turno: una reparacion mayor pendiente en el equipo intervenido en taller; se completa la reparacion dentro del plazo comprometido.
+Central Salto del Pehuen,2024-12-23,evento_climatico,31,Se detecta rafagas de viento sobre el limite operativo en el sistema de orientacion; se descongelan las palas antes de reanudar la operacion.
+Central Salto del Pehuen,2024-12-23,falla_mecanica,40,Se equilibra el rotor y se repite la medicion de vibracion tras detectar desgaste anormal del rodamiento en el acoplamiento del generador.
+Central Salto del Pehuen,2024-12-24,correctivo,62,El operador reporta una reparacion mayor pendiente; se revisa el modulo reemplazado y se repara el conjunto y se realiza la puesta en marcha.
+Parque Solar Cerro Dorado,2024-12-24,falla_mecanica,29,Durante el turno: vibracion excesiva en el eje en la bomba de lubricacion; se purga el circuito de lubricacion y se ajusta el torque.
+Parque Solar Llano Blanco,2024-12-24,preventivo,15,El operador reporta el cumplimiento del programa de mantenimiento; se revisa el tablero de control y se ajusta el torque de los pernos y se limpia el tablero.
+Eolica Cerro Negro,2024-12-26,inspeccion,4,Se registra una lectura dentro de tolerancia en el parametro fuera de tolerancia durante la ronda del turno.
+Eolica Loma Larga,2024-12-26,falla_mecanica,19,Durante el turno: fatiga del material en el alabe en el alabe del rotor; se cambia el sello y se verifica la estanqueidad.
+Eolica Vientos del Sur,2024-12-27,evento_climatico,21,El operador reporta una tormenta electrica en la zona; se revisa el sistema de orientacion y se inspecciona la estructura despues del frente de mal tiempo.
+Termoelectrica Peninsula Gris,2024-12-27,preventivo,16,Se cambia el aceite y el filtro segun la pauta del fabricante tras detectar el vencimiento de la pauta periodica en el filtro de admision.
+Eolica Punta Ventosa,2024-12-28,correctivo,57,El operador reporta una reparacion mayor pendiente; se revisa el equipo intervenido en taller y la cuadrilla interviene en terreno y devuelve la unidad al despacho.
+Parque Solar Pampa Alta,2024-12-28,preventivo,7,Evento por el cumplimiento del programa de mantenimiento en el filtro de admision; se ejecuta la rutina programada y se actualiza el calendario.
+Central Quebrada Azul,2024-12-29,correctivo,9,Se registra indisponibilidad forzada de la unidad en el equipo intervenido en taller durante la ronda del turno.
+Central Lago Ventisquero,2024-12-31,falla_electrica,11,Evento por corriente de fuga elevada en la barra de media tension; se aisla el circuito y se normaliza la tension.
+Central Lago Ventisquero,2024-12-31,preventivo,19,Se ejecuta la rutina programada y se actualiza el calendario tras detectar el cumplimiento del programa de mantenimiento en el calendario de disponibilidad.
+Central Lago Ventisquero,2024-12-31,correctivo,44,Se detecta reincidencia de la falla anterior en el conjunto reparado en terreno; la cuadrilla interviene en terreno y devuelve la unidad al despacho.
+Central Salto del Pehuen,2024-12-31,correctivo,21,El operador reporta la espera de un repuesto importado; se revisa la cuadrilla de intervencion y se instala el repuesto y se ejecutan las pruebas de normalizacion.
+Parque Solar Llano Blanco,2024-12-31,preventivo,23,Se registra el vencimiento de la pauta periodica en el circuito de aceite durante la ronda del turno.
