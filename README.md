@@ -46,6 +46,15 @@ uv run python scripts/generar_datos.py       # regenera todo datos/
 
 El generador es **determinista**: la semilla está fija en `2026` y dos ejecuciones producen archivos idénticos byte a byte. Para regenerar después de cambiar el script, basta con volver a ejecutarlo.
 
+### Verificar un laboratorio
+
+Los notebooks se verifican con el arnés `scripts/probar_lab.py`, que revisa el formato y los ejecuta de arriba a abajo contra los datos locales, sin tocar el archivo del repo.
+
+```bash
+uv sync --group dev                                              # una sola vez
+uv run --group dev python scripts/probar_lab.py labs/lab01_importar_unir.ipynb
+```
+
 ### Dataset grande
 
 `datos/grande/generacion_grande.csv` tiene ~8,8 millones de filas (200 centrales × 5 años) y **no se versiona**. Se genera en local:
