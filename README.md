@@ -55,6 +55,14 @@ uv sync --group dev                                              # una sola vez
 uv run --group dev python scripts/probar_lab.py labs/lab01_importar_unir.ipynb
 ```
 
+El Lab 03 usa además `ydata-profiling`, `scikit-learn` y `matplotlib`. No están en el grupo `dev` porque `ydata-profiling` exige `pandas<3` y eso arrastraría a todo el proyecto, así que van en un entorno superpuesto que no toca el `.venv`:
+
+```bash
+uv run --group dev --with ydata-profiling --with scikit-learn \
+       --with matplotlib --with "setuptools<81" \
+       python scripts/probar_lab.py labs/lab03_limpieza_eda.ipynb
+```
+
 ### Dataset grande
 
 `datos/grande/generacion_grande.csv` tiene ~8,8 millones de filas (200 centrales × 5 años) y **no se versiona**. Se genera en local:
