@@ -55,13 +55,7 @@ uv sync --group dev                                              # una sola vez
 uv run --group dev python scripts/probar_lab.py labs/lab01_importar_unir.ipynb
 ```
 
-El Lab 03 usa además `ydata-profiling`, `scikit-learn` y `matplotlib`. No están en el grupo `dev` porque `ydata-profiling` exige `pandas<3` y eso arrastraría a todo el proyecto, así que van en un entorno superpuesto que no toca el `.venv`:
-
-```bash
-uv run --group dev --with ydata-profiling --with scikit-learn \
-       --with matplotlib --with "setuptools<81" \
-       python scripts/probar_lab.py labs/lab03_limpieza_eda.ipynb
-```
+El grupo `dev` fija **pandas 2.x**, que es la versión que trae Google Colab, de modo que el arnés verifique los notebooks contra lo mismo que va a ejecutar el participante.
 
 ### Dataset grande
 
