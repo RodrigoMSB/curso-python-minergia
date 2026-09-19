@@ -40,3 +40,12 @@ datos/grande/
 Thumbs.db
 .idea/
 .vscode/
+
+# Archivos auxiliares de LaTeX (los PDF si se versionan)
+*.aux
+*.log
+*.out
+*.toc
+*.synctex.gz
+guias/.sin_tildes/
+guias/modulo01/prueba_diagramas.*

@@ -9,13 +9,39 @@ Los laboratorios se ejecutan en Google Colab.
 | # | Laboratorio | Notebook | Colab |
 |---|-------------|----------|-------|
 | 00 | Nivelación en Python | [`labs/lab00_nivelacion.ipynb`](labs/lab00_nivelacion.ipynb) | |
-| 01 | Importar y unir datos | [`labs/lab01_importar_unir.ipynb`](labs/lab01_importar_unir.ipynb) | |
+| 01 | Importar y unir datos | [`labs/lab01_importar_unir.ipynb`](labs/lab01_importar_unir.ipynb) · [resuelto](labs/lab01_importar_unir_resuelto.ipynb) | |
 | 02 | Manipulación de datos | [`labs/lab02_manipulacion.ipynb`](labs/lab02_manipulacion.ipynb) | |
 | 03 | Limpieza y análisis exploratorio | [`labs/lab03_limpieza_eda.ipynb`](labs/lab03_limpieza_eda.ipynb) | |
 | 04 | Data mining | [`labs/lab04_data_mining.ipynb`](labs/lab04_data_mining.ipynb) | |
 | 05 | Aprendizaje no supervisado | [`labs/lab05_no_supervisado.ipynb`](labs/lab05_no_supervisado.ipynb) | |
 | 06 | Visualización de datos | [`labs/lab06_visualizacion.ipynb`](labs/lab06_visualizacion.ipynb) | |
 | 07 | Caso integrador | [`labs/lab07_integrador.ipynb`](labs/lab07_integrador.ipynb) | |
+
+El Módulo 1 estrena el modelo nuevo de material, en el que el notebook solo trae código y el texto explicativo vive en dos guías en PDF.
+
+| Módulo | Guía del relator | Guía del alumno | Fuentes |
+|--------|------------------|-----------------|---------|
+| 01 Importar y unir | [`guias/modulo01/guia_relator.pdf`](guias/modulo01/guia_relator.pdf) | [`guias/modulo01/guia_alumno.pdf`](guias/modulo01/guia_alumno.pdf) | [`guias/modulo01/`](guias/modulo01) |
+
+### Regenerar las guías
+
+Las guías se escriben en LaTeX y se compilan con XeLaTeX. Los recuadros de código y de salida **no se escriben a mano**, se generan desde el notebook resuelto, de modo que las cifras de las guías siempre sean las de una corrida real.
+
+```bash
+# 1. ejecutar el notebook y dejar la versión resuelta
+uv run --group dev python scripts/ejecutar_notebook.py \
+    labs/lab01_importar_unir.ipynb labs/lab01_importar_unir_resuelto.ipynb
+
+# 2. volcar código y salidas a fragmentos LaTeX
+python3 guias/modulo01/generar_celdas.py \
+    labs/lab01_importar_unir_resuelto.ipynb guias/modulo01/celdas
+
+# 3. compilar, dos pasadas porque la portada usa posiciones absolutas
+cd guias/modulo01 && xelatex guia_relator.tex && xelatex guia_relator.tex
+xelatex guia_alumno.tex && xelatex guia_alumno.tex
+```
+
+Hace falta una instalación de TeX con XeLaTeX, más las fuentes Charter, Avenir Next y Menlo, que vienen con macOS.
 
 ## Datos
 
@@ -48,11 +74,20 @@ El generador es **determinista**: la semilla está fija en `2026` y dos ejecucio
 
 ### Verificar un laboratorio
 
-Los notebooks se verifican con el arnés `scripts/probar_lab.py`, que revisa el formato y los ejecuta de arriba a abajo contra los datos locales, sin tocar el archivo del repo.
+Hay dos verificadores, uno por modelo de material.
+
+Los labs 00 y 02 a 07, que son del modelo antiguo, se verifican con el arnés `scripts/probar_lab.py`, que revisa el formato y los ejecuta de arriba a abajo contra los datos locales, sin tocar el archivo del repo.
 
 ```bash
 uv sync --group dev                                              # una sola vez
-uv run --group dev python scripts/probar_lab.py labs/lab01_importar_unir.ipynb
+uv run --group dev python scripts/probar_lab.py labs/lab00_nivelacion.ipynb
+```
+
+El Lab 01, que es del modelo nuevo, genera sus propios datos y no depende de `datos/`, así que se verifica ejecutándolo completo con `scripts/ejecutar_notebook.py`. Esa misma corrida produce la versión resuelta. Las reglas de formato del arnés antiguo, como el máximo de doce líneas por celda o el pareo entre `# Tu turno` y su celda de solución, no aplican al modelo nuevo.
+
+```bash
+uv run --group dev python scripts/ejecutar_notebook.py \
+    labs/lab01_importar_unir.ipynb labs/lab01_importar_unir_resuelto.ipynb
 ```
 
 El grupo `dev` fija **pandas 2.x**, que es la versión que trae Google Colab, de modo que el arnés verifique los notebooks contra lo mismo que va a ejecutar el participante.
