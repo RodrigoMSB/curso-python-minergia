@@ -30,11 +30,13 @@ del Sistema Eléctrico Nacional.
 
 1. Haz clic en **Abrir en Colab** del módulo que corresponda. El notebook se abre en tu
    navegador.
-2. Ejecuta las celdas **en orden**, de arriba hacia abajo. Una celda se ejecuta con el botón de
+2. Colab avisa que **el cuaderno no lo creó Google**, porque viene de este repositorio y no de
+   ellos. Es lo esperable. Pulsa **Ejecutar de todos modos**.
+3. Ejecuta las celdas **en orden**, de arriba hacia abajo. Una celda se ejecuta con el botón de
    play de la izquierda, o poniéndote encima y apretando **Shift + Enter**.
-3. La primera celda de cada laboratorio deja listos los datos. Si te la saltas, las demás dan
+4. La primera celda de cada laboratorio deja listos los datos. Si te la saltas, las demás dan
    error.
-4. Para conservar lo que escribas, usa **Archivo, Guardar una copia en Drive**. La copia queda
+5. Para conservar lo que escribas, usa **Archivo, Guardar una copia en Drive**. La copia queda
    en tu Drive y el original no se toca.
 
 Si algo sale mal y quieres empezar de nuevo, **Entorno de ejecución, Reiniciar y ejecutar
