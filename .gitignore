@@ -49,3 +49,6 @@ Thumbs.db
 *.synctex.gz
 # Copias de trabajo de la correccion ortografica, ver scripts/verificar_tildes.py
 .sin_tildes/
+
+# Los PDF de trabajo dentro de fuentes/, el que se versiona es el de la carpeta del modulo
+modulos/*/fuentes/*.pdf

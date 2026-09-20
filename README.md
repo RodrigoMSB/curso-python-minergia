@@ -31,10 +31,15 @@ curso-python-minergia/
     modulo02/            misma estructura
     modulo03/            misma estructura
     modulo04/            misma estructura
+    modulo05/            misma estructura
+    modulo06/            misma estructura
+    modulo07/            el caso integrador, con un notebook fuente además
   _archivo/            material del modelo antiguo, ver _archivo/LEEME.md
 ```
 
-Un módulo, una carpeta, con sus cuatro entregables a la vista.
+Un módulo, una carpeta, con sus cuatro entregables a la vista. El Módulo 7 agrega
+`lab_resuelto_fuente.ipynb`, que es el notebook que se edita. De ahí sale el resuelto, al
+ejecutarlo, y de ese sale el del alumno, borrando las celdas de trabajo.
 
 ## Los datos
 
