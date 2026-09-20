@@ -21,12 +21,14 @@ curso-python-minergia/
   datos/               los datos del caso conductor
   scripts/             generar datos, ejecutar notebooks y armar las guías
   modulos/
+    comun/               el estilo compartido de las guías
     modulo01/
       guia_relator.pdf     la pieza principal, se escribe primero
       guia_alumno.pdf      la explicación escrita, para leer después de la clase
       lab.ipynb            el notebook que recibe el participante, sin salidas
       lab_resuelto.ipynb   la copia del relator, con salidas
       fuentes/             las fuentes LaTeX, los diagramas y las fichas de contexto
+    modulo02/            misma estructura
   _archivo/            material del modelo antiguo, ver _archivo/LEEME.md
 ```
 
