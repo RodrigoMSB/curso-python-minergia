@@ -30,6 +30,7 @@ curso-python-minergia/
       fuentes/             las fuentes LaTeX, los diagramas y las fichas de contexto
     modulo02/            misma estructura
     modulo03/            misma estructura
+    modulo04/            misma estructura
   _archivo/            material del modelo antiguo, ver _archivo/LEEME.md
 ```
 
@@ -82,6 +83,10 @@ xelatex guia_relator.tex && xelatex guia_relator.tex
 xelatex guia_alumno.tex  && xelatex guia_alumno.tex
 mv guia_relator.pdf guia_alumno.pdf ..
 ```
+
+Si una celda dibuja un gráfico, `generar_celdas.py` guarda el PNG junto a los fragmentos y la
+guía lo incluye con `\includegraphics`. Las figuras de las guías son entonces las mismas que ve
+el participante en pantalla.
 
 El grupo `dev` fija **pandas 2.x**, que es la serie que trae Google Colab, para que lo que se
 verifica sea lo mismo que va a ejecutar el participante.
