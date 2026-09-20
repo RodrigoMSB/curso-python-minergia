@@ -22,6 +22,7 @@ curso-python-minergia/
   scripts/             generar datos, ejecutar notebooks y armar las guías
   modulos/
     comun/               el estilo compartido de las guías
+    modulo00/            el Lab 0, Python basico, fuera del contrato
     modulo01/
       guia_relator.pdf     la pieza principal, se escribe primero
       guia_alumno.pdf      la explicación escrita, para leer después de la clase
@@ -40,6 +41,26 @@ curso-python-minergia/
 Un módulo, una carpeta, con sus cuatro entregables a la vista. El Módulo 7 agrega
 `lab_resuelto_fuente.ipynb`, que es el notebook que se edita. De ahí sale el resuelto, al
 ejecutarlo, y de ese sale el del alumno, borrando las celdas de trabajo.
+
+## Los módulos
+
+| Módulo | Horas | Notebook | Guía del alumno | De qué trata |
+|--------|-------|----------|-----------------|--------------|
+| **00** Python básico | 1 h | [Abrir en Colab](https://colab.research.google.com/github/RodrigoMSB/curso-python-minergia/blob/main/modulos/modulo00/lab.ipynb) | [PDF](modulos/modulo00/guia_alumno.pdf) | Fuera del contrato, para el que nunca programó |
+| **01** Importar y unir datos | 2 h | [Abrir en Colab](https://colab.research.google.com/github/RodrigoMSB/curso-python-minergia/blob/main/modulos/modulo01/lab.ipynb) | [PDF](modulos/modulo01/guia_alumno.pdf) | CSV, Excel, API y SQL, y el join |
+| **02** Manipulación de datos | 4 h | [Abrir en Colab](https://colab.research.google.com/github/RodrigoMSB/curso-python-minergia/blob/main/modulos/modulo02/lab.ipynb) | [PDF](modulos/modulo02/guia_alumno.pdf) | Filtrar, agrupar y pivotar |
+| **03** Limpieza y análisis exploratorio | 4 h | [Abrir en Colab](https://colab.research.google.com/github/RodrigoMSB/curso-python-minergia/blob/main/modulos/modulo03/lab.ipynb) | [PDF](modulos/modulo03/guia_alumno.pdf) | Diagnosticar un archivo nuevo |
+| **04** Minería de datos | 4 h | [Abrir en Colab](https://colab.research.google.com/github/RodrigoMSB/curso-python-minergia/blob/main/modulos/modulo04/lab.ipynb) | [PDF](modulos/modulo04/guia_alumno.pdf) | Distancias, reglas de asociación y secuencias |
+| **05** Aprendizaje no supervisado | 4 h | [Abrir en Colab](https://colab.research.google.com/github/RodrigoMSB/curso-python-minergia/blob/main/modulos/modulo05/lab.ipynb) | [PDF](modulos/modulo05/guia_alumno.pdf) | K-Means, PCA, DBSCAN y LDA |
+| **06** Visualización de datos | 4 h | [Abrir en Colab](https://colab.research.google.com/github/RodrigoMSB/curso-python-minergia/blob/main/modulos/modulo06/lab.ipynb) | [PDF](modulos/modulo06/guia_alumno.pdf) | Matplotlib, Seaborn y Plotly |
+| **07** Caso integrador | 2 h | [Abrir en Colab](https://colab.research.google.com/github/RodrigoMSB/curso-python-minergia/blob/main/modulos/modulo07/lab.ipynb) | [PDF](modulos/modulo07/guia_alumno.pdf) | El informe de cierre de año |
+
+Los enlaces de Colab abren el notebook del participante, sin salidas, directamente desde este
+repositorio. El notebook resuelto de cada módulo es la copia del relator y se manda después de
+la clase.
+
+**Los enlaces de Colab solo funcionan con el repositorio público.** Mientras siga privado,
+el participante clona el repositorio y sube el notebook a Colab a mano.
 
 ## Los datos
 
