@@ -2,7 +2,7 @@
 
 Material del curso que **Xpertis** dicta para la **Subsecretaría de Energía de Chile**.
 
-Son 24 horas cronológicas en seis sesiones de cuatro horas, online por Zoom, para 25
+Son 24 horas cronológicas en ocho sesiones de tres horas, online por Zoom, para 25
 funcionarios y prestadores de servicios de la institución. Los laboratorios se ejecutan en
 Google Colab, así que el participante no instala nada.
 
