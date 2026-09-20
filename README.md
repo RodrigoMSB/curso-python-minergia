@@ -29,6 +29,7 @@ curso-python-minergia/
       lab_resuelto.ipynb   la copia del relator, con salidas
       fuentes/             las fuentes LaTeX, los diagramas y las fichas de contexto
     modulo02/            misma estructura
+    modulo03/            misma estructura
   _archivo/            material del modelo antiguo, ver _archivo/LEEME.md
 ```
 
