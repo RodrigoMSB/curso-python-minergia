@@ -1,113 +1,95 @@
 # Análisis Avanzado de Datos con Python
 
-Material del curso dictado por **Xpertis** para la **Subsecretaría de Energía de Chile**, construido sobre el caso conductor del **Observatorio de Datos Energéticos (ODE)**.
+Material del curso que **Xpertis** dicta para la **Subsecretaría de Energía de Chile**.
 
-## Laboratorios
+Son 24 horas cronológicas en seis sesiones de cuatro horas, online por Zoom, para 25
+funcionarios y prestadores de servicios de la institución. Los laboratorios se ejecutan en
+Google Colab, así que el participante no instala nada.
 
-Los laboratorios se ejecutan en Google Colab.
+Todo el curso trabaja sobre un caso conductor único, el **Observatorio de Datos Energéticos**,
+con datos sintéticos pero verosímiles del Sistema Eléctrico Nacional. Ninguna central
+corresponde a una instalación real.
 
-| # | Laboratorio | Notebook | Colab |
-|---|-------------|----------|-------|
-| 00 | Nivelación en Python | [`labs/lab00_nivelacion.ipynb`](labs/lab00_nivelacion.ipynb) | |
-| 01 | Importar y unir datos | [`labs/lab01_importar_unir.ipynb`](labs/lab01_importar_unir.ipynb) · [resuelto](labs/lab01_importar_unir_resuelto.ipynb) | |
-| 02 | Manipulación de datos | [`labs/lab02_manipulacion.ipynb`](labs/lab02_manipulacion.ipynb) | |
-| 03 | Limpieza y análisis exploratorio | [`labs/lab03_limpieza_eda.ipynb`](labs/lab03_limpieza_eda.ipynb) | |
-| 04 | Data mining | [`labs/lab04_data_mining.ipynb`](labs/lab04_data_mining.ipynb) | |
-| 05 | Aprendizaje no supervisado | [`labs/lab05_no_supervisado.ipynb`](labs/lab05_no_supervisado.ipynb) | |
-| 06 | Visualización de datos | [`labs/lab06_visualizacion.ipynb`](labs/lab06_visualizacion.ipynb) | |
-| 07 | Caso integrador | [`labs/lab07_integrador.ipynb`](labs/lab07_integrador.ipynb) | |
+**El estado del material está en [ESTADO.md](ESTADO.md).** Acá solo está cómo se organiza el
+repositorio y cómo se regeneran las cosas.
 
-El Módulo 1 estrena el modelo nuevo de material, en el que el notebook solo trae código y el texto explicativo vive en dos guías en PDF.
+## Cómo se organiza
 
-| Módulo | Guía del relator | Guía del alumno | Fuentes |
-|--------|------------------|-----------------|---------|
-| 01 Importar y unir | [`guias/modulo01/guia_relator.pdf`](guias/modulo01/guia_relator.pdf) | [`guias/modulo01/guia_alumno.pdf`](guias/modulo01/guia_alumno.pdf) | [`guias/modulo01/`](guias/modulo01) |
-
-### Regenerar las guías
-
-Las guías se escriben en LaTeX y se compilan con XeLaTeX. Los recuadros de código y de salida **no se escriben a mano**, se generan desde el notebook resuelto, de modo que las cifras de las guías siempre sean las de una corrida real.
-
-```bash
-# 1. ejecutar el notebook y dejar la versión resuelta
-uv run --group dev python scripts/ejecutar_notebook.py \
-    labs/lab01_importar_unir.ipynb labs/lab01_importar_unir_resuelto.ipynb
-
-# 2. volcar código y salidas a fragmentos LaTeX
-python3 guias/modulo01/generar_celdas.py \
-    labs/lab01_importar_unir_resuelto.ipynb guias/modulo01/celdas
-
-# 3. compilar, dos pasadas porque la portada usa posiciones absolutas
-cd guias/modulo01 && xelatex guia_relator.tex && xelatex guia_relator.tex
-xelatex guia_alumno.tex && xelatex guia_alumno.tex
+```
+curso-python-minergia/
+  ESTADO.md            qué está listo, qué falta y qué ya se decidió
+  datos/               los datos del caso conductor
+  scripts/             generar datos, ejecutar notebooks y armar las guías
+  modulos/
+    modulo01/
+      guia_relator.pdf     la pieza principal, se escribe primero
+      guia_alumno.pdf      la explicación escrita, para leer después de la clase
+      lab.ipynb            el notebook que recibe el participante, sin salidas
+      lab_resuelto.ipynb   la copia del relator, con salidas
+      fuentes/             las fuentes LaTeX, los diagramas y las fichas de contexto
+  _archivo/            material del modelo antiguo, ver _archivo/LEEME.md
 ```
 
-Hace falta una instalación de TeX con XeLaTeX, más las fuentes Charter, Avenir Next y Menlo, que vienen con macOS.
+Un módulo, una carpeta, con sus cuatro entregables a la vista.
 
-## Datos
-
-Todos los datos son **sintéticos**. Las cifras son verosímiles para el Sistema Eléctrico Nacional, pero ninguna central corresponde a una instalación real.
+## Los datos
 
 | Archivo | Contenido |
 |---------|-----------|
-| `datos/centrales.csv` · `.xlsx` | Tabla maestra de 20 centrales (el `.xlsx` incluye una hoja `notas`) |
-| `datos/generacion.csv` | Generación horaria por central, año 2024 |
-| `datos/demanda.csv` | Demanda horaria por región, año 2024 |
-| `datos/demanda_sucia.csv` | `demanda.csv` con defectos plantados (separador `;`) |
+| `datos/centrales.csv` · `.xlsx` | Tabla maestra de 20 centrales, el `.xlsx` trae una hoja `notas` |
+| `datos/generacion.csv` | Generación horaria por central, 2024 |
+| `datos/demanda.csv` | Demanda horaria por región, 2024 |
+| `datos/demanda_sucia.csv` | `demanda.csv` con defectos plantados, separador `;` |
 | `datos/demanda.db` | SQLite con las tablas `demanda` y `regiones` |
-| `datos/mantenimiento.csv` | Bitácora de 600 eventos de mantenimiento, año 2024 |
-| `datos/api/precios_nudo.json` | Respuesta simulada de una API REST, enero 2024 |
-| `datos/generacion_2025.csv` · `demanda_2025.csv` | Datos del caso integrador, año 2025 |
-| `datos/grande/` | Dataset grande, **no versionado** (ver más abajo) |
+| `datos/mantenimiento.csv` | Bitácora de 600 eventos de mantenimiento, 2024 |
+| `datos/api/precios_nudo.json` | Respuesta simulada de una API REST, enero de 2024 |
+| `datos/generacion_2025.csv` · `demanda_2025.csv` | Datos del caso integrador |
 
-Convenciones: separador coma, codificación UTF-8, fechas ISO `YYYY-MM-DD` y decimales con punto. La única excepción es `demanda_sucia.csv`, cuyos defectos son deliberados.
+Convenciones, separador coma, codificación UTF-8, fechas ISO y decimales con punto. La única
+excepción es `demanda_sucia.csv`, cuyos defectos son deliberados.
 
-## Regenerar los datos
-
-El proyecto usa **Python 3.13** gestionado con [uv](https://docs.astral.sh/uv/).
+El proyecto usa **Python 3.13** gestionado con [uv](https://docs.astral.sh/uv/). El generador
+es determinista, la semilla está fija en `2026` y dos corridas producen archivos idénticos.
 
 ```bash
-uv sync                                      # crea el entorno e instala dependencias
-uv run python scripts/generar_datos.py       # regenera todo datos/
+uv sync
+uv run python scripts/generar_datos.py
 ```
 
-El generador es **determinista**: la semilla está fija en `2026` y dos ejecuciones producen archivos idénticos byte a byte. Para regenerar después de cambiar el script, basta con volver a ejecutarlo.
+## Regenerar el material de un módulo
 
-### Verificar un laboratorio
-
-Hay dos verificadores, uno por modelo de material.
-
-Los labs 00 y 02 a 07, que son del modelo antiguo, se verifican con el arnés `scripts/probar_lab.py`, que revisa el formato y los ejecuta de arriba a abajo contra los datos locales, sin tocar el archivo del repo.
+El notebook se entrega sin salidas y la versión resuelta sale de ejecutarlo. Los recuadros de
+código y de salida de las guías **no se escriben a mano**, se generan desde el notebook
+resuelto, de modo que las cifras de las guías sean siempre las de una corrida real.
 
 ```bash
-uv sync --group dev                                              # una sola vez
-uv run --group dev python scripts/probar_lab.py labs/lab00_nivelacion.ipynb
-```
+uv sync --group dev                                      # una sola vez
 
-El Lab 01, que es del modelo nuevo, genera sus propios datos y no depende de `datos/`, así que se verifica ejecutándolo completo con `scripts/ejecutar_notebook.py`. Esa misma corrida produce la versión resuelta. Las reglas de formato del arnés antiguo, como el máximo de doce líneas por celda o el pareo entre `# Tu turno` y su celda de solución, no aplican al modelo nuevo.
-
-```bash
+# 1. ejecutar el notebook y dejar la versión resuelta
 uv run --group dev python scripts/ejecutar_notebook.py \
-    labs/lab01_importar_unir.ipynb labs/lab01_importar_unir_resuelto.ipynb
+    modulos/modulo01/lab.ipynb modulos/modulo01/lab_resuelto.ipynb
+
+# 2. volcar código y salidas a fragmentos LaTeX
+python3 scripts/generar_celdas.py \
+    modulos/modulo01/lab_resuelto.ipynb modulos/modulo01/fuentes/celdas
+
+# 3. compilar las guías, dos pasadas porque la portada usa posiciones absolutas
+cd modulos/modulo01/fuentes
+xelatex guia_relator.tex && xelatex guia_relator.tex
+xelatex guia_alumno.tex  && xelatex guia_alumno.tex
+mv guia_relator.pdf guia_alumno.pdf ..
 ```
 
-El grupo `dev` fija **pandas 2.x**, que es la versión que trae Google Colab, de modo que el arnés verifique los notebooks contra lo mismo que va a ejecutar el participante.
+El grupo `dev` fija **pandas 2.x**, que es la serie que trae Google Colab, para que lo que se
+verifica sea lo mismo que va a ejecutar el participante.
 
-### Dataset grande
+Para las guías hace falta una instalación de TeX con **XeLaTeX**, más las tipografías Charter,
+Avenir Next y Menlo, que vienen con macOS.
 
-`datos/grande/generacion_grande.csv` tiene ~8,8 millones de filas (200 centrales × 5 años) y **no se versiona**. Se genera en local:
+`scripts/verificar_tildes.py` sirve cuando hay que corregir la ortografía de una guía entera y
+se quiere comprobar que no se cambió nada más que las tildes.
 
-```bash
-uv run python scripts/generar_datos.py --grande        # todo, incluido el grande
-uv run python scripts/generar_datos.py --solo-grande   # únicamente el grande
-```
+## Dataset grande
 
-La función que lo produce está aislada y se puede importar sin efectos secundarios, de modo que el lab 01 la reutiliza para generar el archivo directamente en Colab:
-
-```python
-from generar_datos import generar_dataset_grande
-generar_dataset_grande("generacion_grande.csv")
-```
-
----
-
-Material propietario de Xpertis. Uso restringido a los participantes del curso.
+El Módulo 1 genera dentro del notebook un CSV de 4.380.000 filas y 141 MB para comparar pandas
+con Polars. No se versiona y se crea solo si no existe.

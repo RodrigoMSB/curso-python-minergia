@@ -47,5 +47,5 @@ Thumbs.db
 *.out
 *.toc
 *.synctex.gz
-guias/.sin_tildes/
-guias/modulo01/prueba_diagramas.*
+# Copias de trabajo de la correccion ortografica, ver scripts/verificar_tildes.py
+.sin_tildes/
