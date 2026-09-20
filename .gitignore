@@ -52,3 +52,27 @@ Thumbs.db
 
 # Los PDF de trabajo dentro de fuentes/, el que se versiona es el de la carpeta del modulo
 modulos/*/fuentes/*.pdf
+
+# =====================================================================
+# Material interno. Este repositorio es publico y es el del participante.
+# Todo lo de abajo sigue viviendo en el disco de trabajo del relator, pero
+# no entra a git. Se saco del historial con git-filter-repo el 20 de
+# septiembre de 2026 y no debe volver.
+# =====================================================================
+ESTADO.md
+_archivo/
+pyproject.toml
+uv.lock
+
+# Las guias del relator, sus fuentes y los notebooks resueltos.
+modulos/*/guia_relator.pdf
+modulos/*/lab_resuelto.ipynb
+modulos/*/lab_resuelto_fuente.ipynb
+modulos/*/fuentes/
+modulos/comun/
+
+# Las herramientas de produccion del material.
+scripts/ejecutar_notebook.py
+scripts/generar_celdas.py
+scripts/verificar_tildes.py
+scripts/probar_lab.py
