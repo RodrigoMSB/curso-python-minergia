@@ -76,3 +76,6 @@ scripts/ejecutar_notebook.py
 scripts/generar_celdas.py
 scripts/verificar_tildes.py
 scripts/probar_lab.py
+
+# La evaluacion. Las pruebas, la clave y el corrector no pueden ser publicos.
+modulos/*/evaluacion/
