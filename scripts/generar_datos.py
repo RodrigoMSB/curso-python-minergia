@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generador de datos sinteticos del Observatorio de Datos Energeticos (ODE).
+"""Generador de datos sinteticos del Observatorio de Datos Energéticos (ODE).
 
 Caso conductor del curso "Analisis Avanzado de Datos con Python" dictado por
 Xpertis para la Subsecretaria de Energia de Chile.
@@ -61,9 +61,9 @@ REGIONES = [
     "Antofagasta",
     "Atacama",
     "Coquimbo",
-    "Valparaiso",
+    "Valparaíso",
     "Metropolitana",
-    "Biobio",
+    "Biobío",
     "Los Lagos",
 ]
 
@@ -72,9 +72,9 @@ POBLACION = {
     "Antofagasta": 691_000,
     "Atacama": 314_000,
     "Coquimbo": 836_000,
-    "Valparaiso": 1_960_000,
+    "Valparaíso": 1_960_000,
     "Metropolitana": 8_125_000,
-    "Biobio": 1_663_000,
+    "Biobío": 1_663_000,
     "Los Lagos": 891_000,
 }
 
@@ -83,8 +83,8 @@ POBLACION = {
 DEMANDA_BASE = {
     "Metropolitana": 2300.0,
     "Antofagasta": 1150.0,
-    "Biobio": 1100.0,
-    "Valparaiso": 950.0,
+    "Biobío": 1100.0,
+    "Valparaíso": 950.0,
     "Atacama": 700.0,
     "Coquimbo": 560.0,
     "Los Lagos": 430.0,
@@ -131,26 +131,26 @@ def _escribir_csv(df: pd.DataFrame, ruta: Path, **kwargs) -> None:
 #: instalaciones reales del Sistema Electrico Nacional.
 CATALOGO_CENTRALES = [
     # (central, tecnologia, region, potencia_mw, anio_inicio)
-    ("Central Rio Manso Alto", "hidro", "Biobio", 420, 1998),
-    ("Central Salto del Pehuen", "hidro", "Biobio", 310, 2004),
+    ("Central Río Manso Alto", "hidro", "Biobío", 420, 1998),
+    ("Central Salto del Pehuén", "hidro", "Biobío", 310, 2004),
     ("Central Quebrada Azul", "hidro", "Los Lagos", 185, 2011),
     ("Central Lago Ventisquero", "hidro", "Los Lagos", 96, 2016),
-    ("Central Vega Escondida", "hidro", "Biobio", 240, 1995),
+    ("Central Vega Escondida", "hidro", "Biobío", 240, 1995),
     ("Parque Solar Pampa Alta", "solar", "Antofagasta", 230, 2017),
     ("Parque Solar Llano Blanco", "solar", "Antofagasta", 145, 2019),
     ("Parque Solar Salar Nuevo", "solar", "Atacama", 195, 2018),
     ("Parque Solar Cerro Dorado", "solar", "Atacama", 110, 2021),
     ("Parque Solar Media Luna", "solar", "Atacama", 78, 2023),
-    ("Eolica Cerro Negro", "eolica", "Coquimbo", 160, 2015),
-    ("Eolica Punta Ventosa", "eolica", "Coquimbo", 124, 2020),
-    ("Eolica Loma Larga", "eolica", "Biobio", 98, 2013),
-    ("Eolica Vientos del Sur", "eolica", "Los Lagos", 142, 2022),
-    ("Termoelectrica Bahia Norte", "gas", "Antofagasta", 375, 2007),
-    ("Termoelectrica Valle Central", "gas", "Metropolitana", 290, 2010),
-    ("Termoelectrica Puerto Nuevo", "gas", "Valparaiso", 340, 2003),
-    ("Termoelectrica Costa Brava", "carbon", "Valparaiso", 480, 1999),
-    ("Termoelectrica Peninsula Gris", "carbon", "Biobio", 355, 2001),
-    ("Diesel Respaldo Cordillera", "diesel", "Metropolitana", 45, 2012),
+    ("Eólica Cerro Negro", "eolica", "Coquimbo", 160, 2015),
+    ("Eólica Punta Ventosa", "eolica", "Coquimbo", 124, 2020),
+    ("Eólica Loma Larga", "eolica", "Biobío", 98, 2013),
+    ("Eólica Vientos del Sur", "eolica", "Los Lagos", 142, 2022),
+    ("Termoeléctrica Bahía Norte", "gas", "Antofagasta", 375, 2007),
+    ("Termoeléctrica Valle Central", "gas", "Metropolitana", 290, 2010),
+    ("Termoeléctrica Puerto Nuevo", "gas", "Valparaíso", 340, 2003),
+    ("Termoeléctrica Costa Brava", "carbon", "Valparaíso", 480, 1999),
+    ("Termoeléctrica Península Gris", "carbon", "Biobío", 355, 2001),
+    ("Diésel Respaldo Cordillera", "diesel", "Metropolitana", 45, 2012),
 ]
 
 
@@ -750,7 +750,17 @@ def generar_mantenimiento(anio: int, centrales: pd.DataFrame) -> pd.DataFrame:
         )
 
     df = pd.DataFrame(filas)
-    return df.sort_values(["fecha", "central"], kind="stable").reset_index(drop=True)
+    # Se ordena por el nombre sin tildes, asi el archivo sale en el mismo orden de
+    # siempre aunque los nombres lleven tilde.
+    return df.sort_values(["fecha", "central"], kind="stable",
+                          key=_sin_tilde).reset_index(drop=True)
+
+
+def _sin_tilde(serie: pd.Series) -> pd.Series:
+    """Clave de orden que ignora las tildes de los nombres de central."""
+    if serie.name != "central":
+        return serie
+    return serie.str.normalize("NFKD").str.encode("ascii", "ignore").str.decode("ascii")
 
 
 # --------------------------------------------------------------------------- #
@@ -790,7 +800,7 @@ def generar_precios_nudo(demanda: pd.DataFrame, anio: int) -> dict:
 
     return {
         "metadata": {
-            "fuente": "Observatorio de Datos Energeticos (ODE) - datos sinteticos",
+            "fuente": "Observatorio de Datos Energéticos (ODE) - datos sinteticos",
             "fecha_consulta": f"{anio}-02-01T09:00:00-03:00",
             "unidad": "USD/MWh",
             "periodo": f"{anio}-01",
