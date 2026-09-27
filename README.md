@@ -17,14 +17,14 @@ del Sistema Eléctrico Nacional.
 
 | Módulo | Horas | Laboratorio | Guía | De qué trata |
 |---|---|---|---|---|
-| **00** · Python básico | 1 h | [Abrir en Colab](https://colab.research.google.com/github/RodrigoMSB/curso-python-minergia/blob/main/modulos/modulo00/lab.ipynb) | [Guía](modulos/modulo00/guia_alumno.pdf) | Variables, listas, diccionarios, decisiones y funciones. Opcional, para quien nunca programó |
-| **01** · Importar y unir datos | 2 h | [Abrir en Colab](https://colab.research.google.com/github/RodrigoMSB/curso-python-minergia/blob/main/modulos/modulo01/lab.ipynb) | [Guía](modulos/modulo01/guia_alumno.pdf) | Traer datos desde CSV, Excel, una API y una base SQL, y unir dos tablas |
-| **02** · Manipulación de datos | 4 h | [Abrir en Colab](https://colab.research.google.com/github/RodrigoMSB/curso-python-minergia/blob/main/modulos/modulo02/lab.ipynb) | [Guía](modulos/modulo02/guia_alumno.pdf) | Filtrar, agrupar, pivotar y responder preguntas con una tabla |
-| **03** · Limpieza y análisis exploratorio | 4 h | [Abrir en Colab](https://colab.research.google.com/github/RodrigoMSB/curso-python-minergia/blob/main/modulos/modulo03/lab.ipynb) | [Guía](modulos/modulo03/guia_alumno.pdf) | Diagnosticar un archivo nuevo antes de calcularle nada |
-| **04** · Minería de datos | 4 h | [Abrir en Colab](https://colab.research.google.com/github/RodrigoMSB/curso-python-minergia/blob/main/modulos/modulo04/lab.ipynb) | [Guía](modulos/modulo04/guia_alumno.pdf) | Distancias, reglas de asociación y patrones en secuencias |
-| **05** · Aprendizaje no supervisado | 4 h | [Abrir en Colab](https://colab.research.google.com/github/RodrigoMSB/curso-python-minergia/blob/main/modulos/modulo05/lab.ipynb) | [Guía](modulos/modulo05/guia_alumno.pdf) | Agrupar sin respuesta correcta, con K-Means, PCA, DBSCAN y LDA |
-| **06** · Visualización de datos | 4 h | [Abrir en Colab](https://colab.research.google.com/github/RodrigoMSB/curso-python-minergia/blob/main/modulos/modulo06/lab.ipynb) | [Guía](modulos/modulo06/guia_alumno.pdf) | Matplotlib, Seaborn y Plotly, y cómo se revisa un gráfico antes de mandarlo |
-| **07** · Caso integrador | 2 h | [Abrir en Colab](https://colab.research.google.com/github/RodrigoMSB/curso-python-minergia/blob/main/modulos/modulo07/lab.ipynb) | [Guía](modulos/modulo07/guia_alumno.pdf) | Un informe de cierre de año, de principio a fin |
+| **00** · Python básico | 1 h | [Abrir en Colab](https://colab.research.google.com/github/RodrigoMSB/curso-python-minergia/blob/main/modulos/modulo00/lab.ipynb) | [Guía](https://github.com/RodrigoMSB/curso-python-minergia/raw/main/modulos/modulo00/guia_alumno.pdf) | Variables, listas, diccionarios, decisiones y funciones. Opcional, para quien nunca programó |
+| **01** · Importar y unir datos | 2 h | [Abrir en Colab](https://colab.research.google.com/github/RodrigoMSB/curso-python-minergia/blob/main/modulos/modulo01/lab.ipynb) | [Guía](https://github.com/RodrigoMSB/curso-python-minergia/raw/main/modulos/modulo01/guia_alumno.pdf) | Traer datos desde CSV, Excel, una API y una base SQL, y unir dos tablas |
+| **02** · Manipulación de datos | 4 h | [Abrir en Colab](https://colab.research.google.com/github/RodrigoMSB/curso-python-minergia/blob/main/modulos/modulo02/lab.ipynb) | [Guía](https://github.com/RodrigoMSB/curso-python-minergia/raw/main/modulos/modulo02/guia_alumno.pdf) | Filtrar, agrupar, pivotar y responder preguntas con una tabla |
+| **03** · Limpieza y análisis exploratorio | 4 h | [Abrir en Colab](https://colab.research.google.com/github/RodrigoMSB/curso-python-minergia/blob/main/modulos/modulo03/lab.ipynb) | [Guía](https://github.com/RodrigoMSB/curso-python-minergia/raw/main/modulos/modulo03/guia_alumno.pdf) | Diagnosticar un archivo nuevo antes de calcularle nada |
+| **04** · Minería de datos | 4 h | [Abrir en Colab](https://colab.research.google.com/github/RodrigoMSB/curso-python-minergia/blob/main/modulos/modulo04/lab.ipynb) | [Guía](https://github.com/RodrigoMSB/curso-python-minergia/raw/main/modulos/modulo04/guia_alumno.pdf) | Distancias, reglas de asociación y patrones en secuencias |
+| **05** · Aprendizaje no supervisado | 4 h | [Abrir en Colab](https://colab.research.google.com/github/RodrigoMSB/curso-python-minergia/blob/main/modulos/modulo05/lab.ipynb) | [Guía](https://github.com/RodrigoMSB/curso-python-minergia/raw/main/modulos/modulo05/guia_alumno.pdf) | Agrupar sin respuesta correcta, con K-Means, PCA, DBSCAN y LDA |
+| **06** · Visualización de datos | 4 h | [Abrir en Colab](https://colab.research.google.com/github/RodrigoMSB/curso-python-minergia/blob/main/modulos/modulo06/lab.ipynb) | [Guía](https://github.com/RodrigoMSB/curso-python-minergia/raw/main/modulos/modulo06/guia_alumno.pdf) | Matplotlib, Seaborn y Plotly, y cómo se revisa un gráfico antes de mandarlo |
+| **07** · Evaluación final | 2 h | [Abrir en Colab](https://colab.research.google.com/github/RodrigoMSB/curso-python-minergia/blob/main/modulos/modulo07/lab.ipynb) | [Guía](https://github.com/RodrigoMSB/curso-python-minergia/raw/main/modulos/modulo07/guia_alumno.pdf) | Diez tareas de código, diez preguntas de alternativas y tres preguntas abiertas sobre los datos de 2025 |
 
 ## Cómo se abre un laboratorio
 
@@ -36,8 +36,9 @@ del Sistema Eléctrico Nacional.
    play de la izquierda, o poniéndote encima y apretando **Shift + Enter**.
 4. La primera celda de cada laboratorio deja listos los datos. Si te la saltas, las demás dan
    error.
-5. Para conservar lo que escribas, usa **Archivo, Guardar una copia en Drive**. La copia queda
-   en tu Drive y el original no se toca.
+5. El notebook se abre directo desde este repositorio, así que lo que escribas **se pierde al
+   cerrar la pestaña**. Para conservarlo, descárgalo con **Archivo, Descargar, Descargar
+   .ipynb**.
 
 Si algo sale mal y quieres empezar de nuevo, **Entorno de ejecución, Reiniciar y ejecutar
 todo**. No se rompe nada, y un error en rojo tampoco rompe nada.
@@ -66,7 +67,7 @@ nada. Esta carpeta trae los mismos archivos por si quieres trabajarlos aparte.
 | `datos/demanda.db` | SQLite con las tablas `demanda` y `regiones` |
 | `datos/mantenimiento.csv` | Bitácora de 600 eventos de mantenimiento, 2024 |
 | `datos/api/precios_nudo.json` | Respuesta simulada de una API REST, enero de 2024 |
-| `datos/generacion_2025.csv` · `demanda_2025.csv` | Los datos del caso integrador |
+| `datos/generacion_2025.csv` · `demanda_2025.csv` | Datos de 2025, del mismo estilo que los de la evaluación |
 
 Separador coma, codificación UTF-8, fechas ISO y decimales con punto. La única excepción es
 `demanda_sucia.csv`, cuyos defectos son a propósito.
@@ -77,8 +78,9 @@ archivos idénticos.
 
 ## Convenciones del material
 
-- Los nombres de columnas, de centrales y de archivos van **sin tilde**, para que una tilde de
-  diferencia no se convierta en un error difícil de encontrar.
+- Los nombres de columnas y de archivos, y los códigos de tecnología como `solar` o `eolica`,
+  van **sin tilde**, para que una tilde de diferencia no se convierta en un error difícil de
+  encontrar. Los nombres de centrales y de regiones sí llevan tilde, como se escriben.
 - Los decimales van con **punto** en el código, que es como los escribe Python, y con coma en
   el texto de las guías, que es como se escriben en Chile.
 - Cada laboratorio es independiente. No hace falta haber terminado el anterior para abrir el
