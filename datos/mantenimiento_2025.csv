@@ -1,0 +1,513 @@
+central,fecha,tipo_evento,duracion_horas
+Central Aguas Claras,2025-01-03,inspeccion,3
+Eólica Campo Abierto,2025-01-03,inspeccion,1
+Parque Solar Altiplano,2025-01-04,preventivo,7
+Diésel Respaldo Cordillera,2025-01-05,correctivo,17
+Eólica Punta Ventosa,2025-01-05,falla_electrica,25
+Eólica Loma Fría,2025-01-10,preventivo,11
+Parque Solar Pampa Alta,2025-01-11,falla_electrica,27
+Carboeléctrica Roca Gris,2025-01-12,preventivo,24
+Central Aguas Claras,2025-01-12,preventivo,18
+Parque Solar Llano Seco,2025-01-12,correctivo,42
+Parque Solar Río Seco,2025-01-12,preventivo,5
+Termoeléctrica Valle Central,2025-01-12,falla_mecanica,54
+Diésel Respaldo Cordillera,2025-01-13,correctivo,38
+Termoeléctrica Puerto Sur,2025-01-13,correctivo,50
+Central Salto Verde,2025-01-16,correctivo,11
+Central Tres Saltos,2025-01-16,evento_climatico,24
+Termoeléctrica Puerto Sur,2025-01-16,inspeccion,3
+Eólica Punta Ventosa,2025-01-17,falla_electrica,44
+Parque Solar Llano Seco,2025-01-17,preventivo,11
+Eólica Campo Abierto,2025-01-18,falla_electrica,16
+Diésel Respaldo Cordillera,2025-01-19,correctivo,72
+Eólica Campo Abierto,2025-01-20,inspeccion,4
+Eólica Loma Fría,2025-01-20,preventivo,12
+Termoeléctrica Puerto Sur,2025-01-20,falla_mecanica,73
+Termoeléctrica Puerto Sur,2025-01-21,falla_electrica,34
+Termoeléctrica Puerto Sur,2025-01-22,falla_electrica,42
+Termoeléctrica Puerto Sur,2025-01-22,correctivo,23
+Carboeléctrica Costa Brava,2025-01-23,falla_electrica,13
+Central Tres Saltos,2025-01-24,falla_mecanica,40
+Eólica Loma Fría,2025-01-24,falla_electrica,37
+Eólica Loma Fría,2025-01-24,correctivo,70
+Termoeléctrica Puerto Sur,2025-01-24,falla_mecanica,79
+Parque Solar Llano Seco,2025-01-25,preventivo,19
+Parque Solar Río Seco,2025-01-25,inspeccion,8
+Central Tres Saltos,2025-01-26,falla_mecanica,46
+Diésel Respaldo Cordillera,2025-01-26,correctivo,22
+Eólica Punta Ventosa,2025-01-26,falla_electrica,2
+Termoeléctrica Puerto Sur,2025-01-26,falla_mecanica,75
+Termoeléctrica Puerto Sur,2025-01-27,falla_electrica,29
+Eólica Cerro Negro,2025-01-28,preventivo,8
+Parque Solar Pampa Alta,2025-01-28,falla_electrica,47
+Central Aguas Claras,2025-02-01,inspeccion,8
+Diésel Respaldo Cordillera,2025-02-02,correctivo,57
+Eólica Cerro Negro,2025-02-02,falla_mecanica,26
+Central Río Manso Alto,2025-02-03,inspeccion,4
+Parque Solar Llano Seco,2025-02-04,preventivo,14
+Termoeléctrica Bahía Norte,2025-02-04,falla_electrica,8
+Parque Solar Llano Seco,2025-02-05,falla_electrica,12
+Central Río Manso Alto,2025-02-06,falla_mecanica,82
+Parque Solar Altiplano,2025-02-07,correctivo,51
+Parque Solar Llano Seco,2025-02-07,inspeccion,7
+Parque Solar Quebrada Honda,2025-02-08,inspeccion,6
+Termoeléctrica Puerto Sur,2025-02-08,preventivo,8
+Termoeléctrica Puerto Sur,2025-02-08,evento_climatico,31
+Eólica Loma Fría,2025-02-09,inspeccion,5
+Termoeléctrica Puerto Sur,2025-02-09,inspeccion,5
+Eólica Loma Fría,2025-02-10,inspeccion,7
+Central Río Manso Alto,2025-02-13,correctivo,58
+Central Vega Azul,2025-02-13,inspeccion,1
+Carboeléctrica Roca Gris,2025-02-15,falla_electrica,32
+Central Tres Saltos,2025-02-16,falla_mecanica,23
+Central Tres Saltos,2025-02-16,inspeccion,8
+Eólica Campo Abierto,2025-02-16,falla_mecanica,61
+Parque Solar Sol Naciente,2025-02-16,inspeccion,4
+Termoeléctrica Valle Central,2025-02-16,correctivo,24
+Termoeléctrica Puerto Sur,2025-02-17,correctivo,15
+Eólica Punta Ventosa,2025-02-18,falla_mecanica,16
+Eólica Loma Fría,2025-02-19,falla_electrica,9
+Parque Solar Altiplano,2025-02-19,preventivo,22
+Termoeléctrica Valle Central,2025-02-19,falla_electrica,35
+Carboeléctrica Roca Gris,2025-02-21,correctivo,14
+Eólica Loma Fría,2025-02-21,preventivo,17
+Central Aguas Claras,2025-02-23,inspeccion,1
+Central Salto Verde,2025-02-24,inspeccion,4
+Central Tres Saltos,2025-02-24,falla_electrica,30
+Diésel Respaldo Cordillera,2025-02-24,correctivo,60
+Eólica Loma Fría,2025-02-24,preventivo,17
+Termoeléctrica Puerto Sur,2025-02-25,correctivo,15
+Central Tres Saltos,2025-02-26,falla_mecanica,53
+Parque Solar Quebrada Honda,2025-02-26,falla_mecanica,87
+Central Río Manso Alto,2025-02-27,falla_mecanica,77
+Diésel Respaldo Cordillera,2025-02-27,falla_electrica,35
+Eólica Punta Ventosa,2025-02-27,evento_climatico,24
+Termoeléctrica Bahía Norte,2025-02-27,correctivo,11
+Central Tres Saltos,2025-02-28,falla_mecanica,8
+Diésel Respaldo Cordillera,2025-02-28,correctivo,39
+Eólica Punta Ventosa,2025-03-01,falla_mecanica,53
+Parque Solar Quebrada Honda,2025-03-01,inspeccion,8
+Eólica Campo Abierto,2025-03-02,falla_electrica,12
+Eólica Loma Fría,2025-03-02,preventivo,17
+Termoeléctrica Valle Central,2025-03-02,falla_mecanica,33
+Parque Solar Río Seco,2025-03-03,falla_electrica,38
+Diésel Respaldo Cordillera,2025-03-05,correctivo,62
+Parque Solar Pampa Alta,2025-03-06,preventivo,14
+Parque Solar Sol Naciente,2025-03-08,inspeccion,5
+Termoeléctrica Puerto Sur,2025-03-08,falla_mecanica,86
+Central Río Manso Alto,2025-03-09,inspeccion,2
+Termoeléctrica Puerto Sur,2025-03-11,falla_mecanica,36
+Central Vega Azul,2025-03-13,falla_mecanica,49
+Parque Solar Río Seco,2025-03-13,preventivo,11
+Parque Solar Río Seco,2025-03-13,inspeccion,5
+Central Salto Verde,2025-03-14,correctivo,49
+Central Vega Azul,2025-03-14,falla_mecanica,19
+Eólica Cerro Negro,2025-03-14,correctivo,8
+Parque Solar Quebrada Honda,2025-03-15,inspeccion,6
+Termoeléctrica Puerto Sur,2025-03-15,falla_mecanica,43
+Eólica Cerro Negro,2025-03-16,falla_mecanica,51
+Parque Solar Pampa Alta,2025-03-16,falla_electrica,23
+Parque Solar Llano Seco,2025-03-17,falla_electrica,8
+Parque Solar Quebrada Honda,2025-03-18,inspeccion,1
+Termoeléctrica Puerto Sur,2025-03-18,preventivo,20
+Termoeléctrica Valle Central,2025-03-18,preventivo,10
+Central Tres Saltos,2025-03-19,correctivo,32
+Central Vega Azul,2025-03-19,preventivo,20
+Termoeléctrica Puerto Sur,2025-03-19,falla_mecanica,91
+Termoeléctrica Puerto Sur,2025-03-20,falla_electrica,33
+Central Aguas Claras,2025-03-21,falla_mecanica,30
+Central Tres Saltos,2025-03-21,preventivo,12
+Eólica Cerro Negro,2025-03-21,inspeccion,2
+Central Tres Saltos,2025-03-22,correctivo,45
+Termoeléctrica Bahía Norte,2025-03-22,inspeccion,6
+Eólica Campo Abierto,2025-03-23,inspeccion,4
+Eólica Loma Fría,2025-03-23,falla_mecanica,55
+Parque Solar Sol Naciente,2025-03-24,preventivo,7
+Termoeléctrica Puerto Sur,2025-03-25,correctivo,51
+Central Aguas Claras,2025-03-26,inspeccion,2
+Parque Solar Llano Seco,2025-03-26,preventivo,14
+Termoeléctrica Puerto Sur,2025-03-26,falla_mecanica,92
+Carboeléctrica Costa Brava,2025-03-28,inspeccion,8
+Central Aguas Claras,2025-03-28,preventivo,20
+Central Tres Saltos,2025-03-28,falla_mecanica,29
+Parque Solar Llano Seco,2025-03-28,inspeccion,6
+Carboeléctrica Costa Brava,2025-03-29,inspeccion,6
+Parque Solar Altiplano,2025-03-29,preventivo,22
+Carboeléctrica Costa Brava,2025-03-30,falla_mecanica,51
+Eólica Cerro Negro,2025-03-30,inspeccion,8
+Central Tres Saltos,2025-03-31,correctivo,13
+Central Salto Verde,2025-04-02,preventivo,8
+Parque Solar Pampa Alta,2025-04-02,inspeccion,3
+Central Tres Saltos,2025-04-03,falla_mecanica,73
+Central Salto Verde,2025-04-04,preventivo,12
+Eólica Campo Abierto,2025-04-04,correctivo,55
+Parque Solar Altiplano,2025-04-04,preventivo,5
+Diésel Respaldo Cordillera,2025-04-05,preventivo,7
+Central Río Manso Alto,2025-04-06,preventivo,7
+Central Vega Azul,2025-04-06,falla_electrica,14
+Parque Solar Pampa Alta,2025-04-06,preventivo,15
+Parque Solar Altiplano,2025-04-07,preventivo,6
+Carboeléctrica Roca Gris,2025-04-08,inspeccion,1
+Termoeléctrica Puerto Sur,2025-04-08,falla_electrica,26
+Carboeléctrica Roca Gris,2025-04-09,falla_electrica,10
+Parque Solar Altiplano,2025-04-09,inspeccion,7
+Parque Solar Quebrada Honda,2025-04-10,inspeccion,5
+Central Tres Saltos,2025-04-11,preventivo,24
+Eólica Campo Abierto,2025-04-11,falla_mecanica,93
+Termoeléctrica Bahía Norte,2025-04-11,inspeccion,8
+Carboeléctrica Costa Brava,2025-04-12,preventivo,23
+Carboeléctrica Roca Gris,2025-04-13,correctivo,44
+Central Aguas Claras,2025-04-13,evento_climatico,27
+Parque Solar Quebrada Honda,2025-04-15,preventivo,4
+Diésel Respaldo Cordillera,2025-04-16,correctivo,34
+Eólica Cerro Negro,2025-04-16,inspeccion,1
+Central Salto Verde,2025-04-18,correctivo,58
+Central Vega Azul,2025-04-18,correctivo,29
+Central Tres Saltos,2025-04-20,preventivo,5
+Termoeléctrica Valle Central,2025-04-20,falla_electrica,8
+Diésel Respaldo Cordillera,2025-04-21,preventivo,8
+Diésel Respaldo Cordillera,2025-04-21,correctivo,9
+Central Salto Verde,2025-04-22,inspeccion,3
+Eólica Punta Ventosa,2025-04-22,inspeccion,4
+Central Vega Azul,2025-04-24,correctivo,57
+Parque Solar Sol Naciente,2025-04-24,preventivo,18
+Carboeléctrica Costa Brava,2025-04-25,falla_mecanica,73
+Parque Solar Río Seco,2025-04-25,inspeccion,8
+Central Vega Azul,2025-04-26,evento_climatico,32
+Eólica Loma Fría,2025-04-26,falla_electrica,20
+Termoeléctrica Puerto Sur,2025-04-26,correctivo,45
+Carboeléctrica Roca Gris,2025-04-27,falla_electrica,18
+Eólica Campo Abierto,2025-04-27,evento_climatico,36
+Central Río Manso Alto,2025-04-29,falla_electrica,23
+Central Río Manso Alto,2025-04-29,preventivo,21
+Parque Solar Altiplano,2025-04-29,preventivo,6
+Carboeléctrica Roca Gris,2025-04-30,falla_mecanica,45
+Central Aguas Claras,2025-04-30,falla_electrica,9
+Central Río Manso Alto,2025-04-30,preventivo,12
+Termoeléctrica Puerto Sur,2025-04-30,correctivo,61
+Central Aguas Claras,2025-05-01,falla_electrica,46
+Parque Solar Sol Naciente,2025-05-01,falla_electrica,35
+Parque Solar Altiplano,2025-05-02,preventivo,17
+Termoeléctrica Puerto Sur,2025-05-02,correctivo,48
+Central Aguas Claras,2025-05-03,preventivo,20
+Diésel Respaldo Cordillera,2025-05-04,correctivo,42
+Diésel Respaldo Cordillera,2025-05-04,correctivo,36
+Eólica Cerro Negro,2025-05-05,falla_mecanica,13
+Parque Solar Pampa Alta,2025-05-07,preventivo,7
+Eólica Punta Ventosa,2025-05-08,inspeccion,4
+Parque Solar Río Seco,2025-05-09,preventivo,12
+Carboeléctrica Roca Gris,2025-05-10,preventivo,19
+Termoeléctrica Puerto Sur,2025-05-11,falla_electrica,10
+Central Aguas Claras,2025-05-12,falla_electrica,48
+Central Vega Azul,2025-05-12,preventivo,22
+Termoeléctrica Bahía Norte,2025-05-12,inspeccion,7
+Termoeléctrica Puerto Sur,2025-05-13,preventivo,20
+Termoeléctrica Puerto Sur,2025-05-13,falla_electrica,36
+Parque Solar Llano Seco,2025-05-14,correctivo,32
+Carboeléctrica Roca Gris,2025-05-15,preventivo,4
+Diésel Respaldo Cordillera,2025-05-15,correctivo,58
+Parque Solar Sol Naciente,2025-05-17,correctivo,6
+Termoeléctrica Bahía Norte,2025-05-18,falla_mecanica,63
+Eólica Campo Abierto,2025-05-19,inspeccion,8
+Eólica Punta Ventosa,2025-05-20,correctivo,48
+Parque Solar Llano Seco,2025-05-20,falla_mecanica,54
+Parque Solar Llano Seco,2025-05-20,inspeccion,5
+Parque Solar Quebrada Honda,2025-05-20,falla_mecanica,92
+Termoeléctrica Puerto Sur,2025-05-21,falla_electrica,12
+Termoeléctrica Puerto Sur,2025-05-21,correctivo,13
+Central Río Manso Alto,2025-05-23,falla_electrica,20
+Eólica Campo Abierto,2025-05-23,correctivo,28
+Eólica Cerro Negro,2025-05-23,preventivo,15
+Parque Solar Llano Seco,2025-05-23,preventivo,14
+Diésel Respaldo Cordillera,2025-05-24,correctivo,11
+Parque Solar Río Seco,2025-05-24,preventivo,5
+Termoeléctrica Puerto Sur,2025-05-24,correctivo,43
+Parque Solar Pampa Alta,2025-05-25,preventivo,21
+Termoeléctrica Bahía Norte,2025-05-25,correctivo,25
+Termoeléctrica Puerto Sur,2025-05-26,correctivo,71
+Eólica Punta Ventosa,2025-05-27,preventivo,6
+Parque Solar Sol Naciente,2025-05-27,falla_electrica,34
+Parque Solar Altiplano,2025-05-28,preventivo,23
+Parque Solar Pampa Alta,2025-05-28,inspeccion,4
+Termoeléctrica Bahía Norte,2025-05-28,inspeccion,3
+Parque Solar Pampa Alta,2025-05-29,falla_mecanica,35
+Parque Solar Río Seco,2025-05-29,inspeccion,4
+Central Aguas Claras,2025-05-30,inspeccion,4
+Central Río Manso Alto,2025-05-30,preventivo,5
+Central Tres Saltos,2025-05-30,falla_mecanica,68
+Diésel Respaldo Cordillera,2025-05-30,correctivo,70
+Carboeléctrica Costa Brava,2025-06-01,inspeccion,8
+Carboeléctrica Roca Gris,2025-06-01,correctivo,69
+Termoeléctrica Valle Central,2025-06-01,preventivo,5
+Parque Solar Llano Seco,2025-06-03,preventivo,10
+Parque Solar Pampa Alta,2025-06-03,preventivo,24
+Termoeléctrica Valle Central,2025-06-03,correctivo,63
+Parque Solar Altiplano,2025-06-04,correctivo,62
+Parque Solar Quebrada Honda,2025-06-04,inspeccion,5
+Parque Solar Río Seco,2025-06-06,preventivo,8
+Termoeléctrica Valle Central,2025-06-06,preventivo,15
+Central Salto Verde,2025-06-08,falla_electrica,35
+Parque Solar Sol Naciente,2025-06-08,preventivo,5
+Termoeléctrica Puerto Sur,2025-06-08,falla_electrica,48
+Termoeléctrica Puerto Sur,2025-06-09,correctivo,7
+Termoeléctrica Puerto Sur,2025-06-09,falla_mecanica,94
+Parque Solar Pampa Alta,2025-06-11,preventivo,19
+Eólica Punta Ventosa,2025-06-12,falla_mecanica,13
+Parque Solar Río Seco,2025-06-12,preventivo,6
+Parque Solar Sol Naciente,2025-06-13,evento_climatico,23
+Parque Solar Llano Seco,2025-06-14,falla_electrica,13
+Central Río Manso Alto,2025-06-15,correctivo,50
+Central Río Manso Alto,2025-06-15,falla_mecanica,68
+Diésel Respaldo Cordillera,2025-06-17,correctivo,42
+Carboeléctrica Roca Gris,2025-06-18,inspeccion,1
+Eólica Campo Abierto,2025-06-18,correctivo,67
+Eólica Punta Ventosa,2025-06-18,correctivo,29
+Eólica Punta Ventosa,2025-06-18,preventivo,19
+Parque Solar Quebrada Honda,2025-06-19,preventivo,15
+Carboeléctrica Costa Brava,2025-06-20,preventivo,7
+Termoeléctrica Puerto Sur,2025-06-20,correctivo,31
+Carboeléctrica Costa Brava,2025-06-21,falla_electrica,30
+Diésel Respaldo Cordillera,2025-06-22,correctivo,32
+Parque Solar Llano Seco,2025-06-22,inspeccion,4
+Parque Solar Llano Seco,2025-06-22,preventivo,20
+Termoeléctrica Puerto Sur,2025-06-22,correctivo,68
+Central Río Manso Alto,2025-06-23,inspeccion,7
+Central Vega Azul,2025-06-23,preventivo,8
+Eólica Punta Ventosa,2025-06-23,falla_electrica,41
+Parque Solar Quebrada Honda,2025-06-23,preventivo,12
+Eólica Cerro Negro,2025-06-24,falla_mecanica,53
+Termoeléctrica Puerto Sur,2025-06-27,falla_mecanica,24
+Central Tres Saltos,2025-06-28,inspeccion,6
+Eólica Cerro Negro,2025-06-30,inspeccion,2
+Parque Solar Río Seco,2025-07-03,preventivo,12
+Parque Solar Quebrada Honda,2025-07-04,falla_electrica,15
+Central Río Manso Alto,2025-07-05,preventivo,14
+Central Tres Saltos,2025-07-05,inspeccion,4
+Parque Solar Quebrada Honda,2025-07-05,correctivo,43
+Termoeléctrica Valle Central,2025-07-07,falla_mecanica,43
+Central Tres Saltos,2025-07-09,correctivo,20
+Central Salto Verde,2025-07-10,falla_electrica,25
+Parque Solar Quebrada Honda,2025-07-10,falla_electrica,36
+Termoeléctrica Puerto Sur,2025-07-10,correctivo,58
+Parque Solar Llano Seco,2025-07-11,inspeccion,6
+Parque Solar Sol Naciente,2025-07-14,falla_electrica,26
+Central Vega Azul,2025-07-16,preventivo,7
+Parque Solar Quebrada Honda,2025-07-17,preventivo,8
+Termoeléctrica Valle Central,2025-07-17,falla_mecanica,60
+Carboeléctrica Costa Brava,2025-07-18,falla_electrica,7
+Parque Solar Sol Naciente,2025-07-18,preventivo,17
+Central Salto Verde,2025-07-19,preventivo,7
+Eólica Loma Fría,2025-07-19,falla_mecanica,86
+Parque Solar Pampa Alta,2025-07-19,preventivo,23
+Central Vega Azul,2025-07-21,correctivo,55
+Parque Solar Altiplano,2025-07-21,inspeccion,5
+Termoeléctrica Bahía Norte,2025-07-21,preventivo,12
+Central Río Manso Alto,2025-07-22,falla_mecanica,32
+Termoeléctrica Bahía Norte,2025-07-22,correctivo,53
+Parque Solar Altiplano,2025-07-26,inspeccion,8
+Eólica Punta Ventosa,2025-07-27,inspeccion,7
+Parque Solar Pampa Alta,2025-07-27,preventivo,17
+Termoeléctrica Valle Central,2025-07-27,correctivo,30
+Carboeléctrica Costa Brava,2025-07-28,falla_mecanica,69
+Carboeléctrica Roca Gris,2025-07-28,correctivo,60
+Central Aguas Claras,2025-07-28,inspeccion,5
+Central Río Manso Alto,2025-07-28,preventivo,4
+Eólica Punta Ventosa,2025-07-28,inspeccion,7
+Termoeléctrica Valle Central,2025-07-28,correctivo,43
+Central Río Manso Alto,2025-07-29,inspeccion,7
+Diésel Respaldo Cordillera,2025-07-31,correctivo,66
+Parque Solar Altiplano,2025-07-31,preventivo,10
+Central Vega Azul,2025-08-01,preventivo,16
+Termoeléctrica Bahía Norte,2025-08-01,preventivo,12
+Parque Solar Pampa Alta,2025-08-02,preventivo,4
+Diésel Respaldo Cordillera,2025-08-03,preventivo,16
+Eólica Loma Fría,2025-08-03,preventivo,7
+Central Salto Verde,2025-08-04,preventivo,6
+Parque Solar Altiplano,2025-08-04,falla_electrica,39
+Termoeléctrica Puerto Sur,2025-08-06,falla_mecanica,53
+Carboeléctrica Costa Brava,2025-08-07,inspeccion,1
+Carboeléctrica Roca Gris,2025-08-07,preventivo,13
+Parque Solar Río Seco,2025-08-07,inspeccion,7
+Parque Solar Sol Naciente,2025-08-07,inspeccion,5
+Carboeléctrica Costa Brava,2025-08-10,preventivo,20
+Eólica Punta Ventosa,2025-08-10,evento_climatico,26
+Termoeléctrica Puerto Sur,2025-08-10,falla_electrica,4
+Carboeléctrica Costa Brava,2025-08-11,falla_electrica,4
+Eólica Cerro Negro,2025-08-11,correctivo,48
+Eólica Cerro Negro,2025-08-11,correctivo,53
+Eólica Campo Abierto,2025-08-12,preventivo,21
+Termoeléctrica Bahía Norte,2025-08-12,falla_electrica,33
+Carboeléctrica Roca Gris,2025-08-13,correctivo,69
+Eólica Loma Fría,2025-08-13,correctivo,10
+Termoeléctrica Puerto Sur,2025-08-14,falla_mecanica,69
+Termoeléctrica Valle Central,2025-08-14,correctivo,7
+Diésel Respaldo Cordillera,2025-08-16,correctivo,36
+Central Salto Verde,2025-08-17,falla_electrica,20
+Parque Solar Pampa Alta,2025-08-17,correctivo,48
+Central Salto Verde,2025-08-18,falla_mecanica,8
+Termoeléctrica Bahía Norte,2025-08-18,preventivo,10
+Termoeléctrica Bahía Norte,2025-08-18,preventivo,17
+Parque Solar Llano Seco,2025-08-19,inspeccion,1
+Carboeléctrica Costa Brava,2025-08-21,preventivo,5
+Eólica Loma Fría,2025-08-21,falla_mecanica,72
+Eólica Loma Fría,2025-08-21,preventivo,13
+Termoeléctrica Puerto Sur,2025-08-28,preventivo,24
+Eólica Cerro Negro,2025-08-30,preventivo,23
+Termoeléctrica Puerto Sur,2025-08-30,correctivo,20
+Parque Solar Sol Naciente,2025-08-31,falla_electrica,28
+Parque Solar Sol Naciente,2025-08-31,inspeccion,2
+Parque Solar Sol Naciente,2025-09-01,preventivo,5
+Termoeléctrica Valle Central,2025-09-01,preventivo,11
+Diésel Respaldo Cordillera,2025-09-02,correctivo,22
+Carboeléctrica Costa Brava,2025-09-04,preventivo,7
+Parque Solar Altiplano,2025-09-08,preventivo,19
+Parque Solar Altiplano,2025-09-08,preventivo,20
+Eólica Campo Abierto,2025-09-09,preventivo,14
+Parque Solar Quebrada Honda,2025-09-09,preventivo,12
+Central Aguas Claras,2025-09-11,inspeccion,8
+Parque Solar Altiplano,2025-09-11,inspeccion,8
+Termoeléctrica Puerto Sur,2025-09-13,evento_climatico,18
+Central Aguas Claras,2025-09-15,falla_electrica,31
+Central Aguas Claras,2025-09-16,inspeccion,8
+Eólica Loma Fría,2025-09-16,inspeccion,6
+Parque Solar Sol Naciente,2025-09-17,correctivo,9
+Parque Solar Quebrada Honda,2025-09-18,preventivo,22
+Parque Solar Llano Seco,2025-09-20,falla_electrica,32
+Diésel Respaldo Cordillera,2025-09-21,correctivo,22
+Parque Solar Sol Naciente,2025-09-21,preventivo,11
+Central Río Manso Alto,2025-09-22,evento_climatico,14
+Parque Solar Río Seco,2025-09-22,preventivo,21
+Carboeléctrica Costa Brava,2025-09-23,correctivo,20
+Central Aguas Claras,2025-09-23,preventivo,22
+Parque Solar Río Seco,2025-09-23,correctivo,43
+Central Aguas Claras,2025-09-24,correctivo,34
+Central Aguas Claras,2025-09-25,preventivo,11
+Diésel Respaldo Cordillera,2025-09-25,correctivo,46
+Parque Solar Río Seco,2025-09-25,falla_mecanica,28
+Central Salto Verde,2025-09-26,correctivo,24
+Termoeléctrica Valle Central,2025-09-27,inspeccion,1
+Parque Solar Río Seco,2025-09-28,falla_electrica,18
+Termoeléctrica Puerto Sur,2025-09-30,falla_electrica,39
+Parque Solar Llano Seco,2025-10-03,preventivo,19
+Central Aguas Claras,2025-10-04,inspeccion,6
+Termoeléctrica Valle Central,2025-10-05,falla_mecanica,83
+Eólica Campo Abierto,2025-10-10,preventivo,14
+Termoeléctrica Valle Central,2025-10-11,falla_mecanica,53
+Eólica Cerro Negro,2025-10-12,inspeccion,3
+Parque Solar Quebrada Honda,2025-10-13,preventivo,18
+Central Río Manso Alto,2025-10-15,correctivo,46
+Parque Solar Pampa Alta,2025-10-16,preventivo,4
+Central Tres Saltos,2025-10-17,inspeccion,4
+Termoeléctrica Puerto Sur,2025-10-17,inspeccion,7
+Parque Solar Sol Naciente,2025-10-18,inspeccion,5
+Termoeléctrica Puerto Sur,2025-10-18,falla_electrica,27
+Central Vega Azul,2025-10-19,inspeccion,5
+Eólica Cerro Negro,2025-10-19,falla_mecanica,41
+Parque Solar Río Seco,2025-10-20,correctivo,45
+Termoeléctrica Bahía Norte,2025-10-20,falla_mecanica,42
+Termoeléctrica Bahía Norte,2025-10-20,preventivo,15
+Carboeléctrica Roca Gris,2025-10-22,preventivo,23
+Diésel Respaldo Cordillera,2025-10-22,falla_mecanica,77
+Eólica Loma Fría,2025-10-22,correctivo,15
+Termoeléctrica Puerto Sur,2025-10-23,falla_electrica,3
+Eólica Punta Ventosa,2025-10-24,falla_electrica,5
+Eólica Cerro Negro,2025-10-25,falla_electrica,36
+Parque Solar Llano Seco,2025-10-25,evento_climatico,26
+Parque Solar Pampa Alta,2025-10-25,falla_electrica,12
+Termoeléctrica Puerto Sur,2025-10-25,falla_electrica,40
+Eólica Cerro Negro,2025-10-26,falla_electrica,31
+Termoeléctrica Puerto Sur,2025-10-27,falla_electrica,7
+Eólica Loma Fría,2025-10-28,inspeccion,6
+Termoeléctrica Puerto Sur,2025-10-28,correctivo,44
+Carboeléctrica Costa Brava,2025-10-29,falla_electrica,45
+Parque Solar Río Seco,2025-10-29,inspeccion,6
+Carboeléctrica Costa Brava,2025-10-30,inspeccion,6
+Parque Solar Sol Naciente,2025-10-31,preventivo,6
+Eólica Loma Fría,2025-11-01,inspeccion,4
+Central Vega Azul,2025-11-02,inspeccion,4
+Parque Solar Altiplano,2025-11-03,inspeccion,1
+Termoeléctrica Puerto Sur,2025-11-03,falla_electrica,3
+Termoeléctrica Valle Central,2025-11-03,correctivo,23
+Central Salto Verde,2025-11-04,preventivo,18
+Parque Solar Quebrada Honda,2025-11-05,falla_electrica,45
+Parque Solar Sol Naciente,2025-11-05,preventivo,11
+Termoeléctrica Puerto Sur,2025-11-05,correctivo,65
+Termoeléctrica Bahía Norte,2025-11-06,preventivo,13
+Eólica Punta Ventosa,2025-11-07,falla_electrica,29
+Parque Solar Altiplano,2025-11-07,preventivo,22
+Central Salto Verde,2025-11-08,preventivo,11
+Eólica Cerro Negro,2025-11-08,preventivo,6
+Eólica Loma Fría,2025-11-08,preventivo,24
+Eólica Campo Abierto,2025-11-09,preventivo,12
+Eólica Punta Ventosa,2025-11-09,evento_climatico,7
+Termoeléctrica Puerto Sur,2025-11-09,correctivo,8
+Diésel Respaldo Cordillera,2025-11-10,preventivo,24
+Termoeléctrica Bahía Norte,2025-11-11,falla_mecanica,13
+Termoeléctrica Bahía Norte,2025-11-11,falla_mecanica,56
+Central Vega Azul,2025-11-12,preventivo,6
+Eólica Punta Ventosa,2025-11-12,falla_mecanica,62
+Termoeléctrica Puerto Sur,2025-11-12,falla_electrica,13
+Central Río Manso Alto,2025-11-13,falla_mecanica,9
+Eólica Campo Abierto,2025-11-13,inspeccion,8
+Termoeléctrica Bahía Norte,2025-11-13,falla_mecanica,92
+Termoeléctrica Valle Central,2025-11-13,preventivo,16
+Carboeléctrica Roca Gris,2025-11-14,inspeccion,8
+Central Vega Azul,2025-11-14,inspeccion,5
+Central Salto Verde,2025-11-15,falla_electrica,48
+Diésel Respaldo Cordillera,2025-11-15,falla_electrica,35
+Termoeléctrica Valle Central,2025-11-15,preventivo,6
+Central Río Manso Alto,2025-11-16,inspeccion,8
+Eólica Campo Abierto,2025-11-19,preventivo,17
+Central Vega Azul,2025-11-20,falla_mecanica,63
+Eólica Cerro Negro,2025-11-20,preventivo,24
+Central Vega Azul,2025-11-21,correctivo,20
+Termoeléctrica Puerto Sur,2025-11-21,preventivo,17
+Central Salto Verde,2025-11-22,preventivo,11
+Eólica Cerro Negro,2025-11-22,falla_mecanica,17
+Parque Solar Altiplano,2025-11-22,preventivo,23
+Central Salto Verde,2025-11-23,preventivo,10
+Central Vega Azul,2025-11-23,preventivo,17
+Parque Solar Sol Naciente,2025-11-23,preventivo,11
+Eólica Campo Abierto,2025-11-24,falla_mecanica,8
+Termoeléctrica Bahía Norte,2025-11-24,inspeccion,4
+Parque Solar Río Seco,2025-11-25,preventivo,19
+Central Aguas Claras,2025-11-26,preventivo,13
+Parque Solar Sol Naciente,2025-11-26,preventivo,9
+Termoeléctrica Puerto Sur,2025-11-26,falla_mecanica,8
+Carboeléctrica Costa Brava,2025-11-27,falla_electrica,47
+Carboeléctrica Costa Brava,2025-11-28,preventivo,14
+Termoeléctrica Puerto Sur,2025-11-28,falla_electrica,47
+Parque Solar Pampa Alta,2025-11-29,preventivo,6
+Carboeléctrica Roca Gris,2025-11-30,preventivo,19
+Termoeléctrica Puerto Sur,2025-12-02,falla_electrica,27
+Parque Solar Quebrada Honda,2025-12-03,evento_climatico,9
+Central Vega Azul,2025-12-04,correctivo,10
+Central Salto Verde,2025-12-05,falla_mecanica,10
+Carboeléctrica Roca Gris,2025-12-06,preventivo,18
+Eólica Cerro Negro,2025-12-06,falla_electrica,38
+Parque Solar Pampa Alta,2025-12-06,falla_electrica,19
+Parque Solar Quebrada Honda,2025-12-10,falla_mecanica,56
+Parque Solar Altiplano,2025-12-12,correctivo,46
+Parque Solar Río Seco,2025-12-12,falla_mecanica,51
+Eólica Campo Abierto,2025-12-13,inspeccion,5
+Termoeléctrica Puerto Sur,2025-12-13,falla_mecanica,64
+Carboeléctrica Roca Gris,2025-12-16,correctivo,53
+Diésel Respaldo Cordillera,2025-12-16,inspeccion,5
+Eólica Campo Abierto,2025-12-16,preventivo,4
+Eólica Punta Ventosa,2025-12-17,correctivo,57
+Carboeléctrica Roca Gris,2025-12-19,inspeccion,5
+Central Salto Verde,2025-12-20,falla_mecanica,36
+Termoeléctrica Bahía Norte,2025-12-20,falla_mecanica,56
+Termoeléctrica Valle Central,2025-12-20,correctivo,70
+Carboeléctrica Roca Gris,2025-12-22,correctivo,71
+Central Salto Verde,2025-12-23,correctivo,28
+Termoeléctrica Puerto Sur,2025-12-23,inspeccion,5
+Central Vega Azul,2025-12-24,inspeccion,2
+Parque Solar Pampa Alta,2025-12-24,falla_electrica,18
+Eólica Campo Abierto,2025-12-25,falla_mecanica,50
+Central Tres Saltos,2025-12-27,inspeccion,4
+Parque Solar Quebrada Honda,2025-12-28,preventivo,19
+Parque Solar Río Seco,2025-12-28,preventivo,9
+Termoeléctrica Puerto Sur,2025-12-30,falla_electrica,5
+Carboeléctrica Costa Brava,2025-12-31,correctivo,41
+Parque Solar Pampa Alta,2025-12-31,falla_electrica,45

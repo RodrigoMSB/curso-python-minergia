@@ -55,26 +55,7 @@ para después.
 
 ## Los datos
 
-Los laboratorios generan sus propios datos dentro del notebook, así que funcionan sin descargar
-nada. Esta carpeta trae los mismos archivos por si quieres trabajarlos aparte.
-
-| Archivo | Contenido |
-|---|---|
-| `datos/centrales.csv` · `.xlsx` | Tabla maestra de 20 centrales. El `.xlsx` trae una hoja `notas` |
-| `datos/generacion.csv` | Generación horaria por central, 2024 |
-| `datos/demanda.csv` | Demanda horaria por región, 2024 |
-| `datos/demanda_sucia.csv` | El anterior con defectos deliberados, separador `;` |
-| `datos/demanda.db` | SQLite con las tablas `demanda` y `regiones` |
-| `datos/mantenimiento.csv` | Bitácora de 600 eventos de mantenimiento, 2024 |
-| `datos/api/precios_nudo.json` | Respuesta simulada de una API REST, enero de 2024 |
-| `datos/generacion_2025.csv` · `demanda_2025.csv` | Datos de 2025, del mismo estilo que los de la evaluación |
-
-Separador coma, codificación UTF-8, fechas ISO y decimales con punto. La única excepción es
-`demanda_sucia.csv`, cuyos defectos son a propósito.
-
-Los archivos se regeneran con `python scripts/generar_datos.py`, que necesita `pandas`, `numpy`
-y `openpyxl`. El generador es determinista, la semilla está fija, y dos corridas producen
-archivos idénticos.
+Los laboratorios arman sus propios datos, y `datos/` trae exactamente los mismos archivos, generados con `scripts/generar_datos.py`, para quien quiera trabajar fuera de Colab.
 
 ## Convenciones del material
 
