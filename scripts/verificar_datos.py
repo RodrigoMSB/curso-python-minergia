@@ -12,6 +12,7 @@ Termina con código 1 si algún archivo difiere o falta.
 """
 import hashlib
 import json
+import re
 import subprocess
 import sys
 import tempfile
@@ -28,7 +29,8 @@ def celda_de_datos(modulo):
     nb = json.loads((RAIZ / f"modulos/modulo{modulo}/lab.ipynb").read_text(encoding="utf-8"))
     for c in nb["cells"]:
         fuente = "".join(c["source"])
-        if fuente.startswith("#@title Datos del curso"):
+        # Desde el SPEC-20 la celda de los labs 01 a 06 lleva el rótulo Inicio.
+        if re.match(r"#@title (Inicio · )?Datos del curso", fuente):
             return fuente
     raise SystemExit(f"El Lab {modulo} no tiene celda de datos")
 
