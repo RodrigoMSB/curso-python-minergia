@@ -167,25 +167,22 @@ ax.text(8.5, 11.8, "centrales", ha="center", va="center", fontsize=9.5, fontweig
 ax.add_patch(Rectangle((15.5, 10), 10, 3.6, facecolor=AMBAR[1], edgecolor=AMBAR[0], lw=1.2))
 ax.text(20.5, 11.8, "notas", ha="center", va="center", fontsize=9.5, fontweight="bold")
 nota(ax, 0, 8, "Dos pestañas abajo, dos hojas")
-flecha(ax, (42, 27), (56, 27), None)
-ax.text(49, 30, "read_excel\nsheet_name=None", ha="center", va="bottom", fontsize=9.5, family="DejaVu Sans Mono", color=MUTED)
-# diccionario
-caja(ax, 58, 4, 30, 40, fill="#F8F9FA")
-ax.text(59.5, 42, "hojas", fontsize=11, fontweight="bold", family="DejaVu Sans Mono", va="top")
-ax.text(59.5, 38, "una tabla por hoja,\nguardadas por su nombre", fontsize=9, color=MUTED, va="top")
-for i, (k, v, col) in enumerate([("centrales", "tabla 20 × 5", VERDE), ("notas", "tabla 2 × 1", AMBAR)]):
-    y = 26 - i * 12
-    ax.add_patch(Rectangle((60, y), 26, 8, facecolor=col[1], edgecolor=col[0], lw=1.3))
-    ax.text(61.5, y + 5.5, f'"{k}"', fontsize=10, family="DejaVu Sans Mono", fontweight="bold", va="center")
-    ax.text(61.5, y + 2.2, v, fontsize=9.5, color=MUTED, va="center")
-flecha(ax, (86.5, 18), (95.5, 26), None, color=AMBAR[0])
-ax.text(86, 12, 'hojas["notas"]', fontsize=9.5, family="DejaVu Sans Mono", color=AMBAR[0], va="top")
+# sin sheet_name, arriba
+flecha(ax, (42, 37), (60, 37), None, color=VERDE[0])
+ax.text(51, 39, "read_excel( ... )", ha="center", va="bottom", fontsize=9.5, family="DejaVu Sans Mono", color=MUTED)
+caja(ax, 62, 31, 36, 12, fill=VERDE[1], edge=VERDE[0])
+ax.text(63.5, 39.5, "primera", fontsize=10.5, family="DejaVu Sans Mono", fontweight="bold", va="center")
+ax.text(63.5, 34.5, "tabla 20 × 5, la hoja centrales", fontsize=9.5, color=MUTED, va="center")
+nota(ax, 101, 41, "Sin sheet_name, read_excel lee\nsolo la primera hoja.", color=INK, size=10.5)
+# con sheet_name, abajo
+flecha(ax, (42, 14), (60, 14), None, color=AMBAR[0])
+ax.text(51, 16, 'sheet_name="notas"', ha="center", va="bottom", fontsize=9.5, family="DejaVu Sans Mono", color=AMBAR[0])
 notas = pd.read_excel(D + "centrales.xlsx", sheet_name="notas")
-tabla(ax, 98, 32, ["", "nota"], [3, 67], [(str(i), r.nota) for i, r in notas.iterrows()], [AMBAR] * 2, rh=4.4,
-      alin=["right", "left"], rotulo="lo que muestra la celda")
-nota(ax, 104, 16, "Sin sheet_name=None, read_excel lee solo la\nprimera hoja y la de notas no aparece.", color=INK, size=10.5)
-titulo(ax, "Con sheet_name=None se leen todas las hojas del Excel de una vez",
-       "Cada hoja queda como una tabla y se pide por su nombre", W, H)
+tabla(ax, 62, 20, ["", "nota"], [3, 67], [(str(i), r.nota) for i, r in notas.iterrows()], [AMBAR] * 2, rh=4.4,
+      alin=["right", "left"], rotulo="notas, lo que muestra la celda")
+nota(ax, 136, 17, "Con sheet_name se lee\nla hoja que se nombra,\ntal como aparece en\nla pestaña.", color=INK, size=10.5)
+titulo(ax, "sheet_name elige qué hoja del Excel se lee",
+       "Un Excel puede traer varias hojas. Cada una se lee como una tabla", W, H)
 save(fig, "lab01_estudio3_excel")
 
 # ---------- Estudio 4 · De la respuesta del servicio a la tabla ----------
@@ -203,12 +200,12 @@ for i, (t, k) in enumerate(txt):
     ax.text(1.5, 41 - i * 3.0, t, fontsize=6.9, family="DejaVu Sans Mono", va="center", color=k)
 ax.add_patch(Rectangle((0.8, 6.3), 76.4, 18.4, facecolor="none", edgecolor=AZUL[0], lw=1.6, ls="--"))
 flecha(ax, (80, 22), (95, 22), None, color=AZUL[0])
-ax.text(87.5, 25, 'respuesta["datos"]\njson_normalize', ha="center", va="bottom", fontsize=9.5, family="DejaVu Sans Mono", color=MUTED)
+ax.text(88.5, 25, 'pd.DataFrame(\nrespuesta["datos"])', ha="center", va="bottom", fontsize=9, family="DejaVu Sans Mono", color=MUTED)
 tabla(ax, 99, 36, ["", "fecha", "hora", "region", "precio_usd_mwh"], [3, 12, 6, 14, 18],
       [(str(i), r["fecha"], str(r["hora"]), r["region"], f'{r["precio_usd_mwh"]:.2f}') for i, r in enumerate(j["datos"][:3])],
       [AZUL] * 3, rh=4.4, alin=["right", "left", "right", "left", "right"], rotulo="tabla")
 nota(ax, 99, 14, "Cada registro pasa a ser una fila y cada llave\nuna columna. metadata queda afuera, solo describe\nlos datos.", color=INK, size=10.5)
-titulo(ax, "Un servicio web responde en JSON y json_normalize lo convierte en tabla",
+titulo(ax, "Un servicio web responde en JSON y pd.DataFrame lo convierte en tabla",
        "La parte datos es una lista de registros con las mismas llaves", W, H)
 save(fig, "lab01_estudio4_json")
 print("ok")

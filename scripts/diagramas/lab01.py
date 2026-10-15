@@ -25,7 +25,7 @@ ax.text(52, 9, "1. la pregunta viaja a la base", ha="center", fontsize=10, color
 res = [("Metropolitana", "7779657.53"), ("Valparaíso", "1825770.20"), ("Biobío", "1632753.33"),
        ("Los Lagos", "864564.87"), ("Coquimbo", "816624.13"), ("Antofagasta", "672440.52"), ("Atacama", "307486.00")]
 c = tabla(ax, 92, 42, ["region", "demanda_total"], [16, 17], res, [AZUL] * 7, rh=3.9, alin=["left", "right"],
-          rotulo="lo que llega a Colab")
+          rotulo="lo que entrega la base")
 flecha(ax, (cx, cy - alto / 2 - 3), (90, 15), None, rad=0.25)
 ax.set_ylim(-8, H * 10); ax.text(56, -6, "2. la base suma y devuelve 7 filas, no 61.488", ha="center", fontsize=10.5, fontweight="bold")
 titulo(ax, "La base de datos hace el cálculo y entrega solo el resumen",
@@ -47,18 +47,18 @@ ax.text(1, 3, "Loma Fría, Vega Azul y Respaldo Cordillera\nno tienen ficha", fo
 # inner
 ci = tabla(ax, 74, 62, ["central", "mwh", "tecnologia"], [23, 10, 13], [(g[0], g[1], f[1]) for g, f in zip(gen, fich)],
            cols[:3], alin=["left", "right", "left"], rotulo='how="inner"')
-ax.text(74, 40.5, "Las 3 sin ficha desaparecen sin aviso.\nTotal del día 50395.9 de 52650.0 MWh", fontsize=10, va="top",
+ax.text(74, 40.5, "Las 3 sin ficha desaparecen sin aviso.\nCon el día completo quedan 408 de las 480 filas.", fontsize=10, va="top",
         color=ROJO[0])
 cl = tabla(ax, 74, 30, ["central", "mwh", "tecnologia"], [23, 10, 13],
            [(g[0], g[1], f[1]) for g, f in zip(gen, fich)] + [(g[0], g[1], "NaN") for g in gen[3:]],
            cols, alin=["left", "right", "left"], rotulo='how="left"')
-ax.text(74, 0, "Se quedan todas, con la ficha vacía. Total 52650.0 MWh", fontsize=10, va="top", color=VERDE[0])
+ax.text(74, 0, "Se quedan todas, con la ficha vacía. Siguen las 480 filas.", fontsize=10, va="top", color=VERDE[0])
 for i in range(3):
     flecha(ax, (40, cg[i]), (71.5, ci[i]), color=cols[i][0], lw=1.1)
 for i in range(3, 6):
     flecha(ax, (40, cg[i]), (71.5, cl[i]), color=ROJO[0], lw=1.1)
 titulo(ax, "Unir con inner pierde las filas que no encuentran pareja",
-       "Generación del 15 de junio unida con una tabla de fichas incompleta", W, H)
+       "Generación del 15 de junio unida con fichas.csv, la planilla a la que le faltan 3 centrales", W, H)
 save(fig, "lab01_paso9_join")
 
 # ---------- Paso 10 · Una ficha repetida duplica sus horas ----------
@@ -78,9 +78,9 @@ for i in range(3):
     flecha(ax, (42, cg[i]), (81.5, cr[2 * i]), color=AZUL[0], lw=1.1)
     flecha(ax, (42, cg[i]), (81.5, cr[2 * i + 1]), color=ROJO[0], lw=1.1)
 ax.text(84, 17, "Cada hora calza con las dos fichas y queda dos veces.", fontsize=10.5, va="top")
-ax.text(84, 11, "Con dos centrales repetidas, 480 filas pasan a 528\ny el día suma 64298.7 MWh en vez de 52650.0.",
+ax.text(84, 11, "Con dos centrales repetidas, las 480 filas del día\npasan a 528, 48 filas de más.",
         fontsize=10, va="top", color=ROJO[0])
 titulo(ax, "Una ficha repetida duplica todas las horas de su central",
-       "Nada da error. Solo se nota contando filas y comparando el total", W, H)
+       "Nada da error. Solo se nota contando las filas antes y después de unir", W, H)
 save(fig, "lab01_paso10_repetidas")
 print("ok")

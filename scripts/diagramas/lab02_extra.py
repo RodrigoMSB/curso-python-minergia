@@ -45,9 +45,9 @@ for i, (cn, w, v) in enumerate(zip(cols, an, vals)):
     x += w
 nota(ax, 18, 18, "Las 4 columnas de generacion, en azul, más las 4 de la ficha, en amarillo. central aparece una sola vez\nporque es la columna con que se une. Las filas no cambian, siguen siendo una por central y por hora.", color=INK, size=10.5)
 caja(ax, 18, 1, 104, 7, fill=VERDE[1], edge=VERDE[0])
-ax.text(20, 4.5, f"demanda  ({miles(len(dem))} × 4)  queda aparte. Se usa en los Pasos 4 y 5 y en el Estudio 1.", fontsize=10.5, va="center")
+ax.text(20, 4.5, f"gen tiene {miles(len(gen))} filas, las mismas de generacion. Los cinco pasos de la Parte 1 trabajan sobre gen.", fontsize=10.5, va="center")
 titulo(ax, "El Paso 1 deja la generación de cada hora con la ficha de su central al lado",
-       "Es la misma unión del Lab 01, ahora con todo el año", W, H)
+       "Se une igual que en el Lab 01, ahora con todo el año", W, H)
 save(fig, "lab02_paso1_tablas")
 
 # ---------- Paso 2 · Dos condiciones con & ----------
@@ -116,7 +116,7 @@ yp = tabla(ax, 4, 46, ["", "tecnologia", "potencia_mw"], [4, 14, 14],
            alin=["right", "left", "right"], rotulo="Lab 01 · potencia instalada")
 ye = tabla(ax, 96, 46, ["", "tecnologia", "mwh en 2024"], [4, 14, 18],
            [(str(i + 1), t, miles(round(v))) for i, (t, v) in enumerate(ene.items())], [pal[t] for t in ene.index], rh=5,
-           alin=["right", "left", "right"], rotulo="Estudio 2 · energía generada")
+           alin=["right", "left", "right"], rotulo="Lab 02 · energía generada")
 for t in pot.index:
     a, b = yp[list(pot.index).index(t)], ye[list(ene.index).index(t)]
     flecha(ax, (37, a), (94.5, b), color=pal[t][0], lw=2.2 if t == "solar" else 1.0)
