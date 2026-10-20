@@ -12,27 +12,13 @@ def nota(ax, x, y, t, color=MUTED, size=10, **k):
 def miles(n):
     return f"{n:,}".replace(",", ".")
 
-# Misma limpieza del cuaderno, para sacar las cifras reales
+# La misma lectura y limpieza del cuaderno guiado, para sacar las cifras reales
 sucia = pd.read_csv(D + "demanda_sucia.csv", sep=";")
 esperadas = 366 * 24 * 7
-limpia = sucia.copy()
-limpia["mwh"] = limpia["mwh"].str.replace(",", ".").astype(float)
-limpia["fecha"] = pd.to_datetime(limpia["fecha"], format="%d/%m/%Y")
+limpia = pd.read_csv(D + "demanda_sucia.csv", sep=";", decimal=",", parse_dates=["fecha"], dayfirst=True)
 limpia["region"] = limpia["region"].str.strip().str.title()
 sin_rep = limpia.drop_duplicates()
-tabla_ = sin_rep.sort_values(["region", "fecha", "hora"]).reset_index(drop=True)
-prom_reg = tabla_.groupby("region")["mwh"].transform("mean")
-final = tabla_.copy()
-final["fue_nulo"] = final["mwh"].isna()
-final["fue_corregido"] = (tabla_["mwh"] < 0) | (tabla_["mwh"] > 3 * prom_reg)
-final.loc[final["fue_corregido"], "mwh"] = None
-final["mwh"] = final.groupby("region")["mwh"].transform(lambda s: s.interpolate())
 verdad = pd.read_csv(D + "demanda.csv", parse_dates=["fecha"])
-aud = pd.merge(final, verdad, on=["fecha", "hora", "region"], suffixes=("_limpia", "_real"))
-aud["error"] = (aud["mwh_limpia"] - aud["mwh_real"]).abs()
-aud["grupo"] = "no se tocó"
-aud.loc[aud["fue_nulo"], "grupo"] = "se rellenó"
-aud.loc[aud["fue_corregido"], "grupo"] = "se corrigió"
 
 # ---------- Paso 1 · Cómo llegó el archivo ----------
 W, H = 15.5, 5.0
@@ -64,31 +50,39 @@ titulo(ax, "Antes de arreglar nada, se mira cómo llegó el archivo y se cuentan
        "Si sobran o faltan filas, algo viene mal aunque nada dé error", W, H)
 save(fig, "lab03_paso1_archivo")
 
-# ---------- Paso 6 · La auditoría ----------
+# ---------- Estudio 1 · Contra la demanda real ----------
+valpo = sin_rep[sin_rep["region"] == "Valparaíso"].copy()
+valpo["poner_cero"] = valpo["mwh"].fillna(0)
+valpo["repetir_anterior"] = valpo["mwh"].ffill()
+valpo["trazar_recta"] = valpo["mwh"].interpolate().round(2)
+dia = valpo[valpo["fecha"] == "2024-09-16"].reset_index(drop=True)
+real = verdad[(verdad["region"] == "Valparaíso") & (verdad["fecha"] == "2024-09-16")]
+dia["real"] = list(real["mwh"])
+vac = dia[dia["mwh"].isna()]
+formas = [("poner_cero", "poner cero", ROJO), ("repetir_anterior", "repetir el anterior", AMBAR),
+          ("trazar_recta", "trazar una recta", VERDE)]
 W, H = 16, 5.4
 fig, ax = lienzo(W, H)
-ej = []
-for gname, col in [("no se tocó", VERDE), ("se rellenó", AMBAR), ("se corrigió", ROJO)]:
-    x = aud[aud.grupo == gname].iloc[0]
-    ej.append(((str(x.fecha.date()), str(x.hora), x.region, es(x.mwh_limpia, 1), es(x.mwh_real, 1), es(x.error, 1), gname), col))
-tabla(ax, 1, 46, ["fecha", "hora", "region", "mwh_limpia", "mwh_real", "error", "grupo"], [12, 6, 14, 13, 11, 8, 13],
-      [e[0] for e in ej], [e[1] for e in ej], rh=4.6, alin=["left", "right", "left", "right", "right", "right", "left"],
-      rotulo="auditoria, una fila de cada grupo")
-nota(ax, 1, 24, "merge pone lado a lado lo limpio y lo real de la misma hora. suffixes les pone\napellido a las dos columnas mwh. error es la diferencia sin signo.", color=INK, size=10.5)
-res = aud.groupby("grupo")["error"].agg(horas="count", error_promedio="mean", error_maximo="max")
-cols = {"no se tocó": VERDE, "se rellenó": AMBAR, "se corrigió": ROJO}
-tabla(ax, 92, 46, ["grupo", "horas", "error_promedio", "error_maximo"], [13, 10, 16.5, 15],
-      [(gname, miles(int(r.horas)), es(float(pd.Series([r.error_promedio]).round(1)[0])), es(float(pd.Series([r.error_maximo]).round(1)[0]))) for gname, r in res.iterrows()],
-      [cols[g_] for g_ in res.index], rh=4.6, alin=["left", "right", "right", "right"], rotulo="lo que muestra la celda")
-nota(ax, 92, 24, "Las horas que no se tocaron tienen error cero.\nEl error está solo donde se rellenó o se corrigió.", color=INK, size=10.5)
-caja(ax, 1, 2, 150, 8, fill=AMBAR[1], edge=AMBAR[0])
-ax.text(3, 6, "En el trabajo real no existe el archivo original. Lo que sí se puede hacer siempre es marcar qué se tocó, con fue_nulo y fue_corregido.",
-        fontsize=10, va="center")
-titulo(ax, "Como aquí existe el archivo original, se puede medir qué tan bien quedó la limpieza",
-       "Cada hora limpia se compara con la real y se agrupa según lo que se le hizo", W, H)
+a = fig.add_axes([0.08, 0.12, 0.54, 0.62])
+for h in vac["hora"]:
+    a.axvspan(h - 0.5, h + 0.5, color=AMBAR[1], lw=0)
+a.plot(dia["hora"], dia["real"], color=INK, lw=1.8, zorder=2, label="demanda real")
+for col, nom, k in formas:
+    a.scatter(vac["hora"], vac[col], s=46, color=k[0], zorder=4, marker="D", label=nom)
+a.set_ylim(-10, 300); a.set_xticks([0, 3, 6, 9, 12, 15, 18, 21, 23])
+a.set_xlabel("hora del 16 de septiembre", color=MUTED); a.set_ylabel("MWh", color=MUTED)
+for s_ in ("top", "right"): a.spines[s_].set_visible(False)
+a.legend(frameon=False, loc="lower center", ncol=4, fontsize=9.5, bbox_to_anchor=(0.5, -0.33))
+err = [(nom, es((vac[col] - vac["real"]).abs().mean()), es((vac[col] - vac["real"]).abs().max())) for col, nom, k in formas]
+tabla(ax, 103, 46, ["forma", "promedio", "máximo"], [25, 13, 12], err, [k for _, _, k in formas], rh=4.6,
+      alin=["left", "right", "right"], rotulo="error en las 8 horas vacías, en MWh")
+nota(ax, 103, 22, "La recta es la que más se acerca.\nPoner cero es lo más lejano, el\nconsumo no se fue a cero.", color=INK, size=10.5)
+nota(ax, 103, 8, "En el trabajo real no existe el archivo\noriginal. Por eso la forma de rellenar se\nelige con criterio y se deja escrita.", color=MUTED, size=10)
+titulo(ax, "Con el archivo original se ve qué forma de rellenar se acercó más",
+       "Valparaíso, 16 de septiembre. La línea es la demanda real y los rombos lo que puso cada forma en las horas vacías", W, H)
 save(fig, "lab03_paso6_auditoria")
 
-# ---------- Estudio 1 · Lo que ve Python ----------
+# ---------- Estudio 1 anterior · Lo que ve Python ----------
 W, H = 15, 4.6
 fig, ax = lienzo(W, H)
 cards = [
@@ -125,7 +119,7 @@ for y in yb:
 ax.add_patch(Rectangle((104, 25), 30, 8, facecolor=AZUL[1], edgecolor=AZUL[0], lw=1.5))
 ax.text(119, 29, "'Biobío'", ha="center", va="center", fontsize=13, fontweight="bold", family="DejaVu Sans Mono")
 flecha(ax, (91, 29), (103, 29), None, color=AZUL[0])
-nota(ax, 96, 19, "Las siete formas quedan como una sola.\nEso lo hace el Paso 2 con todas las regiones,\ny por eso después quedan 7.", color=INK, size=10.5)
+nota(ax, 96, 19, "Las siete formas quedan como una sola.\nEso lo hace el Paso 3 con todas las regiones,\ny por eso después quedan 7.", color=INK, size=10.5)
 nota(ax, 1, 8, "Las comillas muestran los espacios. ' Biobío' y 'Biobío ' se ven iguales en una planilla, pero para Python son distintas.", color=INK, size=10.5)
 titulo(ax, "value_counts muestra cuántas formas distintas tiene una misma región",
        f"El archivo trae {sucia['region'].nunique()} formas de escribir 7 regiones", W, H)
@@ -134,8 +128,8 @@ save(fig, "lab03_estudio2_formas")
 # ---------- Estudio 3 · Promedio contra mediana ----------
 W, H = 15.5, 5.4
 fig, ax = lienzo(W, H)
-res = final.groupby("region")["mwh"].agg(promedio="mean", mediana="median").sort_values("promedio", ascending=False)
-pm, md = final["mwh"].mean(), final["mwh"].median()
+res = sin_rep.groupby("region")["mwh"].agg(promedio="mean", mediana="median").sort_values("promedio", ascending=False)
+pm, md = sin_rep["mwh"].mean(), sin_rep["mwh"].median()
 axb = fig.add_axes([0.06, 0.1, 0.6, 0.66])
 labels = ["Todo el país"] + list(res.index)
 pr = [pm] + list(res.promedio); me = [md] + list(res.mediana)
@@ -143,15 +137,15 @@ yy = range(len(labels))
 axb.barh([y + 0.2 for y in yy], pr, height=0.38, color=AZUL[0], label="promedio")
 axb.barh([y - 0.2 for y in yy], me, height=0.38, color=AMBAR[0], label="mediana")
 axb.set_yticks(list(yy)); axb.set_yticklabels(labels); axb.invert_yaxis()
-for y, a, b in zip(yy, pr, me):
-    axb.text(a + 8, y + 0.2, es(float(pd.Series([a]).round(1)[0])), va="center", fontsize=8.5, color=AZUL[0])
-    axb.text(b + 8, y - 0.2, es(float(pd.Series([b]).round(1)[0])), va="center", fontsize=8.5, color=AMBAR[0])
+for y, a_, b_ in zip(yy, pr, me):
+    axb.text(a_ + 8, y + 0.2, es(float(pd.Series([a_]).round(1)[0])), va="center", fontsize=8.5, color=AZUL[0])
+    axb.text(b_ + 8, y - 0.2, es(float(pd.Series([b_]).round(1)[0])), va="center", fontsize=8.5, color=AMBAR[0])
 axb.get_yticklabels()[0].set_fontweight("bold")
 axb.set_xlabel("MWh por hora", color=MUTED); axb.legend(frameon=False, loc="lower right")
 for s_ in ["top", "right"]: axb.spines[s_].set_visible(False)
 nota(ax, 109, 44, "Todo el país junto el promedio\nes el doble de la mediana.", color=INK, size=11, fontweight="bold")
 nota(ax, 109, 33, "Dentro de cada región, las dos\nbarras quedan casi iguales.", color=INK, size=10.5)
-nota(ax, 109, 23, "No es por valores extremos, que ya\nse corrigieron en el Paso 5. Es\nporque la Metropolitana consume\nvarias veces más que las demás y\nempuja el promedio hacia arriba.", color=MUTED, size=10)
+nota(ax, 109, 23, "No es por los valores imposibles,\nque son pocos y casi no lo mueven.\nEs porque la Metropolitana consume\nvarias veces más que las demás y\nempuja el promedio hacia arriba.", color=MUTED, size=10)
 titulo(ax, "El promedio de todo junto no describe a ninguna región",
        "La mediana es el valor del medio. La mitad de las horas está por debajo y la mitad por encima", W, H)
 save(fig, "lab03_estudio3_mediana")

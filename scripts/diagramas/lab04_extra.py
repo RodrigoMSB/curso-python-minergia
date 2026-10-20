@@ -119,10 +119,10 @@ a.set_ylabel("si", fontsize=11, fontweight="bold"); a.xaxis.set_label_position("
 i0, j0 = cols.index("falla_electrica"), cols.index("preventivo")
 a.add_patch(Rectangle((j0 - 0.5, i0 - 0.5), 1, 1, fill=False, edgecolor=ROJO[0], lw=2.2))
 nota(ax, 104, 52, "Cada casilla es el lift de una pareja.\n6 por 6 menos la diagonal da 30.", color=INK, size=10.5)
-nota(ax, 104, 40, f"Las dos azules llegan a 1,9 o más.\nfalla_electrica con correctivo y\nevento_climatico con falla_mecanica.", color=AZUL[0], size=10.5)
+nota(ax, 104, 40, "Las cuatro azules llegan a 1,9 o más.\nSon dos parejas, cada una vista desde\nlos dos lados, falla_electrica con\ncorrectivo y evento_climatico con\nfalla_mecanica.", color=AZUL[0], size=10.5)
 nota(ax, 104, 25, f"En rojo, falla_electrica con preventivo.\nConfianza {es(Cf.loc['falla_electrica', 'preventivo'])} por ciento, pero lift\n{es(L.loc['falla_electrica', 'preventivo'], 2)}. El preventivo aparece en todas\npartes, no más de lo normal.", color=ROJO[0], size=10.5)
-titulo(ax, "El for del Estudio 3 calcula el Paso 4 para todas las parejas",
-       "Lift sobre 1 es que van juntas más de lo normal. Cerca de 1 es que no hay relación", W, H)
+titulo(ax, "El lift de las 30 parejas de eventos",
+       "Cada fila es un si y cada columna un entonces. Sobre 1 van juntas más de lo normal, cerca de 1 no hay relación", W, H)
 save(fig, "lab04_estudio3_parejas")
 
 # ---------- Estudio 4 · shift trae el evento siguiente ----------
@@ -137,11 +137,11 @@ yc = tabla(ax, 1, 46, ["fecha", "tipo_evento", "siguiente"], [13, 19, 19], rows,
            alin=["left", "left", "left"], rotulo=f"ordenados, primeras filas de {CEN}")
 nota(ax, 55, yc[0] + 1.5, "← siguiente de esta fila es\n    el tipo_evento de la de abajo", color=AZUL[0], size=10)
 nota(ax, 1, 8, "shift(-1) sube la columna una fila. Cada evento queda al lado del que vino después en la misma central.\ngroupby(\"central\") evita que el último evento de una central se junte con el primero de la siguiente.", color=INK, size=10.5)
-tr = pd.crosstab(ordn["tipo_evento"], ordn["siguiente"], normalize="index")
-fe = (100 * tr.loc["falla_electrica"]).round(1).sort_values(ascending=False)
+despues = ordn[ordn["tipo_evento"] == "falla_electrica"]
+fe = (100 * despues["siguiente"].value_counts(normalize=True)).round(1)
 tabla(ax, 92, 50, ["siguiente", "por ciento"], [19, 12], [(k, es(v)) for k, v in fe.items()], [PAL[k] for k in fe.index],
       rh=4.6, alin=["left", "right"], rotulo="después de falla_electrica")
-nota(ax, 92, 15, "crosstab con normalize=\"index\" cuenta\nlas parejas y deja cada fila en porcentaje.", color=INK, size=10.5)
+nota(ax, 92, 20, "value_counts cuenta cuántas veces viene\ncada siguiente. Con normalize=True lo\ndeja en proporción, y por 100 en porcentaje.", color=INK, size=10.5)
 titulo(ax, "shift(-1) pone al lado de cada evento el que vino después",
        "Con eso se cuenta qué suele seguir a cada tipo de evento", W, H)
 save(fig, "lab04_estudio4_siguiente")
