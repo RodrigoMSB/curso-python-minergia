@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lab 02 · Cuatro movimientos sobre una tabla</title>
+<style>
+:root{--ink:#202124;--muted:#5f6368;--grid:#dadce0;--surf:#fff;--head:#f1f3f4;--celda:#f8f9fa;--navy:#0b3d62;
+--azul:#1a73e8;--azul2:#e8f0fe;--ambar:#d99a00;--ambar2:#fef3d6;--verde:#188038;--verde2:#e6f4ea;--rojo:#c5221f;--rojo2:#fce8e6;--morado:#7b4fc9;--gris:#80868b;}
+*{box-sizing:border-box}
+html,body{margin:0;background:#f4f5f7;color:var(--ink);font-family:-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;font-size:17px;line-height:1.45}
+header{background:var(--navy);color:#fff;padding:14px 24px;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+header h1{font-size:19px;margin:0;font-weight:700}
+header .sub{font-size:13px;opacity:.8}
+nav.caps{display:flex;gap:6px;margin-left:auto;flex-wrap:wrap}
+nav.caps button{background:rgba(255,255,255,.12);color:#fff;border:0;border-radius:999px;padding:6px 13px;font-size:13px;cursor:pointer}
+nav.caps button.on{background:#fff;color:var(--navy);font-weight:700}
+main{display:grid;grid-template-columns:390px 1fr;gap:18px;padding:18px 24px;max-width:1540px;margin:0 auto;align-items:start}
+@media (max-width:980px){main{grid-template-columns:1fr;padding:12px 16px}}
+.panel{background:var(--surf);border:1px solid var(--grid);border-radius:14px;padding:20px 22px}
+.story{display:flex;flex-direction:column;position:sticky;top:12px}
+.capnum{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:1.2px;font-weight:700}
+.story h2{font-size:23px;margin:4px 0 14px;line-height:1.2}
+.story .texto{font-size:17.5px}
+.story .texto p{margin:0 0 12px}
+.story .texto b{color:var(--navy)}
+.dato{display:inline;background:var(--ambar2);color:#5c4700;border-radius:6px;padding:0 6px;font-weight:700}
+.remate{background:var(--ambar2);border-left:6px solid var(--ambar);padding:10px 12px;border-radius:0 8px 8px 0;margin:12px 0 0;color:#5c4700;font-weight:600}
+.navsteps{display:flex;align-items:center;gap:10px;margin-top:14px;border-top:1px solid var(--grid);padding-top:14px}
+.navsteps button{border:0;border-radius:10px;padding:10px 16px;font-size:15px;cursor:pointer;background:var(--head);color:var(--ink);font-weight:600}
+.navsteps button.pri{background:var(--azul);color:#fff}
+.navsteps button:disabled{opacity:.35;cursor:default}
+.dots{display:flex;gap:5px;margin-left:auto}
+.dots i{width:9px;height:9px;border-radius:50%;background:var(--grid);display:block}
+.dots i.on{background:var(--azul)}
+/* escenario */
+.stage{display:flex;flex-direction:column;gap:12px}
+.estado{display:flex;align-items:center;gap:12px;border-radius:10px;padding:10px 14px;font-size:16px;font-weight:600}
+.estado.mira{background:var(--azul2);color:var(--navy)}
+.estado.haz{background:var(--ambar2);color:#5c4700}
+.estado.calc{background:#fff4e5;color:#8a4b00}
+.estado.listo{background:var(--verde2);color:#14532d}
+.estado .ic{width:30px;height:30px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:15px;font-weight:800;flex:none;background:#fff}
+.estado.calc .ic{border:3px solid #f0b060;border-top-color:transparent;animation:gira 1s linear infinite}
+@keyframes gira{to{transform:rotate(360deg)}}
+.estado button{margin-left:auto;border:0;border-radius:8px;padding:8px 14px;font-size:15px;font-weight:700;cursor:pointer;background:var(--navy);color:#fff}
+.estado button:disabled{opacity:.4;cursor:default}
+.estado input[type=range]{width:200px}
+.lienzo{flex:1;display:flex;flex-direction:column;gap:12px}
+.dos{display:grid;grid-template-columns:1fr 320px;gap:16px;align-items:start}
+.col{display:flex;flex-direction:column;gap:12px}
+@media (max-width:1200px){.dos{grid-template-columns:1fr}}
+.nota{background:var(--celda);border:1px solid var(--grid);border-radius:12px;padding:14px 16px;font-size:16px;line-height:1.5}
+.nota b{color:var(--navy)}
+.nota .grande{font-size:30px;font-weight:800;color:var(--navy);line-height:1.1;margin:4px 0}
+.nota .op{font-size:14px;color:var(--muted)}
+.nota.ambar{background:var(--ambar2);border-color:#f0d58a;color:#5c4700}
+.nota.verde{background:var(--verde2);border-color:#b7dcc1;color:#14532d}
+.nota.ambar b,.nota.verde b{color:inherit}
+/* tablas */
+table.datos{border-collapse:separate;border-spacing:3px;font-size:15px;font-variant-numeric:tabular-nums}
+table.datos th{background:var(--head);color:var(--muted);font-weight:700;padding:8px 12px;text-align:left;border-radius:5px}
+table.datos td{background:var(--celda);padding:8px 12px;border-radius:5px}
+table.datos td.num{text-align:right}
+table.datos .hi{background:var(--azul2)!important;color:var(--azul);font-weight:700}
+table.datos .hi2{background:var(--ambar2)!important;color:#5c4700;font-weight:700}
+table.datos tr.dim td{opacity:.35}
+/* filas de celdas grandes */
+.fila{display:grid;grid-template-columns:150px 64px repeat(24,1fr);gap:3px;align-items:center;font-variant-numeric:tabular-nums}
+.fila .tec{font-size:12px;font-weight:700;padding:3px 6px;border-radius:4px;text-align:center}
+.fila.sinnum .cel, .fila.chica.sinnum .cel{height:22px;padding:0;font-size:0;line-height:22px}
+.fila.sinnum .cel:hover{outline:2px solid var(--ink)}
+.fila .rot{font-size:14px;font-weight:700;padding-right:6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fila .hh{text-align:center;font-size:12px;color:var(--muted);font-weight:700}
+.fila .cel{text-align:center;border-radius:5px;padding:9px 0;font-size:12.5px;color:#fff;font-weight:600;transition:all .4s}
+.fila .cel.dark{color:var(--ink)}
+.fila.chica .cel{padding:4px 0;font-size:11px}
+.fila.chica .rot{font-size:12.5px;font-weight:600}
+.fila .cel.off{opacity:.15}
+.fila .hh.on{background:var(--ambar2);color:#5c4700;border-radius:4px}
+.fila .rot.on{color:var(--azul)}
+.tira{display:flex;flex-wrap:wrap;gap:2px;align-items:flex-end;height:90px}
+.tira i{display:block;width:5px;background:var(--azul);opacity:.7;border-radius:1px 1px 0 0}
+svg text{font-family:inherit}
+.leyenda{display:flex;gap:14px;flex-wrap:wrap;font-size:14px;color:var(--muted)}
+.leyenda span{display:inline-flex;align-items:center;gap:6px}
+.leyenda i{width:13px;height:13px;border-radius:50%;display:inline-block}
+.cross{border-collapse:separate;border-spacing:2px;font-size:14px;font-variant-numeric:tabular-nums}
+.cross th{background:var(--head);color:var(--muted);padding:4px 10px;border-radius:4px;font-weight:700}
+.cross td{background:var(--celda);padding:4px 10px;text-align:center;border-radius:4px;min-width:46px}
+.cross td.z{color:#c0c4c8}
+.cross td.v{background:var(--azul2);color:var(--azul);font-weight:700}
+.cross td.r{background:var(--rojo2);color:var(--rojo);font-weight:700}
+.cross td.t{text-align:left;font-weight:700}
+.portada{display:flex;flex-direction:column;justify-content:center;padding:10px 6px}
+.portada h3{font-size:30px;margin:0 0 10px;color:var(--navy);line-height:1.15}
+.portada p{font-size:18px;max-width:680px}
+.preg{display:grid;gap:10px;margin-top:14px;max-width:680px}
+.preg div{background:var(--azul2);border-radius:10px;padding:10px 14px;font-size:16px;color:var(--navy);display:flex;gap:10px}
+.preg b{background:var(--azul);color:#fff;border-radius:50%;width:26px;height:26px;display:inline-flex;align-items:center;justify-content:center;flex:none;font-size:14px}
+.mas{display:flex;gap:10px;flex-wrap:wrap;margin-top:4px}
+.mas button{border:1px solid var(--grid);background:#fff;border-radius:999px;padding:8px 14px;font-size:14.5px;cursor:pointer;color:var(--navy);font-weight:600}
+.mas button.on{background:var(--navy);color:#fff;border-color:var(--navy)}
+.masbox{background:#fff;border:1px solid var(--navy);border-radius:12px;padding:14px 16px;font-size:16px;line-height:1.5}
+.masbox b{color:var(--navy)}
+footer{text-align:center;color:var(--muted);font-size:12.5px;padding:10px 0 24px}
+kbd{border:1px solid var(--grid);border-radius:4px;padding:0 5px;background:#fff;font-size:12px}
+.parpadea{animation:pp .5s 3}
+@keyframes pp{50%{opacity:.15}}
+</style>
+</head>
+<body>
+<header>
+  <div><h1>Lab 02 · Cuatro movimientos sobre una tabla</h1><div class="sub">Análisis Avanzado de Datos con Python · Subsecretaría de Energía · con los datos del curso</div></div>
+  <nav class="caps" id="caps"></nav>
+</header>
+<main>
+  <section class="panel story">
+    <div class="capnum" id="capnum"></div>
+    <h2 id="h2"></h2>
+    <div class="texto" id="texto"></div>
+    <div class="navsteps">
+      <button id="prev">Anterior</button>
+      <button id="next" class="pri">Siguiente</button>
+      <div class="dots" id="dots"></div>
+    </div>
+  </section>
+  <section class="panel stage">
+    <div id="estado"></div>
+    <div class="lienzo" id="lienzo"></div>
+  </section>
+</main>
+<footer>Se avanza con los botones o con las flechas del teclado <kbd>→</kbd> <kbd>←</kbd>. Las cifras de las centrales salen de los archivos de datos del curso, que son inventados para el curso.</footer>
+<script>
+const D = {"n":175680,"head":[{"fecha":"2024-01-01","hora":0,"central":"Central Río Manso Alto","mwh":163.69,"tecnologia":"hidro","region":"Biobío","potencia_mw":420},{"fecha":"2024-01-01","hora":1,"central":"Central Río Manso Alto","mwh":179.81,"tecnologia":"hidro","region":"Biobío","potencia_mw":420},{"fecha":"2024-01-01","hora":2,"central":"Central Río Manso Alto","mwh":173.77,"tecnologia":"hidro","region":"Biobío","potencia_mw":420},{"fecha":"2024-01-01","hora":3,"central":"Central Río Manso Alto","mwh":170.39,"tecnologia":"hidro","region":"Biobío","potencia_mw":420},{"fecha":"2024-01-01","hora":4,"central":"Central Río Manso Alto","mwh":169.84,"tecnologia":"hidro","region":"Biobío","potencia_mw":420}],"centrales":[{"central":"Central Río Manso Alto","tecnologia":"hidro","region":"Biobío","potencia_mw":420,"anio_inicio":2004},{"central":"Central Salto Verde","tecnologia":"hidro","region":"Los Lagos","potencia_mw":310,"anio_inicio":1998},{"central":"Central Aguas Claras","tecnologia":"hidro","region":"Biobío","potencia_mw":180,"anio_inicio":2011},{"central":"Central Vega Azul","tecnologia":"hidro","region":"Los Lagos","potencia_mw":95,"anio_inicio":2016},{"central":"Central Tres Saltos","tecnologia":"hidro","region":"Biobío","potencia_mw":260,"anio_inicio":1995},{"central":"Parque Solar Pampa Alta","tecnologia":"solar","region":"Antofagasta","potencia_mw":230,"anio_inicio":2019},{"central":"Parque Solar Llano Seco","tecnologia":"solar","region":"Atacama","potencia_mw":180,"anio_inicio":2020},{"central":"Parque Solar Sol Naciente","tecnologia":"solar","region":"Antofagasta","potencia_mw":145,"anio_inicio":2021},{"central":"Parque Solar Quebrada Honda","tecnologia":"solar","region":"Atacama","potencia_mw":95,"anio_inicio":2022},{"central":"Parque Solar Altiplano","tecnologia":"solar","region":"Antofagasta","potencia_mw":310,"anio_inicio":2023},{"central":"Eólica Cerro Negro","tecnologia":"eolica","region":"Coquimbo","potencia_mw":160,"anio_inicio":2017},{"central":"Eólica Punta Ventosa","tecnologia":"eolica","region":"Coquimbo","potencia_mw":120,"anio_inicio":2018},{"central":"Eólica Loma Fría","tecnologia":"eolica","region":"Valparaíso","potencia_mw":85,"anio_inicio":2020},{"central":"Eólica Campo Abierto","tecnologia":"eolica","region":"Coquimbo","potencia_mw":200,"anio_inicio":2021},{"central":"Termoeléctrica Bahía Norte","tecnologia":"gas","region":"Valparaíso","potencia_mw":375,"anio_inicio":2008},{"central":"Termoeléctrica Puerto Sur","tecnologia":"gas","region":"Biobío","potencia_mw":290,"anio_inicio":2012},{"central":"Termoeléctrica Valle Central","tecnologia":"gas","region":"Metropolitana","potencia_mw":210,"anio_inicio":2006},{"central":"Carboeléctrica Costa Brava","tecnologia":"carbon","region":"Biobío","potencia_mw":480,"anio_inicio":2001},{"central":"Carboeléctrica Roca Gris","tecnologia":"carbon","region":"Antofagasta","potencia_mw":350,"anio_inicio":1999},{"central":"Diésel Respaldo Cordillera","tecnologia":"diesel","region":"Metropolitana","potencia_mw":45,"anio_inicio":2014}],"filtro":{"hidro|Antofagasta":[0,0],"hidro|Atacama":[0,0],"hidro|Coquimbo":[0,0],"hidro|Valparaíso":[0,0],"hidro|Metropolitana":[0,0],"hidro|Biobío":[26352,4151930],"hidro|Los Lagos":[17568,1954422],"solar|Antofagasta":[26352,479681],"solar|Atacama":[17568,191996],"solar|Coquimbo":[0,0],"solar|Valparaíso":[0,0],"solar|Metropolitana":[0,0],"solar|Biobío":[0,0],"solar|Los Lagos":[0,0],"eolica|Antofagasta":[0,0],"eolica|Atacama":[0,0],"eolica|Coquimbo":[26352,1332263],"eolica|Valparaíso":[8784,233637],"eolica|Metropolitana":[0,0],"eolica|Biobío":[0,0],"eolica|Los Lagos":[0,0],"gas|Antofagasta":[0,0],"gas|Atacama":[0,0],"gas|Coquimbo":[0,0],"gas|Valparaíso":[8784,2182673],"gas|Metropolitana":[8784,1222999],"gas|Biobío":[8784,1688455],"gas|Los Lagos":[0,0],"carbon|Antofagasta":[8784,1967910],"carbon|Atacama":[0,0],"carbon|Coquimbo":[0,0],"carbon|Valparaíso":[0,0],"carbon|Metropolitana":[0,0],"carbon|Biobío":[8784,2698913],"carbon|Los Lagos":[0,0],"diesel|Antofagasta":[0,0],"diesel|Atacama":[0,0],"diesel|Coquimbo":[0,0],"diesel|Valparaíso":[0,0],"diesel|Metropolitana":[8784,40710],"diesel|Biobío":[0,0],"diesel|Los Lagos":[0,0]},"por_tec":{"carbon":4666823.0,"diesel":40710.0,"eolica":1565899.0,"gas":5094126.0,"hidro":6106351.0,"solar":671677.0},"por_reg":{"Antofagasta":2447591.0,"Atacama":191996.0,"Biobío":8539297.0,"Coquimbo":1332263.0,"Los Lagos":1954422.0,"Metropolitana":1263708.0,"Valparaíso":2416310.0},"pot_tec":{"carbon":830,"diesel":45,"eolica":565,"gas":875,"hidro":1265,"solar":960},"n_tec":{"hidro":5,"solar":5,"eolica":4,"gas":3,"carbon":2,"diesel":1},"n_reg":{"Biobío":5,"Antofagasta":4,"Coquimbo":3,"Los Lagos":2,"Atacama":2,"Valparaíso":2,"Metropolitana":2},"cruce":{"Antofagasta":{"carbon":1967910.0,"diesel":0.0,"eolica":0.0,"gas":0.0,"hidro":0.0,"solar":479681.0},"Atacama":{"carbon":0.0,"diesel":0.0,"eolica":0.0,"gas":0.0,"hidro":0.0,"solar":191996.0},"Biobío":{"carbon":2698913.0,"diesel":0.0,"eolica":0.0,"gas":1688455.0,"hidro":4151930.0,"solar":0.0},"Coquimbo":{"carbon":0.0,"diesel":0.0,"eolica":1332263.0,"gas":0.0,"hidro":0.0,"solar":0.0},"Los Lagos":{"carbon":0.0,"diesel":0.0,"eolica":0.0,"gas":0.0,"hidro":1954422.0,"solar":0.0},"Metropolitana":{"carbon":0.0,"diesel":40710.0,"eolica":0.0,"gas":1222999.0,"hidro":0.0,"solar":0.0},"Valparaíso":{"carbon":0.0,"diesel":0.0,"eolica":233637.0,"gas":2182673.0,"hidro":0.0,"solar":0.0}},"factor":{"carbon":0.64,"diesel":0.103,"eolica":0.315,"gas":0.663,"hidro":0.549,"solar":0.08},"ej_fp":[{"hora":0,"central":"Parque Solar Altiplano","mwh":0.0,"potencia_mw":310,"fp":0.0},{"hora":6,"central":"Parque Solar Altiplano","mwh":6.36,"potencia_mw":310,"fp":0.021},{"hora":12,"central":"Parque Solar Altiplano","mwh":118.21,"potencia_mw":310,"fp":0.381},{"hora":18,"central":"Parque Solar Altiplano","mwh":6.36,"potencia_mw":310,"fp":0.021}],"muestra":[{"fecha":"2024-01-01","hora":12,"central":"Parque Solar Altiplano","mwh":118.21,"tecnologia":"solar","region":"Antofagasta","potencia_mw":310},{"fecha":"2024-01-01","hora":12,"central":"Carboeléctrica Costa Brava","mwh":306.16,"tecnologia":"carbon","region":"Biobío","potencia_mw":480},{"fecha":"2024-01-01","hora":12,"central":"Eólica Cerro Negro","mwh":72.35,"tecnologia":"eolica","region":"Coquimbo","potencia_mw":160},{"fecha":"2024-01-01","hora":12,"central":"Central Vega Azul","mwh":36.7,"tecnologia":"hidro","region":"Los Lagos","potencia_mw":95},{"fecha":"2024-01-01","hora":12,"central":"Parque Solar Llano Seco","mwh":61.64,"tecnologia":"solar","region":"Atacama","potencia_mw":180},{"fecha":"2024-01-01","hora":12,"central":"Termoeléctrica Bahía Norte","mwh":239.52,"tecnologia":"gas","region":"Valparaíso","potencia_mw":375},{"fecha":"2024-01-01","hora":12,"central":"Parque Solar Quebrada Honda","mwh":34.77,"tecnologia":"solar","region":"Atacama","potencia_mw":95},{"fecha":"2024-01-01","hora":12,"central":"Diésel Respaldo Cordillera","mwh":0.0,"tecnologia":"diesel","region":"Metropolitana","potencia_mw":45},{"fecha":"2024-01-01","hora":12,"central":"Parque Solar Pampa Alta","mwh":81.8,"tecnologia":"solar","region":"Antofagasta","potencia_mw":230},{"fecha":"2024-01-01","hora":12,"central":"Central Río Manso Alto","mwh":179.67,"tecnologia":"hidro","region":"Biobío","potencia_mw":420},{"fecha":"2024-01-01","hora":12,"central":"Termoeléctrica Puerto Sur","mwh":189.31,"tecnologia":"gas","region":"Biobío","potencia_mw":290},{"fecha":"2024-01-01","hora":12,"central":"Parque Solar Sol Naciente","mwh":54.49,"tecnologia":"solar","region":"Antofagasta","potencia_mw":145}]};
+</script>
+<script>
+/* ---------- utilidades ---------- */
+const TEC = {hidro:["hidro","#1a73e8"], solar:["solar","#d99a00"], eolica:["eólica","#188038"], gas:["gas","#c5221f"], carbon:["carbón","#7b4fc9"], diesel:["diésel","#80868b"]};
+const TECS = ["carbon","gas","hidro","eolica","solar","diesel"];
+const LETRA = ["A","B","C","D","E","F","G","H"];
+const es = (x, d=1) => x.toLocaleString("es-CL", {minimumFractionDigits:d, maximumFractionDigits:d});
+const esN = x => x.toLocaleString("es-CL");
+const $ = s => document.querySelector(s);
+const h = (tag, attrs={}, ...kids) => { const e = document.createElement(tag); for (const [k,v] of Object.entries(attrs)) { if (k==="class") e.className=v; else if (k==="style") e.style.cssText=v; else if (k==="html") e.innerHTML=v; else if (k.startsWith("on")) e[k]=v; else e.setAttribute(k,v);} for (const k of kids) e.append(k); return e; };
+const NS = "http://www.w3.org/2000/svg";
+const sv = (tag, attrs={}) => { const e = document.createElementNS(NS, tag); for (const [k,v] of Object.entries(attrs)) e.setAttribute(k, v); return e; };
+const txt = (x,y,t,attrs={}) => { const e=sv("text",{x,y,...attrs}); e.textContent=t; return e; };
+const corto = n => n.replace(/^(Central|Carboeléctrica|Termoeléctrica|Parque Solar|Eólica|Diésel) /,"");
+const dist2 = (a,b) => { let s=0; for (let i=0;i<a.length;i++){const d=a[i]-b[i]; s+=d*d;} return s; };
+const proj = (v, pca) => [0,1].map(j => pca.comp[j].reduce((s,c,i)=> s + c*(v[i]-pca.mean[i]), 0));
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+let token = 0; const nuevoToken = () => ++token;
+
+const centrales = D.centrales || [], N = centrales.length;
+
+/* ---------- estado del escenario ---------- */
+const ICO = {mira:"👁", haz:"✋", calc:"", listo:"✓"};
+function estado(tipo, texto, extra) {
+  const e = $("#estado"); e.innerHTML = ""; const b = h("div", {class:"estado "+tipo}, h("span",{class:"ic"}, ICO[tipo]), h("span",{html:texto}));
+  if (extra) b.append(extra); e.append(b); return b;
+}
+function lienzo(...nodos){ const L=$("#lienzo"); L.innerHTML=""; for (const n of nodos) if (n) L.append(n); }
+const nota = (html, clase="") => h("div", {class:"nota "+clase, html});
+
+/* ---------- componentes ---------- */
+function filaCeldas(valores, opts={}) {
+  // valores: 24 números. opts: {rot, max, dec, chica, colsOn, rotOn, fmt, std}
+  const f = h("div",{class:"fila"+(opts.chica?" chica":"")+(opts.sinNum?" sinnum":"")});
+  f.append(h("div",{class:"rot"+(opts.rotOn?" on":""), title:opts.rot||""}, opts.rot||""));
+  const tk = opts.tec ? TEC[opts.tec] : null;
+  f.append(h("div",{class:"tec", style: tk? `background:${tk[1]}22;color:${tk[1]}` : ""}, tk? tk[0] : ""));
+  valores.forEach((v,k)=>{
+    let bg, dark, t;
+    if (opts.std){ const a=0.12+0.88*Math.min(1,Math.abs(v)/2.3); bg = v>=0? `rgba(26,115,232,${a.toFixed(2)})` : `rgba(197,34,31,${a.toFixed(2)})`; dark = Math.abs(v)<1; t=(v>=0?"+":"")+v.toFixed(1); }
+    else { const fr=Math.min(1, v/opts.max); const a=0.1+0.9*fr; bg=`rgba(26,115,232,${a.toFixed(2)})`; dark = fr<0.45; t = opts.fmt? opts.fmt(v) : (opts.dec===0? Math.round(v) : v.toFixed(opts.dec??2)); }
+    const off = opts.colsOn && !opts.colsOn.includes(k);
+    f.append(h("div",{class:"cel"+(dark?" dark":"")+(off?" off":""), style:`background:${bg}`, title:`${opts.rot||""}, ${k} h, ${t}`}, String(t)));
+  });
+  return f;
+}
+function cabeceraHoras(colsOn){ const f=h("div",{class:"fila"}); f.append(h("div",{class:"rot",style:"color:var(--muted);font-size:12px"},"central")); f.append(h("div",{class:"tec",style:"color:var(--muted)"},"tipo")); for(let k=0;k<24;k++) f.append(h("div",{class:"hh"+((colsOn||[]).includes(k)?" on":"")},String(k))); return f; }
+const ORDEN = [...Array(N).keys()].sort((a,b)=>TECS.indexOf(centrales[a].t)-TECS.indexOf(centrales[b].t) || a-b);
+function tablaFilas(tabla, opts={}){ const w=h("div",{style:"display:flex;flex-direction:column;gap:3px"}); w.append(cabeceraHoras(opts.colsOn)); ORDEN.forEach(i=>{ const fila=tabla[i]; if (opts.solo && !opts.solo.includes(i)) return; w.append(filaCeldas(fila,{...opts, rot:corto(centrales[i].n), tec:centrales[i].t, rotOn:(opts.rowsOn||[]).includes(i), chica:true})); }); return w; }
+
+function curvas(series, opts={}) {
+  const W = opts.w||760, H = opts.h||330, ml=58, mr=16, mt=22, mb=40;
+  const s = sv("svg", {viewBox:`0 0 ${W} ${H}`, style:"width:100%;height:auto;display:block"});
+  const ymax = opts.ymax || Math.max(...series.flatMap(q=>q.y))*1.1;
+  const X = k => ml + k*(W-ml-mr)/23, Y = v => mt + (H-mt-mb)*(1 - v/ymax);
+  for (let i=0;i<=4;i++){ const v = ymax*i/4; s.append(sv("line",{x1:ml,x2:W-mr,y1:Y(v),y2:Y(v),stroke:"#e8eaed"})); s.append(txt(ml-8,Y(v)+4, opts.fmt? opts.fmt(v): es(v,0), {"text-anchor":"end","font-size":12,fill:"#5f6368"})); }
+  for (let k=0;k<24;k+=3) s.append(txt(X(k),H-mb+18,k,{"text-anchor":"middle","font-size":12,fill:"#5f6368"}));
+  s.append(txt((ml+W-mr)/2,H-6,"hora del día",{"text-anchor":"middle","font-size":12.5,fill:"#5f6368"}));
+  if (opts.ylabel) s.append(txt(ml,mt-8,opts.ylabel,{"font-size":12.5,fill:"#5f6368"}));
+  for (const q of series) {
+    const d = q.y.map((v,k)=>(k?"L":"M")+X(k).toFixed(1)+","+Y(v).toFixed(1)).join(" ");
+    s.append(sv("path",{d, fill:"none", stroke:q.color, "stroke-width":q.w||3, opacity:q.alpha??1, "stroke-linejoin":"round"}));
+    if (q.nombre) s.append(txt(X(q.lx??12), Y(q.y[q.lx??12])-9, q.nombre, {"font-size":13,fill:q.color,"font-weight":700,"text-anchor":"middle"}));
+  }
+  for (const a of (opts.anot||[])) s.append(txt(X(a.x),Y(a.y),a.t,{"font-size":13.5,fill:a.color||"#5f6368","text-anchor":"middle","font-weight":600}));
+  return s;
+}
+function leyendaTec(lista=TECS){ return h("div",{class:"leyenda"}, ...lista.map(t=>h("span",{}, h("i",{style:`background:${TEC[t][1]}`}), TEC[t][0]))); }
+function crosstab(filas, cols, M, rotCol) {
+  const t = h("table",{class:"cross"});
+  t.append(h("tr",{}, h("th",{},"tecnología"), ...cols.map(c=>h("th",{}, c===-1? "fuera, sin barrio" : rotCol(c)))));
+  for (const f of filas) t.append(h("tr",{}, h("td",{class:"t",style:`color:${TEC[f][1]}`},TEC[f][0]), ...cols.map(c=>{const v=M[f][c]||0; return h("td",{class: v===0?"z": (c===-1?"r":"v")}, v===0?"·":esN(v));})));
+  return t;
+}
+function crossCentralesKM(lab,k){ const M={}; for(const t of TECS) M[t]={}; lab.forEach((g,i)=>{ M[centrales[i].t][g]=(M[centrales[i].t][g]||0)+1; }); return crosstab(TECS,[...Array(k).keys()],M,c=>"mesa "+LETRA[c]); }
+function crossDias(lab){ const cols=[...new Set(lab)].sort((a,b)=>a-b); const M={}; for(const t of TECS) M[t]={}; lab.forEach((g,i)=>{ const t=centrales[D.dias.central[i]].t; M[t][g]=(M[t][g]||0)+1; }); return crosstab(TECS,cols,M,c=>"barrio "+LETRA[c]); }
+
+/* ---------- helpers del Lab 02 ---------- */
+const REG = ["Antofagasta","Atacama","Coquimbo","Valparaíso","Metropolitana","Biobío","Los Lagos"];
+const gwh = v => esN(Math.round(v/1000));
+const chipT = t => h("span",{style:`display:inline-block;border-radius:999px;padding:1px 8px;font-size:12px;font-weight:700;background:${TEC[t][1]};color:#fff`},TEC[t][0]);
+const MUESTRA = D.muestra;
+function tablaGen(filas, opts={}) {
+  const cols = opts.cols || ["fecha","hora","central","mwh","tecnologia","region","potencia_mw"];
+  const t = h("table",{class:"datos",style:"font-size:13.5px"}); t.append(h("tr",{}, ...cols.map(c=>h("th",{class:(opts.resaltar||[]).includes(c)?"hi":""},c))));
+  filas.forEach(r => { const pasa = !opts.filtro || opts.filtro(r); t.append(h("tr",{class:pasa?"":"dim"}, ...cols.map(c => c==="tecnologia" ? h("td",{},chipT(r[c])) : h("td",{class:(["mwh","hora","potencia_mw","factor_planta"].includes(c)?"num ":"")+((opts.resaltar||[]).includes(c)&&pasa?"hi":"")}, c==="factor_planta" ? es(r.fp,3) : typeof r[c]==="number" ? (c==="mwh"?es(r[c],2): String(r[c])) : r[c])))); });
+  return t;
+}
+function barrasH(filas, opts={}) {
+  // filas [{n, v, color}], opts {unidad, fmt, max, titulo, h}
+  const W=760, H=opts.h||300, m={l:150, r:90, t:opts.titulo?34:14, b:36}; const s=sv("svg",{viewBox:`0 0 ${W} ${H}`, style:"width:100%;height:auto;display:block;background:#fafbfc;border-radius:10px"});
+  const max = opts.max || Math.max(...filas.map(f=>f.v))*1.05; const X = v => m.l + v/max*(W-m.l-m.r), bh=(H-m.t-m.b)/filas.length;
+  if (opts.titulo) s.append(txt(m.l,20,opts.titulo,{"font-size":14,"font-weight":700}));
+  for (let i=0;i<=4;i++){ const v=max*i/4; s.append(sv("line",{x1:X(v),x2:X(v),y1:m.t,y2:H-m.b,stroke:"#e8eaed"})); s.append(txt(X(v),H-m.b+16,opts.fmt?opts.fmt(v):esN(Math.round(v)),{"text-anchor":"middle","font-size":11.5,fill:"#5f6368"})); }
+  if (opts.unidad) s.append(txt((m.l+W-m.r)/2,H-4,opts.unidad,{"text-anchor":"middle","font-size":12.5,fill:"#5f6368"}));
+  filas.forEach((f,i)=>{ const y=m.t+i*bh+4; s.append(sv("rect",{x:m.l,y,width:Math.max(1,X(f.v)-m.l),height:bh-8,fill:f.color||"#1a73e8",rx:3})); s.append(txt(m.l-8,y+bh/2+1,f.n,{"text-anchor":"end","font-size":13,fill:"#202124"})); s.append(txt(X(f.v)+6,y+bh/2+1,opts.fmt?opts.fmt(f.v):esN(Math.round(f.v)),{"font-size":12.5,"font-weight":700})); });
+  return s;
+}
+function cajaGrande(op, grande, texto, clase="") { return nota(`<div class="op">${op}</div><div class="grande">${grande}</div>${texto}`, clase); }
+function cajasGrupo(filas, por) {
+  // filas de la muestra repartidas en cajas por tecnología o región
+  const grupos = {}; filas.forEach(r => (grupos[r[por]] = grupos[r[por]] || []).push(r));
+  const w = h("div",{style:"display:grid;grid-template-columns:repeat(3,1fr);gap:10px"});
+  Object.entries(grupos).forEach(([k,rs]) => { const color = por==="tecnologia" ? TEC[k][1] : "#0b3d62"; const caja = h("div",{style:`border:2px solid ${color};border-radius:10px;padding:8px 10px;background:#fff`}); caja.append(h("div",{style:`font-weight:700;color:${color};margin-bottom:4px`}, por==="tecnologia"?TEC[k][0]:k)); rs.forEach(r => caja.append(h("div",{style:"font-size:12.5px;display:flex;justify-content:space-between;gap:6px"}, h("span",{style:"white-space:nowrap;overflow:hidden;text-overflow:ellipsis"},corto(r.central)), h("b",{},es(r.mwh,1))))); const tot = rs.reduce((a,r)=>a+r.mwh,0); caja.append(h("div",{style:`border-top:1px solid ${color};margin-top:6px;padding-top:4px;display:flex;justify-content:space-between;font-size:13px`}, h("span",{},"suma"), h("b",{style:`color:${color}`},es(tot,1)))); w.append(caja); });
+  return w;
+}
+function tablaCruce(resaltar) {
+  const t = h("table",{class:"datos",style:"font-size:13.5px"}); const cols = TECS; t.append(h("tr",{}, h("th",{},"región"), ...cols.map(c=>h("th",{style:`color:${TEC[c][1]}`},TEC[c][0]))));
+  REG.forEach(r => t.append(h("tr",{}, h("td",{style:"font-weight:700"},r), ...cols.map(c => { const v=D.cruce[r][c]; const on = resaltar && resaltar[0]===r && resaltar[1]===c; return h("td",{class:"num "+(on?"hi":""), style: v===0? "color:#c0c4c8" : `background:rgba(26,115,232,${(0.08+0.5*v/4200000).toFixed(2)})`}, v===0?"0":gwh(v)); }))));
+  return t;
+}
+
+
+
+/* ---------- navegación y capítulos ---------- */
+
+const CAPS = [
+{ n:"Antes de empezar", t:"Una tabla grande y cuatro preguntas", pasos:[
+  { tx:`<p>Operaciones tiene la generación de las 20 centrales, hora por hora, durante 2024. Son <span class="dato">175.680 filas</span>. Nadie las va a leer.</p><p>Quiere cuatro cosas, y las cuatro salen de esa misma tabla con cuatro movimientos distintos.</p>`,
+    mas:[["¿Qué es manipular datos?","Es lo que se hace con una tabla antes de mirarla. Quedarse con una parte, resumirla por grupos, cruzarla, agregarle una columna. Es lo que una persona hace en Excel con filtros y tablas dinámicas, pero escrito, para que se repita solo."],["¿Por qué no en Excel?","Con 175.680 filas Excel todavía funciona, pero lento, y una tabla dinámica sobre esa tabla se demora. Y lo más importante, en pandas el cálculo queda escrito y se vuelve a correr con el archivo del mes que viene sin tocar nada."]],
+    st(){ estado("mira","Las cuatro preguntas de hoy."); lienzo(h("div",{class:"portada"}, h("h3",{},"Cuatro movimientos sobre una tabla"), h("p",{},"Filtrar, agrupar, cruzar y agregar una columna. Con esos cuatro se responde casi todo lo que se le pide a una tabla."), h("div",{class:"preg"}, h("div",{},h("b",{},"1"),"¿Cuánto generó una tecnología en una región?"), h("div",{},h("b",{},"2"),"¿Cuánto generó cada tecnología, y cada región, en el año?"), h("div",{},h("b",{},"3"),"¿Cuánto generó cada región con cada tecnología, en una sola tabla?"), h("div",{},h("b",{},"4"),"¿Qué parte de su potencia usó cada tecnología?")))); } },
+  { tx:`<p>La tabla es la del Lab 01. La generación de cada hora, <b>generacion.csv</b>, unida con la ficha de cada central, <b>centrales.csv</b>. Así cada fila trae al lado la tecnología, la región y la potencia de su central.</p><p>Cinco filas de las 175.680. Las de la izquierda vienen de la generación, las de la derecha de la ficha.</p>`,
+    mas:[["¿Y esto en el cuaderno?","Es pd.merge(generacion, centrales, on=\"central\", how=\"left\"), la misma unión del Lab 01. Por cada fila de generación busca la central en la ficha y le pega sus columnas. Es el Paso 1."],["¿Por qué unir primero?","Porque las preguntas hablan de tecnología y región, y esas columnas no están en generacion.csv, están en la ficha. Sin la unión, no se puede filtrar por tecnología ni agrupar por región."]],
+    st(){ estado("mira","Cinco filas de la tabla unida. A la izquierda la generación, a la derecha la ficha de la central."); lienzo(h("div",{class:"col"}, tablaGen(D.head,{resaltar:["tecnologia","region","potencia_mw"]}), cajaGrande("filas de la tabla unida", esN(D.n), "20 centrales por 8.784 horas de 2024. Cada fila dice cuánto generó una central en una hora, y de qué tipo es, dónde está y cuánto puede generar como máximo."))); } },
+]},
+{ n:"Capítulo 1", t:"Filtrar, quedarse con una parte", pasos:[
+  { tx:`<p>Filtrar es quedarse con las filas que cumplen una condición. Como en Excel, pero escrito.</p><p>Estas son doce filas de la tabla. Marca una condición y mira cuáles quedan. Con <b>las dos</b> marcadas, la fila tiene que cumplir las dos a la vez. Es lo que hace el signo <b>&</b>.</p>`,
+    mas:[["¿Y esto en el cuaderno?","gen[(gen[\"tecnologia\"] == \"solar\") & (gen[\"region\"] == \"Antofagasta\")]. Cada condición entre paréntesis, el & en el medio. Dentro de los corchetes va la pregunta que cada fila tiene que responder con sí para quedarse."],["¿Y si quiero una u otra?","Se usa | en vez de &. Con | la fila se queda si cumple cualquiera de las dos. Con & tiene que cumplir las dos. Es la diferencia entre y y o."]],
+    st(){ const op={t:false,r:false}; const w=h("div",{}); const casillas=h("span",{style:"margin-left:auto;display:flex;gap:16px;align-items:center;font-weight:600"});
+      const pinta=()=>{ const f = r => (!op.t || r.tecnologia==="solar") && (!op.r || r.region==="Antofagasta"); const n = MUESTRA.filter(f).length; w.innerHTML=""; w.append(h("div",{class:"col"}, cajaGrande(op.t&&op.r?"tecnología solar y región Antofagasta":op.t?"tecnología solar":op.r?"región Antofagasta":"sin condición", `${n} de 12 filas`, op.t&&op.r? "Solo las que cumplen <b>las dos</b>. Las demás quedan apagadas." : op.t||op.r? "Las que cumplen esa condición. Las demás quedan apagadas." : "Todas las filas. Todavía no hay condición."), tablaGen(MUESTRA,{filtro:f,resaltar:[op.t?"tecnologia":"",op.r?"region":""]}))); const b=$("#estado").firstChild; b.className="estado "+(op.t&&op.r?"listo":"haz"); b.querySelector("span:nth-child(2)").textContent = op.t&&op.r? "Las dos condiciones a la vez." : "Marca una condición, después la otra."; };
+      for (const [k,t] of [["t","tecnología es solar"],["r","región es Antofagasta"]]) { const c=h("input",{type:"checkbox"}); c.onchange=()=>{ op[k]=c.checked; pinta(); }; casillas.append(h("label",{style:"display:flex;gap:5px;align-items:center;cursor:pointer"},c,t)); }
+      estado("haz","Marca una condición, después la otra.",casillas); lienzo(w); pinta(); } },
+  { tx:`<p>Tu turno, con las 175.680 filas. Elige una tecnología y una región. Abajo sale cuántas filas cumplen las dos y cuánto suman.</p><p>Prueba <b>solar en Biobío</b>. Cero filas, porque no hay solares en Biobío. Un filtro que no encuentra nada no es un error, es una respuesta.</p>`,
+    mas:[["¿Por qué 26.352 filas?","Si hay 3 centrales solares en Antofagasta, cada una tiene 8.784 filas, una por hora. 3 por 8.784 son 26.352. Las filas que encuentra un filtro siempre se pueden explicar con esa cuenta."],["¿Y esto en el cuaderno?","Es el Paso 2. Las dos listas desplegables cambian la tecnología y la región, y la celda vuelve a filtrar y sumar. En el Colab se cambia la lista y se vuelve a correr la celda."]],
+    st(){ const st_=h("select",{style:"font-size:15px;padding:4px 8px;border-radius:6px"}), sr=h("select",{style:"font-size:15px;padding:4px 8px;border-radius:6px"}); TECS.forEach(t=>st_.append(h("option",{value:t},TEC[t][0]))); REG.forEach(r=>sr.append(h("option",{value:r},r))); st_.value="solar"; sr.value="Antofagasta";
+      const ctrl=h("span",{style:"margin-left:auto;display:flex;gap:8px;align-items:center"},"tecnología",st_,"región",sr); estado("haz","Elige una tecnología y una región.",ctrl); const w=h("div",{}); lienzo(w);
+      const pinta=()=>{ const [n,tot]=D.filtro[st_.value+"|"+sr.value]; const cs=D.centrales.filter(c=>c.tecnologia===st_.value&&c.region===sr.value); w.innerHTML=""; w.append(h("div",{class:"dos",style:"grid-template-columns:1fr 1fr"}, cajaGrande("filas que cumplen las dos", esN(n), n? `${cs.length} ${cs.length===1?"central":"centrales"} por 8.784 horas.<br>${cs.map(c=>c.central).join(", ")}.` : `No hay ${TEC[st_.value][0]} en ${sr.value}. <b>Cero filas no es un error.</b>`, n?"":"ambar"), cajaGrande(`generación de ${TEC[st_.value][0]} en ${sr.value}`, n? esN(tot)+" MWh" : "0 MWh", n? "La suma de la columna mwh de esas filas. En el cuaderno, elegidas[\"mwh\"].sum()." : "Sin filas, la suma es cero."))); };
+      st_.onchange=pinta; sr.onchange=pinta; pinta(); } },
+]},
+{ n:"Capítulo 2", t:"Agrupar, resumir por grupos", pasos:[
+  { tx:`<p>Agrupar es lo que hace una <b>tabla dinámica</b> de Excel con una sola cosa en las filas. Junta las filas de cada grupo y les calcula algo, la suma, el promedio, cuántas son.</p><p>Las mismas doce filas, repartidas en cajas por tecnología. Cada caja suma lo suyo. Cambia a región y mira cómo se reparten de otra forma.</p>`,
+    mas:[["¿Y esto en el cuaderno?","gen.groupby(\"tecnologia\")[\"mwh\"].sum(). Se lee de izquierda a derecha, agrupa por tecnología, toma la columna mwh, suma. Cambiar sum por mean da el promedio, y por count cuántas filas hay."],["¿Qué pasó con las otras columnas?","Al agrupar y sumar mwh, las otras columnas desaparecen del resultado, porque no tiene sentido sumar nombres o regiones. El resultado tiene una fila por grupo y una columna con la suma."]],
+    st(){ const botones=h("span",{style:"margin-left:auto;display:flex;gap:6px"}); const w=h("div",{});
+      const pinta=(por)=>{ w.innerHTML=""; w.append(h("div",{class:"col"}, cajasGrupo(MUESTRA,por), nota(por==="tecnologia"? "Seis cajas, una por tecnología. Las cinco solares quedaron juntas y su suma es la generación solar de esas doce filas. <b>Con las 175.680 filas es exactamente lo mismo</b>, solo que cada caja tiene miles de filas." : "Siete cajas, una por región. Biobío junta carbón, gas e hidro, porque en Biobío hay de los tres. Antofagasta junta solo solares."))); botones.querySelectorAll("button").forEach(b=>{ const on=b.dataset.k===por; b.style.background=on?"var(--navy)":"#fff"; b.style.color=on?"#fff":"var(--navy)"; }); };
+      [["tecnologia","por tecnología"],["region","por región"]].forEach(([k,t])=>{ const b=h("button",{"data-k":k},t); b.style.cssText="margin:0;background:#fff;color:var(--navy);border:1px solid var(--grid)"; b.onclick=()=>pinta(k); botones.append(b); });
+      estado("haz","Elige por qué agrupar.",botones); lienzo(w); pinta("tecnologia"); } },
+  { tx:`<p>Con las 175.680 filas. Cuánto generó cada grupo en el año, en GWh, que son mil MWh. Cambia entre tecnología y región.</p><p>Hidro primero, con <span class="dato">6.106 GWh</span>. El diésel último, con 41. Por región, Biobío sola genera casi la mitad del país.</p>`,
+    mas:[["¿Por qué Biobío tanto?","Porque ahí están Costa Brava, la carboeléctrica más grande, Puerto Sur de gas, y tres hidro, Río Manso Alto, Aguas Claras y Tres Saltos. Cinco de las veinte centrales, y las que más trabajan. Es una cosa que la tabla por región muestra de inmediato y que fila por fila nadie vería."],["¿Y el promedio por hora?","Cambiando sum por mean. Para hidro da 139 MWh por hora, que es la suma dividida por las 43.920 filas de las 5 hidro. El cuaderno lo hace en el Estudio 2 con varios cálculos a la vez."]],
+    st(){ const botones=h("span",{style:"margin-left:auto;display:flex;gap:6px"}); const w=h("div",{});
+      const pinta=(por)=>{ w.innerHTML=""; const filas = por==="tecnologia" ? TECS.map(t=>({n:TEC[t][0],v:D.por_tec[t]/1000,color:TEC[t][1]})) : REG.map(r=>({n:r,v:D.por_reg[r]/1000})); filas.sort((a,b)=>b.v-a.v); w.append(h("div",{class:"col"}, barrasH(filas,{unidad:"GWh generados en 2024",h:320}), nota(por==="tecnologia"? `La suma de la columna mwh dentro de cada tecnología. Hidro <b>${gwh(D.por_tec.hidro)}</b>, gas <b>${gwh(D.por_tec.gas)}</b>, carbón <b>${gwh(D.por_tec.carbon)}</b>. Las tres juntas son el 87 por ciento del año.` : `Biobío <b>${gwh(D.por_reg["Biobío"])}</b> GWh, el 47 por ciento del país. Atacama <b>${gwh(D.por_reg.Atacama)}</b>, con dos solares.`))); botones.querySelectorAll("button").forEach(b=>{ const on=b.dataset.k===por; b.style.background=on?"var(--navy)":"#fff"; b.style.color=on?"#fff":"var(--navy)"; }); };
+      [["tecnologia","por tecnología"],["region","por región"]].forEach(([k,t])=>{ const b=h("button",{"data-k":k},t); b.style.cssText="margin:0;background:#fff;color:var(--navy);border:1px solid var(--grid)"; b.onclick=()=>pinta(k); botones.append(b); });
+      estado("haz","Elige por qué agrupar.",botones); lienzo(w); pinta("tecnologia"); } },
+  { tx:`<p>Una trampa conocida. <b>Potencia no es energía.</b> La potencia es cuánto puede generar una central como máximo en una hora. La energía es cuánto generó de verdad en el año.</p><p>La solar es <b>segunda en potencia</b>, 960 MW, y <b>quinta en energía</b>, 672 GWh. Porque solo trabaja de día.</p>`,
+    mas:[["¿De dónde sale la potencia por tecnología?","De centrales.csv, sumando potencia_mw por tecnología. Es un groupby sobre la ficha, que tiene 20 filas, no sobre la generación. Mismo movimiento, otra tabla."],["¿Por qué importa?","Porque quien planifica con la potencia instalada cree que tiene el doble de solar de lo que tiene. Con lo que se puede contar es con la energía, y la energía depende de cuántas horas trabaja cada central. Eso es el Capítulo 4."]],
+    st(){ estado("mira","Potencia instalada a la izquierda, energía generada a la derecha. Mismas seis tecnologías, otro orden."); const pot=TECS.map(t=>({n:TEC[t][0],v:D.pot_tec[t],color:TEC[t][1]})).sort((a,b)=>b.v-a.v); const ene=TECS.map(t=>({n:TEC[t][0],v:D.por_tec[t]/1000,color:TEC[t][1]})).sort((a,b)=>b.v-a.v);
+      lienzo(h("div",{class:"col"}, barrasH(pot,{unidad:"potencia instalada, MW",h:260,titulo:"Potencia, cuánto podrían generar en una hora"}), barrasH(ene,{unidad:"energía generada en 2024, GWh",h:260,titulo:"Energía, cuánto generaron en el año"})), nota(`La solar sube al segundo lugar en potencia y baja al quinto en energía. El gas y el carbón hacen lo contrario, tienen menos potencia que la solar y generan siete veces más. <b>Una central que trabaja todo el día rinde más que una grande que trabaja la mitad.</b>`)); } },
+]},
+{ n:"Capítulo 3", t:"Cruzar, dos preguntas en una tabla", pasos:[
+  { tx:`<p>Agrupar por tecnología da una lista. Agrupar por región da otra. Para ver <b>cada región con cada tecnología</b> se cruzan, las regiones en las filas, las tecnologías en las columnas. Es la misma tabla dinámica del Capítulo 2, pero con dos cosas en vez de una, una en las filas y otra en las columnas.</p><p>Cada celda es la generación del año de esa región con esa tecnología, en GWh. Pasa el mouse por una celda.</p>`,
+    mas:[["¿Y esto en el cuaderno?","pivot_table(index=\"region\", columns=\"tecnologia\", values=\"mwh\", aggfunc=\"sum\", fill_value=0). index son las filas, columns las columnas, values lo que se suma. fill_value=0 pone cero donde no hay nada, en vez de dejarlo vacío."],["¿Por qué tantos ceros?","Porque cada región tiene pocas tecnologías. Antofagasta solo carbón y solar, Coquimbo solo eólica, y solo Biobío tiene tres. Los ceros no son errores, son la respuesta a que en esa región no hay esa tecnología. Sin fill_value quedarían vacíos y las sumas por fila fallarían."]],
+    st(){ estado("haz","Pasa el mouse por una celda. Regiones en las filas, tecnologías en las columnas."); const w=h("div",{}); const n=nota("Pasa el mouse por una celda para leerla."); const t=tablaCruce(); t.querySelectorAll("tr").forEach((tr,i)=>{ if(!i) return; const r=REG[i-1]; tr.querySelectorAll("td").forEach((td,j)=>{ if(!j) return; const c=TECS[j-1]; td.onmouseenter=()=>{ const v=D.cruce[r][c]; n.innerHTML = v? `<b>${r}</b> con <b>${TEC[c][0]}</b> generó <b>${gwh(v)} GWh</b> en 2024. Es la suma de las filas que tienen esa región y esa tecnología a la vez, lo mismo que daría el filtro del Capítulo 1.` : `<b>${r}</b> no tiene centrales de <b>${TEC[c][0]}</b>. El cero lo puso fill_value.`; }; }); }); lienzo(h("div",{class:"col"}, t, n)); } },
+]},
+{ n:"Capítulo 4", t:"Una columna nueva para todas las filas", pasos:[
+  { tx:`<p>La última pregunta necesita un número que no está en la tabla. Qué parte de su potencia usó la central en cada hora. Se llama <b>factor de planta</b>, y es lo generado dividido por la potencia.</p><p>Mira cuatro horas de Altiplano, una solar de 310 MW. Haz clic para calcular la columna nueva.</p>`,
+    mas:[["¿Y esto en el cuaderno?","gen[\"factor_planta\"] = gen[\"mwh\"] / gen[\"potencia_mw\"]. Una sola línea calcula la columna para las 175.680 filas de una vez. No hay que recorrer fila por fila, pandas lo hace solo."],["¿Puede ser mayor que 1?","No debería. Una central no puede generar más que su potencia. Si saliera más de 1, hay un dato malo. Es una comprobación barata que conviene hacer siempre que se calcula una columna así."]],
+    st(){ const w=h("div",{}); const btn=h("button",{},"Calcular la columna"); estado("haz","Haz clic para calcular la columna nueva.",btn); const n=nota(""); lienzo(h("div",{class:"col"},w,n));
+      const pinta=(con)=>{ w.innerHTML=""; w.append(tablaGen(D.ej_fp,{cols: con? ["hora","central","mwh","potencia_mw","factor_planta"] : ["hora","central","mwh","potencia_mw"], resaltar: con? ["factor_planta"]:[]})); n.innerHTML = con? `A las 12, <b>118,21 dividido por 310 es 0,381</b>. Altiplano usó el 38 por ciento de su potencia esa hora. A las 0, cero, de noche no genera. <b>La columna se calculó para las 175.680 filas de una vez</b>, aquí solo se ven cuatro.` : "Cuatro filas de Altiplano el 1 de enero. mwh es lo que generó, potencia_mw lo que podría como máximo."; };
+      btn.onclick=()=>{ btn.disabled=true; pinta(true); estado("listo","Columna nueva, factor_planta, para las 175.680 filas."); }; pinta(false); } },
+  { tx:`<p>Con la columna nueva, se agrupa por tecnología y se promedia. Sale <b>qué parte de su potencia usa cada tecnología</b>, en promedio, a lo largo del año.</p><p>Gas y carbón sobre 0,6, trabajan casi todo el tiempo. Solar 0,08, porque de noche es cero y al mediodía no pasa de 0,4. Esto es lo que explica el Capítulo 2.</p>`,
+    mas:[["¿Por qué la solar tan bajo?","Porque el promedio incluye las horas de noche, que son cero. Doce horas en cero y doce horas subiendo y bajando dan un promedio bajo. No es que la solar funcione mal, es que el sol no está la mitad del tiempo."],["¿Y esto en el cuaderno?","gen.groupby(\"tecnologia\")[\"factor_planta\"].mean(). Agrupar por tecnología, tomar la columna nueva, promediar. El mismo movimiento del Capítulo 2 sobre la columna que se acaba de crear."]],
+    st(){ estado("mira","El factor de planta promedio de cada tecnología."); const filas=TECS.map(t=>({n:TEC[t][0],v:D.factor[t],color:TEC[t][1]})).sort((a,b)=>b.v-a.v); lienzo(h("div",{class:"col"}, barrasH(filas,{unidad:"parte de su potencia que usa, promedio del año",fmt:v=>es(v,2),max:0.75,h:300}), nota(`Gas <b>${es(D.factor.gas,2)}</b>, carbón <b>${es(D.factor.carbon,2)}</b>, hidro <b>${es(D.factor.hidro,2)}</b>. Eólica <b>${es(D.factor.eolica,2)}</b>, depende del viento. Diésel <b>${es(D.factor.diesel,2)}</b>, solo entra en la tarde. Solar <b>${es(D.factor.solar,2)}</b>.<br><br><b>Cuarta pregunta respondida.</b> Y queda explicado por qué la solar es segunda en potencia y quinta en energía.`,"verde"))); } },
+]},
+{ n:"Cierre", t:"Los cuatro movimientos", pasos:[
+  { tx:`<p>Las cuatro preguntas, cuatro movimientos.</p><p><b>Filtrar</b> deja las filas que cumplen una o dos condiciones. <b>Agrupar</b> resume por grupo, como una tabla dinámica. <b>Cruzar</b> pone dos grupos en una tabla de doble entrada. Y <b>una columna nueva</b> se calcula para todas las filas de una vez.</p>`,
+    st(){ estado("mira","Lo que se lleva operaciones."); lienzo(h("div",{class:"portada"}, nota(`<b>Agrupar y cruzar son la misma tabla dinámica.</b> Agrupar con una cosa en las filas, cruzar con una en las filas y otra en las columnas. Lo que Excel hace con el mouse, pandas lo hace con una línea que se vuelve a correr.`,"verde"), h("div",{style:"height:10px"}), nota(`<b>Potencia no es energía.</b> La solar es segunda en potencia y quinta en energía. Lo que se puede contar es lo generado, y depende de cuántas horas trabaja cada central.`), h("div",{style:"height:10px"}), nota(`<b>Un filtro con cero filas no es un error.</b> Es la respuesta. Y un cero en la tabla cruzada tampoco, es que esa región no tiene esa tecnología.`))); } },
+  { tx:`<p>Ahora, al Colab. El cuaderno guiado tiene cinco pasos en clase, que son estos cuatro capítulos, y cuatro estudios para la casa.</p>`,
+    st(){ estado("mira","El cuaderno del Lab 02 guiado."); lienzo(h("div",{class:"portada"}, h("h3",{},"Lab 02 guiado"), h("p",{},"Paso 1, la tabla unida. Paso 2, filtrar con dos condiciones. Paso 3, agrupar. Paso 4, cruzar. Paso 5, la columna nueva. Para la casa, los Estudios 1 a 4, con el fin de semana, varios cálculos a la vez, la correlación entre precio y demanda, y esa misma correlación región por región."), h("p",{}, h("a",{href:"https://colab.research.google.com/github/RodrigoMSB/curso-python-minergia/blob/main/modulos/modulo02/lab_guiado.ipynb",target:"_blank",style:"color:var(--azul);font-weight:700"},"Abrir el Lab 02 guiado en Colab")))); } },
+]},
+];
+
+
+let cap=0, paso=0;
+function render(){
+  const C=CAPS[cap], P=C.pasos[paso]; nuevoToken();
+  $("#capnum").textContent = C.n; $("#h2").textContent = C.t; $("#texto").innerHTML = P.tx;
+  P.st();
+  if (P.mas){ const caja=h("div",{class:"masbox",style:"display:none"}); const fila=h("div",{class:"mas"}); P.mas.forEach(([t,html],i)=>{ const b=h("button",{},t); b.onclick=()=>{ const on=b.classList.contains("on"); fila.querySelectorAll("button").forEach(x=>x.classList.remove("on")); if(on){ caja.style.display="none"; } else { b.classList.add("on"); caja.innerHTML=html; caja.style.display="block"; } }; fila.append(b); }); $("#lienzo").append(h("div",{style:"font-size:13px;color:var(--muted);margin-top:6px"},"Para saber más, toca un botón."), fila, caja); }
+  $("#prev").disabled = cap===0 && paso===0; $("#next").disabled = cap===CAPS.length-1 && paso===C.pasos.length-1;
+  $("#next").textContent = paso===C.pasos.length-1 && cap<CAPS.length-1 ? "Siguiente capítulo" : "Siguiente";
+  const d=$("#dots"); d.innerHTML=""; C.pasos.forEach((_,i)=>d.append(h("i",{class:i===paso?"on":""})));
+  document.querySelectorAll("#caps button").forEach((b,i)=>b.classList.toggle("on",i===cap));
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+function ir(d){ if(d>0){ if(paso<CAPS[cap].pasos.length-1) paso++; else if(cap<CAPS.length-1){cap++;paso=0;} } else { if(paso>0) paso--; else if(cap>0){cap--;paso=CAPS[cap].pasos.length-1;} } render(); }
+$("#prev").onclick=()=>ir(-1); $("#next").onclick=()=>ir(1);
+document.addEventListener("keydown",e=>{ if(e.target.tagName==="INPUT") return; if(e.key==="ArrowRight") ir(1); if(e.key==="ArrowLeft") ir(-1); });
+CAPS.forEach((c,i)=>$("#caps").append(h("button",{onclick:()=>{cap=i;paso=0;render();}}, i===0?"Inicio": i===CAPS.length-1?"Cierre":"Cap. "+i)));
+render();
+</script>
+</body>
+</html>

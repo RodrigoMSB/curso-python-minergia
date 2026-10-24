@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Preparativos · Python con un almacén y Colab sin miedo</title>
+<style>
+:root{--ink:#202124;--muted:#5f6368;--grid:#dadce0;--surf:#fff;--head:#f1f3f4;--celda:#f8f9fa;--navy:#0b3d62;
+--azul:#1a73e8;--azul2:#e8f0fe;--ambar:#d99a00;--ambar2:#fef3d6;--verde:#188038;--verde2:#e6f4ea;--rojo:#c5221f;--rojo2:#fce8e6;--morado:#7b4fc9;--gris:#80868b;}
+*{box-sizing:border-box}
+html,body{margin:0;background:#f4f5f7;color:var(--ink);font-family:-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;font-size:17px;line-height:1.45}
+header{background:var(--navy);color:#fff;padding:14px 24px;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+header h1{font-size:19px;margin:0;font-weight:700}
+header .sub{font-size:13px;opacity:.8}
+nav.caps{display:flex;gap:6px;margin-left:auto;flex-wrap:wrap}
+nav.caps button{background:rgba(255,255,255,.12);color:#fff;border:0;border-radius:999px;padding:6px 13px;font-size:13px;cursor:pointer}
+nav.caps button.on{background:#fff;color:var(--navy);font-weight:700}
+main{display:grid;grid-template-columns:390px 1fr;gap:18px;padding:18px 24px;max-width:1540px;margin:0 auto;align-items:start}
+@media (max-width:980px){main{grid-template-columns:1fr;padding:12px 16px}}
+.panel{background:var(--surf);border:1px solid var(--grid);border-radius:14px;padding:20px 22px}
+.story{display:flex;flex-direction:column;position:sticky;top:12px}
+.capnum{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:1.2px;font-weight:700}
+.story h2{font-size:23px;margin:4px 0 14px;line-height:1.2}
+.story .texto{font-size:17.5px}
+.story .texto p{margin:0 0 12px}
+.story .texto b{color:var(--navy)}
+.dato{display:inline;background:var(--ambar2);color:#5c4700;border-radius:6px;padding:0 6px;font-weight:700}
+.remate{background:var(--ambar2);border-left:6px solid var(--ambar);padding:10px 12px;border-radius:0 8px 8px 0;margin:12px 0 0;color:#5c4700;font-weight:600}
+.navsteps{display:flex;align-items:center;gap:10px;margin-top:14px;border-top:1px solid var(--grid);padding-top:14px}
+.navsteps button{border:0;border-radius:10px;padding:10px 16px;font-size:15px;cursor:pointer;background:var(--head);color:var(--ink);font-weight:600}
+.navsteps button.pri{background:var(--azul);color:#fff}
+.navsteps button:disabled{opacity:.35;cursor:default}
+.dots{display:flex;gap:5px;margin-left:auto}
+.dots i{width:9px;height:9px;border-radius:50%;background:var(--grid);display:block}
+.dots i.on{background:var(--azul)}
+/* escenario */
+.stage{display:flex;flex-direction:column;gap:12px}
+.estado{display:flex;align-items:center;gap:12px;border-radius:10px;padding:10px 14px;font-size:16px;font-weight:600}
+.estado.mira{background:var(--azul2);color:var(--navy)}
+.estado.haz{background:var(--ambar2);color:#5c4700}
+.estado.calc{background:#fff4e5;color:#8a4b00}
+.estado.listo{background:var(--verde2);color:#14532d}
+.estado .ic{width:30px;height:30px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:15px;font-weight:800;flex:none;background:#fff}
+.estado.calc .ic{border:3px solid #f0b060;border-top-color:transparent;animation:gira 1s linear infinite}
+@keyframes gira{to{transform:rotate(360deg)}}
+.estado button{margin-left:auto;border:0;border-radius:8px;padding:8px 14px;font-size:15px;font-weight:700;cursor:pointer;background:var(--navy);color:#fff}
+.estado button:disabled{opacity:.4;cursor:default}
+.estado input[type=range]{width:200px}
+.lienzo{flex:1;display:flex;flex-direction:column;gap:12px}
+.dos{display:grid;grid-template-columns:1fr 320px;gap:16px;align-items:start}
+.col{display:flex;flex-direction:column;gap:12px}
+@media (max-width:1200px){.dos{grid-template-columns:1fr}}
+.nota{background:var(--celda);border:1px solid var(--grid);border-radius:12px;padding:14px 16px;font-size:16px;line-height:1.5}
+.nota b{color:var(--navy)}
+.nota .grande{font-size:30px;font-weight:800;color:var(--navy);line-height:1.1;margin:4px 0}
+.nota .op{font-size:14px;color:var(--muted)}
+.nota.ambar{background:var(--ambar2);border-color:#f0d58a;color:#5c4700}
+.nota.verde{background:var(--verde2);border-color:#b7dcc1;color:#14532d}
+.nota.ambar b,.nota.verde b{color:inherit}
+/* tablas */
+table.datos{border-collapse:separate;border-spacing:3px;font-size:15px;font-variant-numeric:tabular-nums}
+table.datos th{background:var(--head);color:var(--muted);font-weight:700;padding:8px 12px;text-align:left;border-radius:5px}
+table.datos td{background:var(--celda);padding:8px 12px;border-radius:5px}
+table.datos td.num{text-align:right}
+table.datos .hi{background:var(--azul2)!important;color:var(--azul);font-weight:700}
+table.datos .hi2{background:var(--ambar2)!important;color:#5c4700;font-weight:700}
+table.datos tr.dim td{opacity:.35}
+/* filas de celdas grandes */
+.fila{display:grid;grid-template-columns:150px 64px repeat(24,1fr);gap:3px;align-items:center;font-variant-numeric:tabular-nums}
+.fila .tec{font-size:12px;font-weight:700;padding:3px 6px;border-radius:4px;text-align:center}
+.fila.sinnum .cel, .fila.chica.sinnum .cel{height:22px;padding:0;font-size:0;line-height:22px}
+.fila.sinnum .cel:hover{outline:2px solid var(--ink)}
+.fila .rot{font-size:14px;font-weight:700;padding-right:6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fila .hh{text-align:center;font-size:12px;color:var(--muted);font-weight:700}
+.fila .cel{text-align:center;border-radius:5px;padding:9px 0;font-size:12.5px;color:#fff;font-weight:600;transition:all .4s}
+.fila .cel.dark{color:var(--ink)}
+.fila.chica .cel{padding:4px 0;font-size:11px}
+.fila.chica .rot{font-size:12.5px;font-weight:600}
+.fila .cel.off{opacity:.15}
+.fila .hh.on{background:var(--ambar2);color:#5c4700;border-radius:4px}
+.fila .rot.on{color:var(--azul)}
+.tira{display:flex;flex-wrap:wrap;gap:2px;align-items:flex-end;height:90px}
+.tira i{display:block;width:5px;background:var(--azul);opacity:.7;border-radius:1px 1px 0 0}
+svg text{font-family:inherit}
+.leyenda{display:flex;gap:14px;flex-wrap:wrap;font-size:14px;color:var(--muted)}
+.leyenda span{display:inline-flex;align-items:center;gap:6px}
+.leyenda i{width:13px;height:13px;border-radius:50%;display:inline-block}
+.cross{border-collapse:separate;border-spacing:2px;font-size:14px;font-variant-numeric:tabular-nums}
+.cross th{background:var(--head);color:var(--muted);padding:4px 10px;border-radius:4px;font-weight:700}
+.cross td{background:var(--celda);padding:4px 10px;text-align:center;border-radius:4px;min-width:46px}
+.cross td.z{color:#c0c4c8}
+.cross td.v{background:var(--azul2);color:var(--azul);font-weight:700}
+.cross td.r{background:var(--rojo2);color:var(--rojo);font-weight:700}
+.cross td.t{text-align:left;font-weight:700}
+.portada{display:flex;flex-direction:column;justify-content:center;padding:10px 6px}
+.portada h3{font-size:30px;margin:0 0 10px;color:var(--navy);line-height:1.15}
+.portada p{font-size:18px;max-width:680px}
+.preg{display:grid;gap:10px;margin-top:14px;max-width:680px}
+.preg div{background:var(--azul2);border-radius:10px;padding:10px 14px;font-size:16px;color:var(--navy);display:flex;gap:10px}
+.preg b{background:var(--azul);color:#fff;border-radius:50%;width:26px;height:26px;display:inline-flex;align-items:center;justify-content:center;flex:none;font-size:14px}
+.mas{display:flex;gap:10px;flex-wrap:wrap;margin-top:4px}
+.mas button{border:1px solid var(--grid);background:#fff;border-radius:999px;padding:8px 14px;font-size:14.5px;cursor:pointer;color:var(--navy);font-weight:600}
+.mas button.on{background:var(--navy);color:#fff;border-color:var(--navy)}
+.masbox{background:#fff;border:1px solid var(--navy);border-radius:12px;padding:14px 16px;font-size:16px;line-height:1.5}
+.masbox b{color:var(--navy)}
+footer{text-align:center;color:var(--muted);font-size:12.5px;padding:10px 0 24px}
+kbd{border:1px solid var(--grid);border-radius:4px;padding:0 5px;background:#fff;font-size:12px}
+.parpadea{animation:pp .5s 3}
+@keyframes pp{50%{opacity:.15}}
+</style>
+</head>
+<body>
+<header>
+  <div><h1>Preparativos · Python con un almacén y Colab sin miedo</h1><div class="sub">Análisis Avanzado de Datos con Python · Subsecretaría de Energía · con los datos del curso</div></div>
+  <nav class="caps" id="caps"></nav>
+</header>
+<main>
+  <section class="panel story">
+    <div class="capnum" id="capnum"></div>
+    <h2 id="h2"></h2>
+    <div class="texto" id="texto"></div>
+    <div class="navsteps">
+      <button id="prev">Anterior</button>
+      <button id="next" class="pri">Siguiente</button>
+      <div class="dots" id="dots"></div>
+    </div>
+  </section>
+  <section class="panel stage">
+    <div id="estado"></div>
+    <div class="lienzo" id="lienzo"></div>
+  </section>
+</main>
+<footer>Se avanza con los botones o con las flechas del teclado <kbd>→</kbd> <kbd>←</kbd>. Las cifras de las centrales salen de los archivos de datos del curso, que son inventados para el curso.</footer>
+<script>
+const D = {"centrales":[{"central":"Central Río Manso Alto","tecnologia":"hidro","region":"Biobío","potencia_mw":420,"anio_inicio":2004},{"central":"Central Salto Verde","tecnologia":"hidro","region":"Los Lagos","potencia_mw":310,"anio_inicio":1998},{"central":"Central Aguas Claras","tecnologia":"hidro","region":"Biobío","potencia_mw":180,"anio_inicio":2011},{"central":"Central Vega Azul","tecnologia":"hidro","region":"Los Lagos","potencia_mw":95,"anio_inicio":2016},{"central":"Central Tres Saltos","tecnologia":"hidro","region":"Biobío","potencia_mw":260,"anio_inicio":1995},{"central":"Parque Solar Pampa Alta","tecnologia":"solar","region":"Antofagasta","potencia_mw":230,"anio_inicio":2019},{"central":"Parque Solar Llano Seco","tecnologia":"solar","region":"Atacama","potencia_mw":180,"anio_inicio":2020},{"central":"Parque Solar Sol Naciente","tecnologia":"solar","region":"Antofagasta","potencia_mw":145,"anio_inicio":2021},{"central":"Parque Solar Quebrada Honda","tecnologia":"solar","region":"Atacama","potencia_mw":95,"anio_inicio":2022},{"central":"Parque Solar Altiplano","tecnologia":"solar","region":"Antofagasta","potencia_mw":310,"anio_inicio":2023},{"central":"Eólica Cerro Negro","tecnologia":"eolica","region":"Coquimbo","potencia_mw":160,"anio_inicio":2017},{"central":"Eólica Punta Ventosa","tecnologia":"eolica","region":"Coquimbo","potencia_mw":120,"anio_inicio":2018},{"central":"Eólica Loma Fría","tecnologia":"eolica","region":"Valparaíso","potencia_mw":85,"anio_inicio":2020},{"central":"Eólica Campo Abierto","tecnologia":"eolica","region":"Coquimbo","potencia_mw":200,"anio_inicio":2021},{"central":"Termoeléctrica Bahía Norte","tecnologia":"gas","region":"Valparaíso","potencia_mw":375,"anio_inicio":2008},{"central":"Termoeléctrica Puerto Sur","tecnologia":"gas","region":"Biobío","potencia_mw":290,"anio_inicio":2012},{"central":"Termoeléctrica Valle Central","tecnologia":"gas","region":"Metropolitana","potencia_mw":210,"anio_inicio":2006},{"central":"Carboeléctrica Costa Brava","tecnologia":"carbon","region":"Biobío","potencia_mw":480,"anio_inicio":2001},{"central":"Carboeléctrica Roca Gris","tecnologia":"carbon","region":"Antofagasta","potencia_mw":350,"anio_inicio":1999},{"central":"Diésel Respaldo Cordillera","tecnologia":"diesel","region":"Metropolitana","potencia_mw":45,"anio_inicio":2014}]};
+</script>
+<script>
+/* ---------- utilidades ---------- */
+const TEC = {hidro:["hidro","#1a73e8"], solar:["solar","#d99a00"], eolica:["eólica","#188038"], gas:["gas","#c5221f"], carbon:["carbón","#7b4fc9"], diesel:["diésel","#80868b"]};
+const TECS = ["carbon","gas","hidro","eolica","solar","diesel"];
+const LETRA = ["A","B","C","D","E","F","G","H"];
+const es = (x, d=1) => x.toLocaleString("es-CL", {minimumFractionDigits:d, maximumFractionDigits:d});
+const esN = x => x.toLocaleString("es-CL");
+const $ = s => document.querySelector(s);
+const h = (tag, attrs={}, ...kids) => { const e = document.createElement(tag); for (const [k,v] of Object.entries(attrs)) { if (k==="class") e.className=v; else if (k==="style") e.style.cssText=v; else if (k==="html") e.innerHTML=v; else if (k.startsWith("on")) e[k]=v; else e.setAttribute(k,v);} for (const k of kids) e.append(k); return e; };
+const NS = "http://www.w3.org/2000/svg";
+const sv = (tag, attrs={}) => { const e = document.createElementNS(NS, tag); for (const [k,v] of Object.entries(attrs)) e.setAttribute(k, v); return e; };
+const txt = (x,y,t,attrs={}) => { const e=sv("text",{x,y,...attrs}); e.textContent=t; return e; };
+const corto = n => n.replace(/^(Central|Carboeléctrica|Termoeléctrica|Parque Solar|Eólica|Diésel) /,"");
+const dist2 = (a,b) => { let s=0; for (let i=0;i<a.length;i++){const d=a[i]-b[i]; s+=d*d;} return s; };
+const proj = (v, pca) => [0,1].map(j => pca.comp[j].reduce((s,c,i)=> s + c*(v[i]-pca.mean[i]), 0));
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+let token = 0; const nuevoToken = () => ++token;
+
+const centrales = D.centrales || [], N = centrales.length;
+
+/* ---------- estado del escenario ---------- */
+const ICO = {mira:"👁", haz:"✋", calc:"", listo:"✓"};
+function estado(tipo, texto, extra) {
+  const e = $("#estado"); e.innerHTML = ""; const b = h("div", {class:"estado "+tipo}, h("span",{class:"ic"}, ICO[tipo]), h("span",{html:texto}));
+  if (extra) b.append(extra); e.append(b); return b;
+}
+function lienzo(...nodos){ const L=$("#lienzo"); L.innerHTML=""; for (const n of nodos) if (n) L.append(n); }
+const nota = (html, clase="") => h("div", {class:"nota "+clase, html});
+
+/* ---------- componentes ---------- */
+function filaCeldas(valores, opts={}) {
+  // valores: 24 números. opts: {rot, max, dec, chica, colsOn, rotOn, fmt, std}
+  const f = h("div",{class:"fila"+(opts.chica?" chica":"")+(opts.sinNum?" sinnum":"")});
+  f.append(h("div",{class:"rot"+(opts.rotOn?" on":""), title:opts.rot||""}, opts.rot||""));
+  const tk = opts.tec ? TEC[opts.tec] : null;
+  f.append(h("div",{class:"tec", style: tk? `background:${tk[1]}22;color:${tk[1]}` : ""}, tk? tk[0] : ""));
+  valores.forEach((v,k)=>{
+    let bg, dark, t;
+    if (opts.std){ const a=0.12+0.88*Math.min(1,Math.abs(v)/2.3); bg = v>=0? `rgba(26,115,232,${a.toFixed(2)})` : `rgba(197,34,31,${a.toFixed(2)})`; dark = Math.abs(v)<1; t=(v>=0?"+":"")+v.toFixed(1); }
+    else { const fr=Math.min(1, v/opts.max); const a=0.1+0.9*fr; bg=`rgba(26,115,232,${a.toFixed(2)})`; dark = fr<0.45; t = opts.fmt? opts.fmt(v) : (opts.dec===0? Math.round(v) : v.toFixed(opts.dec??2)); }
+    const off = opts.colsOn && !opts.colsOn.includes(k);
+    f.append(h("div",{class:"cel"+(dark?" dark":"")+(off?" off":""), style:`background:${bg}`, title:`${opts.rot||""}, ${k} h, ${t}`}, String(t)));
+  });
+  return f;
+}
+function cabeceraHoras(colsOn){ const f=h("div",{class:"fila"}); f.append(h("div",{class:"rot",style:"color:var(--muted);font-size:12px"},"central")); f.append(h("div",{class:"tec",style:"color:var(--muted)"},"tipo")); for(let k=0;k<24;k++) f.append(h("div",{class:"hh"+((colsOn||[]).includes(k)?" on":"")},String(k))); return f; }
+const ORDEN = [...Array(N).keys()].sort((a,b)=>TECS.indexOf(centrales[a].t)-TECS.indexOf(centrales[b].t) || a-b);
+function tablaFilas(tabla, opts={}){ const w=h("div",{style:"display:flex;flex-direction:column;gap:3px"}); w.append(cabeceraHoras(opts.colsOn)); ORDEN.forEach(i=>{ const fila=tabla[i]; if (opts.solo && !opts.solo.includes(i)) return; w.append(filaCeldas(fila,{...opts, rot:corto(centrales[i].n), tec:centrales[i].t, rotOn:(opts.rowsOn||[]).includes(i), chica:true})); }); return w; }
+
+function curvas(series, opts={}) {
+  const W = opts.w||760, H = opts.h||330, ml=58, mr=16, mt=22, mb=40;
+  const s = sv("svg", {viewBox:`0 0 ${W} ${H}`, style:"width:100%;height:auto;display:block"});
+  const ymax = opts.ymax || Math.max(...series.flatMap(q=>q.y))*1.1;
+  const X = k => ml + k*(W-ml-mr)/23, Y = v => mt + (H-mt-mb)*(1 - v/ymax);
+  for (let i=0;i<=4;i++){ const v = ymax*i/4; s.append(sv("line",{x1:ml,x2:W-mr,y1:Y(v),y2:Y(v),stroke:"#e8eaed"})); s.append(txt(ml-8,Y(v)+4, opts.fmt? opts.fmt(v): es(v,0), {"text-anchor":"end","font-size":12,fill:"#5f6368"})); }
+  for (let k=0;k<24;k+=3) s.append(txt(X(k),H-mb+18,k,{"text-anchor":"middle","font-size":12,fill:"#5f6368"}));
+  s.append(txt((ml+W-mr)/2,H-6,"hora del día",{"text-anchor":"middle","font-size":12.5,fill:"#5f6368"}));
+  if (opts.ylabel) s.append(txt(ml,mt-8,opts.ylabel,{"font-size":12.5,fill:"#5f6368"}));
+  for (const q of series) {
+    const d = q.y.map((v,k)=>(k?"L":"M")+X(k).toFixed(1)+","+Y(v).toFixed(1)).join(" ");
+    s.append(sv("path",{d, fill:"none", stroke:q.color, "stroke-width":q.w||3, opacity:q.alpha??1, "stroke-linejoin":"round"}));
+    if (q.nombre) s.append(txt(X(q.lx??12), Y(q.y[q.lx??12])-9, q.nombre, {"font-size":13,fill:q.color,"font-weight":700,"text-anchor":"middle"}));
+  }
+  for (const a of (opts.anot||[])) s.append(txt(X(a.x),Y(a.y),a.t,{"font-size":13.5,fill:a.color||"#5f6368","text-anchor":"middle","font-weight":600}));
+  return s;
+}
+function leyendaTec(lista=TECS){ return h("div",{class:"leyenda"}, ...lista.map(t=>h("span",{}, h("i",{style:`background:${TEC[t][1]}`}), TEC[t][0]))); }
+function crosstab(filas, cols, M, rotCol) {
+  const t = h("table",{class:"cross"});
+  t.append(h("tr",{}, h("th",{},"tecnología"), ...cols.map(c=>h("th",{}, c===-1? "fuera, sin barrio" : rotCol(c)))));
+  for (const f of filas) t.append(h("tr",{}, h("td",{class:"t",style:`color:${TEC[f][1]}`},TEC[f][0]), ...cols.map(c=>{const v=M[f][c]||0; return h("td",{class: v===0?"z": (c===-1?"r":"v")}, v===0?"·":esN(v));})));
+  return t;
+}
+function crossCentralesKM(lab,k){ const M={}; for(const t of TECS) M[t]={}; lab.forEach((g,i)=>{ M[centrales[i].t][g]=(M[centrales[i].t][g]||0)+1; }); return crosstab(TECS,[...Array(k).keys()],M,c=>"mesa "+LETRA[c]); }
+function crossDias(lab){ const cols=[...new Set(lab)].sort((a,b)=>a-b); const M={}; for(const t of TECS) M[t]={}; lab.forEach((g,i)=>{ const t=centrales[D.dias.central[i]].t; M[t][g]=(M[t][g]||0)+1; }); return crosstab(TECS,cols,M,c=>"barrio "+LETRA[c]); }
+
+/* ---------- helpers de los preparativos ---------- */
+function celda(codigo, salida, opts={}) {
+  const w = h("div",{style:"border:1px solid var(--grid);border-radius:10px;overflow:hidden;background:#fff"});
+  const cab = h("div",{style:"display:flex;align-items:flex-start;gap:10px;background:#f7f8fa;padding:10px 12px"});
+  const play = h("div",{style:`width:30px;height:30px;border-radius:50%;background:${opts.listo?"var(--verde)":opts.error?"var(--rojo)":"var(--navy)"};color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;flex:none`},"▶");
+  const cod = h("pre",{style:"margin:0;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13.5px;line-height:1.6;white-space:pre-wrap;flex:1"});
+  codigo.forEach(l => cod.append(h("div",{style: l.startsWith("#") ? "color:#6a737d" : ""}, l)));
+  cab.append(play, cod); w.append(cab);
+  if (salida !== undefined && salida !== null) { const out = h("div",{style:`padding:10px 14px 10px 52px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13.5px;white-space:pre-wrap;border-top:1px solid var(--grid);${opts.error?"color:var(--rojo);background:var(--rojo2)":""}`}); if (typeof salida === "string") out.textContent = salida; else out.append(salida); w.append(out); }
+  return w;
+}
+function caja(etiqueta, valor, color="#1a73e8", texto=false) {
+  return h("div",{style:`display:inline-flex;flex-direction:column;align-items:center;border:2px solid ${color};border-radius:10px;padding:8px 16px;min-width:110px;background:#fff;margin:4px`}, h("div",{style:`font-family:ui-monospace,Menlo,monospace;font-size:12px;color:${color};font-weight:700`},etiqueta), h("div",{style:"font-size:22px;font-weight:800;margin-top:2px"}, texto? '"'+valor+'"' : String(valor)));
+}
+function cajaGrande(op, grande, texto, clase="") { return nota(`<div class="op">${op}</div><div class="grande">${grande}</div>${texto}`, clase); }
+const control = (label, min, max, val, step=1) => { const sl=h("input",{type:"range",min,max,value:val,step}); const v=h("span",{style:"font-weight:800;font-size:17px;min-width:40px"},String(val)); return {sl, v, nodo:h("span",{style:"display:flex;gap:8px;align-items:center"},label,sl,v)}; };
+const chipT = t => h("span",{style:`display:inline-block;border-radius:999px;padding:1px 8px;font-size:12px;font-weight:700;background:${TEC[t][1]};color:#fff`},TEC[t][0]);
+function tablaCentrales(filas, cols) {
+  const t = h("table",{class:"datos",style:"font-size:13.5px"}); t.append(h("tr",{}, ...cols.map(c=>h("th",{},c))));
+  filas.forEach(r => t.append(h("tr",{}, ...cols.map(c => c==="tecnologia"? h("td",{},chipT(r[c])) : h("td",{class:typeof r[c]==="number"?"num":""}, String(r[c]))))));
+  return t;
+}
+
+
+
+/* ---------- navegación y capítulos ---------- */
+
+const CAPS = [
+{ n:"Antes de empezar", t:"Python con un almacén, y Colab sin miedo", pasos:[
+  { tx:`<p>Antes del primer lab, dos cosas. Ocho ideas de Python contadas con un <b>almacén de barrio</b>, sin energía todavía. Y qué es <b>Colab</b>, el lugar donde se corre el código del curso, para perderle el miedo.</p><p>Nada de esto se puede romper.</p>`,
+    mas:[["¿Qué es Colab?","Una página de Google donde se escribe y se corre Python desde el navegador, sin instalar nada. Los cuadernos del curso se abren ahí con un clic. Lo que se escribe queda en tu pestaña y no afecta a nadie más."],["¿Por qué un almacén?","Porque todos saben cómo funciona. Un precio, una cantidad, un total, hay pan o no hay pan. Las ideas de Python son esas mismas, con otros nombres. Las centrales llegan en el Lab 00."]],
+    st(){ estado("mira","Lo que viene."); lienzo(h("div",{class:"portada"}, h("h3",{},"Dos cosas antes del primer lab"), h("p",{},"Las ideas de Python con un almacén. Y cómo se usa Colab, el cuaderno donde se corre todo."), h("div",{class:"preg"}, h("div",{},h("b",{},"1"),"Cajas con etiqueta, texto y número, una cuenta, y qué pasa si cambio una caja."), h("div",{},h("b",{},"2"),"Una lista, una decisión, una repetición y una tabla."), h("div",{},h("b",{},"3"),"Cómo se ve una celda de Colab, cómo se corre, y cómo se lee un error sin asustarse.")))); } },
+]},
+{ n:"Capítulo 1", t:"Cajas con etiqueta", pasos:[
+  { tx:`<p>Una <b>variable</b> es una caja con una etiqueta. Se guarda algo adentro con el signo igual, y después se usa la etiqueta para sacarlo.</p><p>Guardamos el precio del pan. Cambia el precio y mira la caja.</p>`,
+    mas:[["¿Por qué se llama variable?","Porque lo que hay adentro puede cambiar. La etiqueta es la misma, precio_pan, pero hoy guarda 1500 y mañana 1700. El nombre lo elige uno, sin espacios ni tildes, y conviene que diga qué guarda."]],
+    st(){ const c=control("precio",500,3000,1500,100); estado("haz","Cambia el precio del pan.",h("span",{style:"margin-left:auto"},c.nodo)); const w=h("div",{}); lienzo(w);
+      const pinta=()=>{ const P=+c.sl.value; c.v.textContent=P; w.innerHTML=""; w.append(h("div",{class:"col"}, celda(['# Una variable es una caja con una etiqueta. Guardamos el precio del pan.',`precio_pan = ${P}`,'print(precio_pan)'], String(P),{listo:true}), h("div",{style:"text-align:center"},caja("precio_pan",P)), nota(`La etiqueta es <b>precio_pan</b>. Adentro hay ${esN(P)}. print saca lo que hay en la caja y lo muestra.`))); };
+      c.sl.oninput=pinta; pinta(); } },
+  { tx:`<p>Python distingue dos cosas. Lo que va <b>entre comillas es texto</b>, una palabra, un nombre. Lo que va <b>sin comillas es un número</b>, y con los números se calcula.</p><p>Marca la casilla y mira qué pasa si el 3 va entre comillas.</p>`,
+    mas:[["¿Y si escribo 3 entre comillas?","Para Python es texto, como la palabra pan. Si lo multiplicas por 2, no da 6, repite el texto dos veces, 33. Y si intentas sumarle un número, da error. Es el error más común al empezar, y en el Lab 03 pasa con un archivo entero."]],
+    st(){ const op={com:false}; const cb=h("input",{type:"checkbox"}); const lab=h("label",{style:"margin-left:auto;display:flex;gap:6px;align-items:center;cursor:pointer;font-weight:600"},cb,"poner el 3 entre comillas"); estado("haz","Marca la casilla.",lab); const w=h("div",{}); lienzo(w);
+      const pinta=()=>{ w.innerHTML=""; w.append(h("div",{class:"col"}, celda(['# Lo que va entre comillas es texto. Lo que no lleva comillas es número.','producto = "pan"', op.com? 'cantidad = "3"' : 'cantidad = 3','print(producto, cantidad)','print(cantidad * 2)'], op.com? 'pan 3\n33' : 'pan 3\n6',{listo:true}), h("div",{style:"text-align:center"},caja("producto","pan","#d99a00",true),caja("cantidad", op.com? '"3"' : 3, op.com?"#d99a00":"#1a73e8")), op.com? nota(`<b>"3" entre comillas es texto.</b> Por eso cantidad por 2 no da 6, da 33, el texto repetido dos veces. Python no se quejó, hizo lo que se le pidió con un texto.`,"ambar") : nota(`<b>3 sin comillas es un número.</b> cantidad por 2 da 6. Y "pan" con comillas es texto, se muestra tal cual.`))); const b=$("#estado").firstChild; b.className="estado "+(op.com?"listo":"haz"); };
+      cb.onchange=()=>{ op.com=cb.checked; pinta(); }; pinta(); } },
+  { tx:`<p>Con los números guardados se hacen cuentas. El total es el precio por la cantidad. El asterisco es multiplicar.</p><p>Mueve los dos y mira el total.</p>`,
+    st(){ const p=control("precio_pan",500,3000,1500,100), q=control("cantidad",1,10,3); estado("haz","Mueve el precio y la cantidad.",h("span",{style:"margin-left:auto;display:flex;gap:16px"},p.nodo,q.nodo)); const w=h("div",{}); lienzo(w);
+      const pinta=()=>{ const P=+p.sl.value,Q=+q.sl.value; p.v.textContent=P; q.v.textContent=Q; w.innerHTML=""; w.append(h("div",{class:"col"}, celda([`precio_pan = ${P}`,`cantidad = ${Q}`,'# Con los números guardados se puede calcular. El asterisco es multiplicar.','total = precio_pan * cantidad','print("Total a pagar", total)'], `Total a pagar ${P*Q}`,{listo:true}), h("div",{style:"text-align:center"},caja("precio_pan",P),caja("cantidad",Q),h("span",{style:"font-size:26px;margin:0 6px"},"→"),caja("total",P*Q,"#188038")), nota(`El resultado quedó guardado en una caja nueva, <b>total</b>. Se puede usar después, como cualquier otra.`))); };
+      p.sl.oninput=pinta; q.sl.oninput=pinta; pinta(); } },
+  { tx:`<p>Una trampa. Si después de calcular el total cambias el precio del pan, <b>el total no cambia solo</b>. Quedó guardado con el precio viejo. Hay que volver a calcularlo.</p><p>Haz clic en cambiar el precio, y después en volver a calcular.</p>`,
+    mas:[["¿Y en Colab?","Lo mismo. Si cambias un valor en una celda de arriba y no vuelves a correr las de abajo, las de abajo siguen con el valor viejo. Por eso en el curso se dice tantas veces vuelve a correr la celda."]],
+    st(){ let precio=1500, total=4500, paso=0; const b1=h("button",{},"Cambiar el precio a 1700"); const b2=h("button",{},"Volver a calcular"); b2.disabled=true; estado("haz","Haz clic en Cambiar el precio.",h("span",{style:"margin-left:auto;display:flex;gap:8px"},b1,b2)); const w=h("div",{}); lienzo(w);
+      const pinta=()=>{ w.innerHTML=""; const cod = paso===0? ['precio_pan = 1500','cantidad = 3','total = precio_pan * cantidad'] : paso===1? ['# Guardar otro valor con la misma etiqueta reemplaza el anterior.','precio_pan = 1700','print("Precio nuevo del pan", precio_pan)','print("Total", total)'] : ['total = precio_pan * cantidad','print("Total", total)']; const sal = paso===0? null : paso===1? 'Precio nuevo del pan 1700\nTotal 4500' : 'Total 5100'; w.append(h("div",{class:"col"}, celda(cod,sal,{listo:paso>0}), h("div",{style:"text-align:center"},caja("precio_pan",precio, paso===1?"#c5221f":"#1a73e8"),caja("cantidad",3),caja("total",total, paso===1?"#c5221f":"#188038")), paso===0? nota("Total 4.500, con el pan a 1.500.") : paso===1? nota(`El precio cambió a 1.700, pero <b>el total sigue en 4.500</b>. La caja total guarda un número, no la cuenta. Nadie le dijo que se recalculara.`,"ambar") : nota(`Ahora sí, <b>5.100</b>. Se volvió a hacer la cuenta con el precio nuevo y se guardó de nuevo en total.`,"verde"))); };
+      b1.onclick=()=>{ precio=1700; paso=1; b1.disabled=true; b2.disabled=false; pinta(); estado("haz","El precio cambió. Ahora haz clic en Volver a calcular.",h("span",{style:"margin-left:auto;display:flex;gap:8px"},b1,b2)); };
+      b2.onclick=()=>{ total=5100; paso=2; b2.disabled=true; pinta(); estado("listo","Total recalculado con el precio nuevo."); }; pinta(); } },
+]},
+{ n:"Capítulo 2", t:"Listas, decisiones y repeticiones", pasos:[
+  { tx:`<p>Para guardar varios precios no hacen falta varias cajas. Una <b>lista</b> guarda varios valores bajo una sola etiqueta. Va entre corchetes, separados por comas.</p><p>Agrega un producto y mira cómo cambian cuántos hay y cuánto suman.</p>`,
+    mas:[["¿Por qué listas?","Porque los datos vienen en grandes cantidades. Veinte centrales, 8.784 horas, 600 eventos. Con una lista, una sola palabra los cuenta o los suma, tengan 3 o 3 millones. Una columna de una tabla es, en el fondo, una lista."]],
+    st(){ let precios=[1500,990,2300]; const btn=h("button",{},"Agregar un producto"); estado("haz","Haz clic para agregar productos a la lista.",btn); const w=h("div",{}); lienzo(w);
+      const extra=[850,1200,3100,450];
+      const pinta=()=>{ w.innerHTML=""; w.append(h("div",{class:"col"}, celda(['# Una lista va entre corchetes, con los valores separados por comas.',`precios = [${precios.join(", ")}]`,'print(precios)','print("Cantidad de productos", len(precios))','print("Suma de los precios", sum(precios))'], `[${precios.join(", ")}]\nCantidad de productos ${precios.length}\nSuma de los precios ${precios.reduce((a,b)=>a+b,0)}`,{listo:true}), h("div",{style:"text-align:center"},caja("precios","["+precios.join(", ")+"]"),caja("len",precios.length,"#188038"),caja("sum",precios.reduce((a,b)=>a+b,0),"#188038")), nota(`<b>len</b> cuenta cuántos hay, <b>sum</b> los suma. Da lo mismo cuántos sean, la palabra es la misma.`))); };
+      btn.onclick=()=>{ if (precios.length-3<extra.length) precios.push(extra[precios.length-3]); if (precios.length-3>=extra.length) btn.disabled=true; pinta(); }; pinta(); } },
+  { tx:`<p>Python <b>decide</b> con una pregunta. <b>if</b> pregunta, y si la respuesta es sí hace lo que sigue. <b>else</b> es lo que hace si la respuesta es no.</p><p>Mueve el stock de pan y mira qué camino toma.</p>`,
+    mas:[["¿Qué es stock_pan > 0?","Una pregunta cuya respuesta es sí o no. ¿El stock es mayor que cero? Python la responde con True o False, y if hace lo suyo solo con True. Las preguntas pueden ser mayor, menor, igual con dos signos, distinto."]],
+    st(){ const c=control("stock_pan",0,10,0); estado("haz","Mueve el stock de pan.",h("span",{style:"margin-left:auto"},c.nodo)); const w=h("div",{}); lienzo(w);
+      const pinta=()=>{ const S=+c.sl.value; c.v.textContent=S; w.innerHTML=""; const cel=celda(['# if pregunta algo. Si la respuesta es sí, hace lo de abajo. Si no, hace lo del else.',`stock_pan = ${S}`,'if stock_pan > 0:','    print("Hay pan. Compro pan.")','else:','    print("No hay pan. Compro galletas.")'], S>0? "Hay pan. Compro pan." : "No hay pan. Compro galletas.",{listo:true}); cel.querySelectorAll("pre > div").forEach((d,i)=>{ if (i===(S>0?3:5)) d.style.cssText+="background:#fef3d6;border-radius:4px"; }); w.append(h("div",{class:"col"}, cel, cajaGrande("¿stock_pan es mayor que 0?", S>0?"sí":"no", S>0? "Python hizo la línea de abajo del if y saltó el else." : "La pregunta dio no. Python saltó el if y fue al else."))); };
+      c.sl.oninput=pinta; pinta(); } },
+  { tx:`<p>Python <b>repite</b> una tarea para cada valor de una lista. <b>for</b> toma los valores uno por uno, y por cada uno hace lo de abajo.</p><p>Haz clic en Pasar el siguiente y mira cómo cada precio pasa por la caja.</p>`,
+    mas:[["¿Y si son mil?","for los pasa a los mil, uno por uno, sin que uno escriba nada más. Es lo que hace que un programa valga la pena. En pandas casi nunca se escribe el for, porque las tablas lo hacen solas, pero la idea es esta."]],
+    st(){ const precios=[1500,990,2300]; let i=0; const btn=h("button",{},"Pasar el siguiente"); estado("haz","Haz clic en Pasar el siguiente.",btn); const w=h("div",{}); lienzo(w);
+      const pinta=()=>{ w.innerHTML=""; const sal = precios.slice(0,i).map(p=>`Pasa por la caja un producto de ${p}`).join("\n"); w.append(h("div",{class:"col"}, celda(['# for repite lo de abajo una vez por cada valor de la lista.','precios = [1500, 990, 2300]','for precio in precios:','    print("Pasa por la caja un producto de", precio)'], i? sal : null,{listo:i===3}), h("div",{style:"text-align:center"}, ...precios.map((p,k)=>caja(k<i-1?"ya pasó":k===i-1?"precio":"espera",p, k<i-1?"#9aa0a6":k===i-1?"#d99a00":"#80868b"))), nota(i===0? "Tres productos en la lista. Ninguno ha pasado todavía." : i<3? `La caja <b>precio</b> tiene ahora ${precios[i-1]}. Python hizo la línea de adentro con ese valor, y pasa al siguiente.` : "Los tres pasaron. <b>Una sola línea de código se ejecutó tres veces</b>, una por cada valor de la lista. Después del for, Python sigue con lo que venga.","verde"))); };
+      btn.onclick=()=>{ if(i<3) i++; pinta(); if(i===3){ btn.disabled=true; estado("listo","Los tres productos pasaron por la caja."); } }; pinta(); } },
+  { tx:`<p>Y una <b>tabla</b> junta varias listas como columnas. Los productos en una, los precios en otra, y al lado. Es lo que hace <b>pandas</b>, la herramienta de Python para tablas, y es con lo que se trabaja todo el curso. En la celda, import pandas as pd la trae, y la última línea, el nombre de la tabla solo, hace que Colab la muestre.</p><p>Haz clic y mira las dos listas convertirse en tabla.</p>`,
+    mas:[["¿Qué es pd?","Es pandas con nombre corto. import pandas as pd lo trae y desde ahí todo lo que empieza con pd es de pandas. DataFrame es el nombre que pandas le da a una tabla."]],
+    st(){ const w=h("div",{}); const btn=h("button",{},"Armar la tabla"); estado("haz","Haz clic en Armar la tabla.",btn); lienzo(w);
+      const pinta=(con)=>{ w.innerHTML=""; w.append(h("div",{class:"col"}, celda(['# Una tabla junta varias listas como columnas.','import pandas as pd','almacen = pd.DataFrame({','    "producto": ["pan", "leche", "queso"],','    "precio": [1500, 990, 2300],','})','almacen'], con? (()=>{ const t=h("table",{class:"datos"}); t.append(h("tr",{},h("th",{},""),h("th",{},"producto"),h("th",{},"precio"))); [["pan",1500],["leche",990],["queso",2300]].forEach((r,i)=>t.append(h("tr",{},h("td",{style:"color:var(--muted)"},String(i)),h("td",{},r[0]),h("td",{class:"num"},String(r[1]))))); return t; })() : null,{listo:con}), con? nota(`Tres filas, dos columnas. La columna de la izquierda sin nombre es el número de fila, que pandas pone solo. <b>Desde aquí en adelante todo el curso es con tablas así.</b>`,"verde") : nota("Dos listas, una de productos y una de precios. Todavía sueltas."))); };
+      btn.onclick=()=>{ btn.disabled=true; pinta(true); estado("listo","Una tabla de tres filas y dos columnas."); }; pinta(false); } },
+]},
+{ n:"Capítulo 3", t:"Colab sin miedo", pasos:[
+  { tx:`<p>Así se ve una <b>celda</b> de Colab. Arriba el código, a la izquierda el botón de correr. Al hacer clic, Python ejecuta el código y la respuesta aparece abajo.</p><p>Escribe tu nombre y haz clic en el botón de la celda.</p>`,
+    mas:[["¿Dónde escribo?","En el cuaderno del curso cada celda que hay que cambiar tiene un campo o una lista desplegable a la derecha. Se cambia ahí y se vuelve a correr la celda con el botón o con Shift y Enter."],["¿Las celdas se corren en orden?","Sí, de arriba hacia abajo, y cada una recuerda lo de las anteriores. Si saltas una, las de abajo pueden no encontrar lo que necesitan. El paso del error lo muestra."]],
+    st(){ const inp=h("input",{type:"text",placeholder:"Escribe aquí tu nombre",style:"font-size:15px;padding:5px 10px;border:1px solid var(--grid);border-radius:6px;width:220px"}); const btn=h("button",{},"▶ Correr"); estado("haz","Escribe tu nombre y haz clic en Correr.",h("span",{style:"margin-left:auto;display:flex;gap:8px"},inp,btn)); const w=h("div",{}); lienzo(w);
+      const pinta=(nombre)=>{ w.innerHTML=""; w.append(h("div",{class:"col"}, celda(['# Lo que escribas en el campo queda guardado con el nombre "nombre".',`nombre = "${nombre||""}"`,'print(f"Hola, {nombre}.")','print("Acabas de correr tu primer programa en Python.")'], nombre? `Hola, ${nombre}.\nAcabas de correr tu primer programa en Python.` : null,{listo:!!nombre}), nombre? nota(`<b>Eso es correr una celda.</b> El código de arriba, la respuesta abajo. Lo que escribiste quedó guardado en la caja nombre y print lo usó.`,"verde") : nota("La celda todavía no se ha corrido. Abajo no hay nada."))); };
+      btn.onclick=()=>{ const nm=inp.value.trim()||"colega"; pinta(nm); estado("listo","Corrida. Tu primer programa."); }; pinta(""); } },
+  { tx:`<p>Lo que se hace todo el curso. Cambiar un valor y volver a correr la celda. Una boleta con IVA. El IVA es el 19 por ciento del neto.</p><p>Cambia el neto y haz clic en Correr. En Colab es igual, cambias el campo y corres la celda.</p>`,
+    st(){ const c=control("neto",1000,100000,10000,1000); const btn=h("button",{},"▶ Correr"); estado("haz","Cambia el neto y haz clic en Correr.",h("span",{style:"margin-left:auto;display:flex;gap:12px;align-items:center"},c.nodo,btn)); const w=h("div",{}); lienzo(w); let corrido=null;
+      const pinta=()=>{ const N=+c.sl.value; c.v.textContent=esN(N); const listo = corrido===N; const ivaC = corrido===null? 0 : Math.round(corrido*0.19); w.innerHTML=""; w.append(h("div",{class:"col"}, celda(['# La misma cuenta de cualquier boleta. El IVA es el 19 por ciento del neto.',`neto = ${N}`,'iva = round(neto * 0.19)','total = neto + iva','print("Neto ", neto)','print("IVA  ", iva)','print("Total", total)'], corrido===null? null : `Neto  ${corrido}\nIVA   ${ivaC}\nTotal ${corrido+ivaC}`,{listo}), listo? nota(`Corrida con el neto nuevo. <b>Así se trabaja todo el curso.</b> El código viene escrito, tú cambias el valor y vuelves a correr.`,"verde") : corrido===null? nota("La celda todavía no se ha corrido. Abajo no hay nada.") : nota(`Cambiaste el neto a ${esN(N)}, pero la respuesta de abajo sigue con ${esN(corrido)}. <b>La celda no se corre sola.</b> Haz clic en Correr.`,"ambar"))); const b=$("#estado").firstChild; if(b) b.className="estado "+(listo?"listo":"haz"); };
+      c.sl.oninput=pinta; btn.onclick=()=>{ corrido=+c.sl.value; pinta(); }; pinta(); } },
+  { tx:`<p>¿Y si algo sale mal? Python se detiene y muestra un <b>error</b>. No se rompe nada. Se lee la última línea, que dice qué pasó, se arregla y se vuelve a correr.</p><p>Esta celda tiene un error a propósito. Haz clic y córrela igual.</p>`,
+    mas:[["¿Cómo se lee un error?","La última línea dice el tipo y el motivo. NameError es que un nombre no existe. Cuando el error viene de más adentro, Colab muestra arriba otras líneas que dicen dónde. Casi siempre es una letra mal escrita o una celda de arriba que no se corrió."],["¿Y si no entiendo el error?","Se copia la última línea y se pregunta, al relator o a un buscador. Los errores de Python son los mismos para todo el mundo, así que la respuesta ya existe."]],
+    st(){ const w=h("div",{}); const btn=h("button",{},"▶ Correr igual"); estado("haz","Haz clic en Correr igual. Va a fallar, y no pasa nada.",btn); lienzo(w);
+      const pinta=(con)=>{ w.innerHTML=""; w.append(h("div",{class:"col"}, celda(['# Esta celda tiene un error a propósito. Córrela igual.','print(totl)'], con? "NameError: name 'totl' is not defined" : null,{error:con}), con? nota(`<b>NameError, el nombre totl no existe.</b> Es total, con la a. Python lo dice en la última línea. Se corrige la letra, se vuelve a correr, y listo. <b>Nada se rompió.</b>`,"ambar") : nota("Fíjate en la palabra totl. Le falta una letra."))); };
+      btn.onclick=()=>{ btn.disabled=true; pinta(true); estado("listo","Un error. Se lee, se arregla, se vuelve a correr."); }; pinta(false); } },
+  { tx:`<p>Y así se ve una tabla de verdad en Colab. Las centrales del curso, que una celda anterior leyó desde el repositorio y guardó con el nombre centrales. Cada fila una central, cada columna un dato.</p><p>Elige una región y mira qué centrales tiene, de la más grande a la más pequeña.</p>`,
+    mas:[["¿De dónde sale la tabla?","De un archivo que está en el repositorio del curso en internet. pd.read_csv lo lee con su dirección. Es la misma tabla de todos los labs, y se explica en el Lab 01."]],
+    st(){ const REG=["Antofagasta","Atacama","Coquimbo","Valparaíso","Metropolitana","Biobío","Los Lagos"]; const sel=h("select",{style:"font-size:15px;padding:4px 8px;border-radius:6px"}); REG.forEach(r=>sel.append(h("option",{value:r},r))); sel.value="Biobío"; estado("haz","Elige una región.",h("span",{style:"margin-left:auto;display:flex;gap:8px;align-items:center"},"region",sel)); const w=h("div",{}); lienzo(w);
+      const pinta=()=>{ const r=sel.value; const en=D.centrales.filter(c=>c.region===r).sort((a,b)=>b.potencia_mw-a.potencia_mw); w.innerHTML=""; w.append(h("div",{class:"col"}, celda(['# Las centrales de la región elegida, de la más grande a la más pequeña.',`region = "${r}"`,'en_la_region = centrales[centrales["region"] == region]','en_la_region = en_la_region.sort_values("potencia_mw", ascending=False)',`print(f"En {region} hay {len(en_la_region)} centrales")`], (()=>{ const d=h("div",{}); d.append(h("div",{style:"margin-bottom:8px"},`En ${r} hay ${en.length} centrales`), tablaCentrales(en,["central","tecnologia","potencia_mw"])); return d; })(),{listo:true}), nota(`<b>${en[0].central}</b> es la más grande de ${r}, con ${en[0].potencia_mw} MW. Esta celda es la del paso 6 del cuaderno de bienvenida, con la lista desplegable a la derecha.`))); };
+      sel.onchange=pinta; pinta(); } },
+]},
+{ n:"Cierre", t:"Listo para el primer lab", pasos:[
+  { tx:`<p>Ocho ideas con un almacén. Una caja con etiqueta, texto y número, una cuenta, cambiar una caja no cambia las cuentas hechas antes, una lista, una decisión, una repetición y una tabla.</p><p>Y Colab. Una celda se corre con el botón, la respuesta sale abajo, un error se lee y se arregla, y nada se rompe.</p>`,
+    st(){ estado("mira","Lo que se lleva el alumno."); lienzo(h("div",{class:"portada"}, nota(`<b>El código del curso viene escrito.</b> Lo que hay que hacer es cambiar un valor y volver a correr la celda. Si algo falla, se lee la última línea del error.`,"verde"), h("div",{style:"height:10px"}), nota(`<b>Una caja guarda un número, no la cuenta.</b> Si cambias algo arriba, hay que volver a correr lo de abajo. Es la causa de la mitad de las dudas en clase.`))); } },
+  { tx:`<p>Los dos cuadernos. Conceptos, Python con un almacén, para quien nunca vio código. Y Bienvenida, Colab sin miedo, el primer contacto con el cuaderno.</p>`,
+    st(){ estado("mira","Los dos cuadernos de preparación."); lienzo(h("div",{class:"portada"}, h("h3",{},"Antes del Lab 00"), h("p",{}, h("a",{href:"https://colab.research.google.com/github/RodrigoMSB/curso-python-minergia/blob/main/modulos/conceptos/lab.ipynb",target:"_blank",style:"color:var(--azul);font-weight:700"},"Conceptos · Python con un almacén")), h("p",{}, h("a",{href:"https://colab.research.google.com/github/RodrigoMSB/curso-python-minergia/blob/main/modulos/bienvenida/lab.ipynb",target:"_blank",style:"color:var(--azul);font-weight:700"},"Bienvenida · Colab sin miedo")))); } },
+]},
+];
+
+
+let cap=0, paso=0;
+function render(){
+  const C=CAPS[cap], P=C.pasos[paso]; nuevoToken();
+  $("#capnum").textContent = C.n; $("#h2").textContent = C.t; $("#texto").innerHTML = P.tx;
+  P.st();
+  if (P.mas){ const caja=h("div",{class:"masbox",style:"display:none"}); const fila=h("div",{class:"mas"}); P.mas.forEach(([t,html],i)=>{ const b=h("button",{},t); b.onclick=()=>{ const on=b.classList.contains("on"); fila.querySelectorAll("button").forEach(x=>x.classList.remove("on")); if(on){ caja.style.display="none"; } else { b.classList.add("on"); caja.innerHTML=html; caja.style.display="block"; } }; fila.append(b); }); $("#lienzo").append(h("div",{style:"font-size:13px;color:var(--muted);margin-top:6px"},"Para saber más, toca un botón."), fila, caja); }
+  $("#prev").disabled = cap===0 && paso===0; $("#next").disabled = cap===CAPS.length-1 && paso===C.pasos.length-1;
+  $("#next").textContent = paso===C.pasos.length-1 && cap<CAPS.length-1 ? "Siguiente capítulo" : "Siguiente";
+  const d=$("#dots"); d.innerHTML=""; C.pasos.forEach((_,i)=>d.append(h("i",{class:i===paso?"on":""})));
+  document.querySelectorAll("#caps button").forEach((b,i)=>b.classList.toggle("on",i===cap));
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+function ir(d){ if(d>0){ if(paso<CAPS[cap].pasos.length-1) paso++; else if(cap<CAPS.length-1){cap++;paso=0;} } else { if(paso>0) paso--; else if(cap>0){cap--;paso=CAPS[cap].pasos.length-1;} } render(); }
+$("#prev").onclick=()=>ir(-1); $("#next").onclick=()=>ir(1);
+document.addEventListener("keydown",e=>{ if(e.target.tagName==="INPUT") return; if(e.key==="ArrowRight") ir(1); if(e.key==="ArrowLeft") ir(-1); });
+CAPS.forEach((c,i)=>$("#caps").append(h("button",{onclick:()=>{cap=i;paso=0;render();}}, i===0?"Inicio": i===CAPS.length-1?"Cierre":"Cap. "+i)));
+render();
+</script>
+</body>
+</html>

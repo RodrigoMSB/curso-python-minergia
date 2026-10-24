@@ -1,0 +1,354 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lab 03 · Antes de calcular, diagnosticar</title>
+<style>
+:root{--ink:#202124;--muted:#5f6368;--grid:#dadce0;--surf:#fff;--head:#f1f3f4;--celda:#f8f9fa;--navy:#0b3d62;
+--azul:#1a73e8;--azul2:#e8f0fe;--ambar:#d99a00;--ambar2:#fef3d6;--verde:#188038;--verde2:#e6f4ea;--rojo:#c5221f;--rojo2:#fce8e6;--morado:#7b4fc9;--gris:#80868b;}
+*{box-sizing:border-box}
+html,body{margin:0;background:#f4f5f7;color:var(--ink);font-family:-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;font-size:17px;line-height:1.45}
+header{background:var(--navy);color:#fff;padding:14px 24px;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+header h1{font-size:19px;margin:0;font-weight:700}
+header .sub{font-size:13px;opacity:.8}
+nav.caps{display:flex;gap:6px;margin-left:auto;flex-wrap:wrap}
+nav.caps button{background:rgba(255,255,255,.12);color:#fff;border:0;border-radius:999px;padding:6px 13px;font-size:13px;cursor:pointer}
+nav.caps button.on{background:#fff;color:var(--navy);font-weight:700}
+main{display:grid;grid-template-columns:390px 1fr;gap:18px;padding:18px 24px;max-width:1540px;margin:0 auto;align-items:start}
+@media (max-width:980px){main{grid-template-columns:1fr;padding:12px 16px}}
+.panel{background:var(--surf);border:1px solid var(--grid);border-radius:14px;padding:20px 22px}
+.story{display:flex;flex-direction:column;position:sticky;top:12px}
+.capnum{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:1.2px;font-weight:700}
+.story h2{font-size:23px;margin:4px 0 14px;line-height:1.2}
+.story .texto{font-size:17.5px}
+.story .texto p{margin:0 0 12px}
+.story .texto b{color:var(--navy)}
+.dato{display:inline;background:var(--ambar2);color:#5c4700;border-radius:6px;padding:0 6px;font-weight:700}
+.remate{background:var(--ambar2);border-left:6px solid var(--ambar);padding:10px 12px;border-radius:0 8px 8px 0;margin:12px 0 0;color:#5c4700;font-weight:600}
+.navsteps{display:flex;align-items:center;gap:10px;margin-top:14px;border-top:1px solid var(--grid);padding-top:14px}
+.navsteps button{border:0;border-radius:10px;padding:10px 16px;font-size:15px;cursor:pointer;background:var(--head);color:var(--ink);font-weight:600}
+.navsteps button.pri{background:var(--azul);color:#fff}
+.navsteps button:disabled{opacity:.35;cursor:default}
+.dots{display:flex;gap:5px;margin-left:auto}
+.dots i{width:9px;height:9px;border-radius:50%;background:var(--grid);display:block}
+.dots i.on{background:var(--azul)}
+/* escenario */
+.stage{display:flex;flex-direction:column;gap:12px}
+.estado{display:flex;align-items:center;gap:12px;border-radius:10px;padding:10px 14px;font-size:16px;font-weight:600}
+.estado.mira{background:var(--azul2);color:var(--navy)}
+.estado.haz{background:var(--ambar2);color:#5c4700}
+.estado.calc{background:#fff4e5;color:#8a4b00}
+.estado.listo{background:var(--verde2);color:#14532d}
+.estado .ic{width:30px;height:30px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:15px;font-weight:800;flex:none;background:#fff}
+.estado.calc .ic{border:3px solid #f0b060;border-top-color:transparent;animation:gira 1s linear infinite}
+@keyframes gira{to{transform:rotate(360deg)}}
+.estado button{margin-left:auto;border:0;border-radius:8px;padding:8px 14px;font-size:15px;font-weight:700;cursor:pointer;background:var(--navy);color:#fff}
+.estado button:disabled{opacity:.4;cursor:default}
+.estado input[type=range]{width:200px}
+.lienzo{flex:1;display:flex;flex-direction:column;gap:12px}
+.dos{display:grid;grid-template-columns:1fr 320px;gap:16px;align-items:start}
+.col{display:flex;flex-direction:column;gap:12px}
+@media (max-width:1200px){.dos{grid-template-columns:1fr}}
+.nota{background:var(--celda);border:1px solid var(--grid);border-radius:12px;padding:14px 16px;font-size:16px;line-height:1.5}
+.nota b{color:var(--navy)}
+.nota .grande{font-size:30px;font-weight:800;color:var(--navy);line-height:1.1;margin:4px 0}
+.nota .op{font-size:14px;color:var(--muted)}
+.nota.ambar{background:var(--ambar2);border-color:#f0d58a;color:#5c4700}
+.nota.verde{background:var(--verde2);border-color:#b7dcc1;color:#14532d}
+.nota.ambar b,.nota.verde b{color:inherit}
+/* tablas */
+table.datos{border-collapse:separate;border-spacing:3px;font-size:15px;font-variant-numeric:tabular-nums}
+table.datos th{background:var(--head);color:var(--muted);font-weight:700;padding:8px 12px;text-align:left;border-radius:5px}
+table.datos td{background:var(--celda);padding:8px 12px;border-radius:5px}
+table.datos td.num{text-align:right}
+table.datos .hi{background:var(--azul2)!important;color:var(--azul);font-weight:700}
+table.datos .hi2{background:var(--ambar2)!important;color:#5c4700;font-weight:700}
+table.datos tr.dim td{opacity:.35}
+/* filas de celdas grandes */
+.fila{display:grid;grid-template-columns:150px 64px repeat(24,1fr);gap:3px;align-items:center;font-variant-numeric:tabular-nums}
+.fila .tec{font-size:12px;font-weight:700;padding:3px 6px;border-radius:4px;text-align:center}
+.fila.sinnum .cel, .fila.chica.sinnum .cel{height:22px;padding:0;font-size:0;line-height:22px}
+.fila.sinnum .cel:hover{outline:2px solid var(--ink)}
+.fila .rot{font-size:14px;font-weight:700;padding-right:6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fila .hh{text-align:center;font-size:12px;color:var(--muted);font-weight:700}
+.fila .cel{text-align:center;border-radius:5px;padding:9px 0;font-size:12.5px;color:#fff;font-weight:600;transition:all .4s}
+.fila .cel.dark{color:var(--ink)}
+.fila.chica .cel{padding:4px 0;font-size:11px}
+.fila.chica .rot{font-size:12.5px;font-weight:600}
+.fila .cel.off{opacity:.15}
+.fila .hh.on{background:var(--ambar2);color:#5c4700;border-radius:4px}
+.fila .rot.on{color:var(--azul)}
+.tira{display:flex;flex-wrap:wrap;gap:2px;align-items:flex-end;height:90px}
+.tira i{display:block;width:5px;background:var(--azul);opacity:.7;border-radius:1px 1px 0 0}
+svg text{font-family:inherit}
+.leyenda{display:flex;gap:14px;flex-wrap:wrap;font-size:14px;color:var(--muted)}
+.leyenda span{display:inline-flex;align-items:center;gap:6px}
+.leyenda i{width:13px;height:13px;border-radius:50%;display:inline-block}
+.cross{border-collapse:separate;border-spacing:2px;font-size:14px;font-variant-numeric:tabular-nums}
+.cross th{background:var(--head);color:var(--muted);padding:4px 10px;border-radius:4px;font-weight:700}
+.cross td{background:var(--celda);padding:4px 10px;text-align:center;border-radius:4px;min-width:46px}
+.cross td.z{color:#c0c4c8}
+.cross td.v{background:var(--azul2);color:var(--azul);font-weight:700}
+.cross td.r{background:var(--rojo2);color:var(--rojo);font-weight:700}
+.cross td.t{text-align:left;font-weight:700}
+.portada{display:flex;flex-direction:column;justify-content:center;padding:10px 6px}
+.portada h3{font-size:30px;margin:0 0 10px;color:var(--navy);line-height:1.15}
+.portada p{font-size:18px;max-width:680px}
+.preg{display:grid;gap:10px;margin-top:14px;max-width:680px}
+.preg div{background:var(--azul2);border-radius:10px;padding:10px 14px;font-size:16px;color:var(--navy);display:flex;gap:10px}
+.preg b{background:var(--azul);color:#fff;border-radius:50%;width:26px;height:26px;display:inline-flex;align-items:center;justify-content:center;flex:none;font-size:14px}
+.mas{display:flex;gap:10px;flex-wrap:wrap;margin-top:4px}
+.mas button{border:1px solid var(--grid);background:#fff;border-radius:999px;padding:8px 14px;font-size:14.5px;cursor:pointer;color:var(--navy);font-weight:600}
+.mas button.on{background:var(--navy);color:#fff;border-color:var(--navy)}
+.masbox{background:#fff;border:1px solid var(--navy);border-radius:12px;padding:14px 16px;font-size:16px;line-height:1.5}
+.masbox b{color:var(--navy)}
+footer{text-align:center;color:var(--muted);font-size:12.5px;padding:10px 0 24px}
+kbd{border:1px solid var(--grid);border-radius:4px;padding:0 5px;background:#fff;font-size:12px}
+.parpadea{animation:pp .5s 3}
+@keyframes pp{50%{opacity:.15}}
+</style>
+</head>
+<body>
+<header>
+  <div><h1>Lab 03 · Antes de calcular, diagnosticar</h1><div class="sub">Análisis Avanzado de Datos con Python · Subsecretaría de Energía · con los datos del curso</div></div>
+  <nav class="caps" id="caps"></nav>
+</header>
+<main>
+  <section class="panel story">
+    <div class="capnum" id="capnum"></div>
+    <h2 id="h2"></h2>
+    <div class="texto" id="texto"></div>
+    <div class="navsteps">
+      <button id="prev">Anterior</button>
+      <button id="next" class="pri">Siguiente</button>
+      <div class="dots" id="dots"></div>
+    </div>
+  </section>
+  <section class="panel stage">
+    <div id="estado"></div>
+    <div class="lienzo" id="lienzo"></div>
+  </section>
+</main>
+<footer>Se avanza con los botones o con las flechas del teclado <kbd>→</kbd> <kbd>←</kbd>. Las cifras de las centrales salen de los archivos de datos del curso, que son inventados para el curso.</footer>
+<script>
+const D = {"n":61508,"esperadas":61488,"head":[{"fecha":"01/01/2024","hora":0,"region":"Antofagasta","mwh":"51,95"},{"fecha":"01/01/2024","hora":1,"region":"Antofagasta","mwh":"49,02"},{"fecha":"01/01/2024","hora":2,"region":"Antofagasta","mwh":"48,22"},{"fecha":"01/01/2024","hora":3,"region":"Antofagasta","mwh":"45,57"},{"fecha":"01/01/2024","hora":4,"region":"Antofagasta","mwh":"47,59"},{"fecha":"01/01/2024","hora":5,"region":"Antofagasta","mwh":"51,33"}],"head_limpia":[{"fecha":"2024-01-01","hora":0,"region":"Antofagasta","mwh":51.95},{"fecha":"2024-01-01","hora":1,"region":"Antofagasta","mwh":49.02},{"fecha":"2024-01-01","hora":2,"region":"Antofagasta","mwh":48.22},{"fecha":"2024-01-01","hora":3,"region":"Antofagasta","mwh":45.57},{"fecha":"2024-01-01","hora":4,"region":"Antofagasta","mwh":47.59},{"fecha":"2024-01-01","hora":5,"region":"Antofagasta","mwh":51.33}],"formas":[["Valparaíso",8714],["Antofagasta",8713],["Coquimbo",8707],["Metropolitana",8698],["Atacama",8693],["Los Lagos",8686],["Biobío",8683],["biobío",26],["BIOBÍO",21],["los lagos ",21],["metropolitana",20],["atacama",19],["ATACAMA",18],["Atacama ",18],[" Coquimbo",18],["Metropolitana ",17],[" Biobío",17],["Los Lagos ",17],["los lagos",17],["  LOS LAGOS",17],["coquimbo",16],["VALPARAÍSO",16],[" Atacama",15],["  ATACAMA",15],[" Metropolitana",15],[" Los Lagos",15],["  ANTOFAGASTA",14],["antofagasta",14],["COQUIMBO",14],["Biobío ",14],["  BIOBÍO",14],["LOS LAGOS",14],["  VALPARAÍSO",13],["metropolitana ",13],[" Antofagasta",12],["Antofagasta ",12],[" Valparaíso",12],["Valparaíso ",12],["valparaíso ",12],["valparaíso",12],["  METROPOLITANA",12],["ANTOFAGASTA",11],["METROPOLITANA",11],["biobío ",11],["antofagasta ",10],["coquimbo ",10],["Coquimbo ",10],["  COQUIMBO",10],["atacama ",9]],"bio":["Biobío","biobío","BIOBÍO"," Biobío","Biobío ","  BIOBÍO","biobío "],"raras":[{"fecha":"06/01/2024","hora":15,"region":"  ANTOFAGASTA","mwh":"62,79"},{"fecha":"08/01/2024","hora":18,"region":"antofagasta","mwh":"75,47"},{"fecha":"15/01/2024","hora":7,"region":" Antofagasta","mwh":"62,70"},{"fecha":"27/01/2024","hora":19,"region":"antofagasta","mwh":"74,81"},{"fecha":"30/01/2024","hora":3,"region":" Antofagasta","mwh":"46,88"},{"fecha":"30/01/2024","hora":16,"region":"  ANTOFAGASTA","mwh":"71,77"},{"fecha":"05/02/2024","hora":19,"region":"antofagasta","mwh":"79,34"},{"fecha":"07/02/2024","hora":3,"region":" Antofagasta","mwh":"46,73"}],"dup":[{"fecha":"2024-01-01","hora":18,"region":"Antofagasta","mwh":74.81},{"fecha":"2024-01-01","hora":18,"region":"Antofagasta","mwh":74.81},{"fecha":"2024-01-11","hora":13,"region":"Antofagasta","mwh":71.42},{"fecha":"2024-01-11","hora":13,"region":"Antofagasta","mwh":71.42}],"ndup":20,"valpo_nan":248,"proms":{"borrar":208.9,"cero":203.0,"ant":208.8,"recta":208.8},"dia":[{"hora":0,"mwh":177.03,"cero":177.03,"ant":177.03,"recta":177.03},{"hora":1,"mwh":null,"cero":0.0,"ant":177.03,"recta":173.35},{"hora":2,"mwh":null,"cero":0.0,"ant":177.03,"recta":169.66},{"hora":3,"mwh":165.98,"cero":165.98,"ant":165.98,"recta":165.98},{"hora":4,"mwh":164.67,"cero":164.67,"ant":164.67,"recta":164.67},{"hora":5,"mwh":179.25,"cero":179.25,"ant":179.25,"recta":179.25},{"hora":6,"mwh":191.42,"cero":191.42,"ant":191.42,"recta":191.42},{"hora":7,"mwh":222.46,"cero":222.46,"ant":222.46,"recta":222.46},{"hora":8,"mwh":null,"cero":0.0,"ant":222.46,"recta":230.77},{"hora":9,"mwh":null,"cero":0.0,"ant":222.46,"recta":239.08},{"hora":10,"mwh":247.39,"cero":247.39,"ant":247.39,"recta":247.39},{"hora":11,"mwh":259.55,"cero":259.55,"ant":259.55,"recta":259.55},{"hora":12,"mwh":257.45,"cero":257.45,"ant":257.45,"recta":257.45},{"hora":13,"mwh":252.23,"cero":252.23,"ant":252.23,"recta":252.23},{"hora":14,"mwh":240.87,"cero":240.87,"ant":240.87,"recta":240.87},{"hora":15,"mwh":null,"cero":0.0,"ant":240.87,"recta":244.34},{"hora":16,"mwh":null,"cero":0.0,"ant":240.87,"recta":247.81},{"hora":17,"mwh":251.28,"cero":251.28,"ant":251.28,"recta":251.28},{"hora":18,"mwh":263.82,"cero":263.82,"ant":263.82,"recta":263.82},{"hora":19,"mwh":273.52,"cero":273.52,"ant":273.52,"recta":273.52},{"hora":20,"mwh":276.05,"cero":276.05,"ant":276.05,"recta":276.05},{"hora":21,"mwh":254.03,"cero":254.03,"ant":254.03,"recta":254.03},{"hora":22,"mwh":null,"cero":0.0,"ant":254.03,"recta":230.89},{"hora":23,"mwh":null,"cero":0.0,"ant":254.03,"recta":207.76}],"dia_real":[177.03,168.14,167.37,165.98,164.67,179.25,191.42,222.46,234.15,241.76,247.39,259.55,257.45,252.23,240.87,246.52,250.76,251.28,263.82,273.52,276.05,254.03,220.11,198.94],"imposibles":{"Antofagasta":{"min":-25.0,"max":906.8,"prom":76.9,"neg":1,"picos":{"1":4055,"2":4,"3":4,"4":4,"5":4,"6":4,"7":4,"8":4,"9":3,"10":2}},"Atacama":{"min":-42.6,"max":442.7,"prom":35.2,"neg":5,"picos":{"1":4000,"2":6,"3":6,"4":6,"5":6,"6":6,"7":6,"8":5,"9":4,"10":2}},"Coquimbo":{"min":-68.7,"max":1276.1,"prom":93.3,"neg":2,"picos":{"1":4022,"2":4,"3":4,"4":4,"5":4,"6":4,"7":3,"8":2,"9":2,"10":2}},"Valparaíso":{"min":-129.1,"max":2771.2,"prom":208.9,"neg":1,"picos":{"1":4015,"2":4,"3":4,"4":4,"5":4,"6":4,"7":4,"8":4,"9":3,"10":3}},"Metropolitana":{"min":-493.4,"max":11195.0,"prom":892.3,"neg":1,"picos":{"1":3955,"2":7,"3":7,"4":7,"5":7,"6":7,"7":7,"8":6,"9":5,"10":3}},"Biobío":{"min":-99.9,"max":2144.1,"prom":186.9,"neg":1,"picos":{"1":3945,"2":8,"3":8,"4":8,"5":8,"6":8,"7":7,"8":5,"9":4,"10":2}},"Los Lagos":{"min":-95.3,"max":1276.3,"prom":99.1,"neg":4,"picos":{"1":3972,"2":7,"3":7,"4":7,"5":7,"6":7,"7":7,"8":7,"9":6,"10":6}}},"suma_texto":null,"suma":13560560};
+</script>
+<script>
+/* ---------- utilidades ---------- */
+const TEC = {hidro:["hidro","#1a73e8"], solar:["solar","#d99a00"], eolica:["eólica","#188038"], gas:["gas","#c5221f"], carbon:["carbón","#7b4fc9"], diesel:["diésel","#80868b"]};
+const TECS = ["carbon","gas","hidro","eolica","solar","diesel"];
+const LETRA = ["A","B","C","D","E","F","G","H"];
+const es = (x, d=1) => x.toLocaleString("es-CL", {minimumFractionDigits:d, maximumFractionDigits:d});
+const esN = x => x.toLocaleString("es-CL");
+const $ = s => document.querySelector(s);
+const h = (tag, attrs={}, ...kids) => { const e = document.createElement(tag); for (const [k,v] of Object.entries(attrs)) { if (k==="class") e.className=v; else if (k==="style") e.style.cssText=v; else if (k==="html") e.innerHTML=v; else if (k.startsWith("on")) e[k]=v; else e.setAttribute(k,v);} for (const k of kids) e.append(k); return e; };
+const NS = "http://www.w3.org/2000/svg";
+const sv = (tag, attrs={}) => { const e = document.createElementNS(NS, tag); for (const [k,v] of Object.entries(attrs)) e.setAttribute(k, v); return e; };
+const txt = (x,y,t,attrs={}) => { const e=sv("text",{x,y,...attrs}); e.textContent=t; return e; };
+const corto = n => n.replace(/^(Central|Carboeléctrica|Termoeléctrica|Parque Solar|Eólica|Diésel) /,"");
+const dist2 = (a,b) => { let s=0; for (let i=0;i<a.length;i++){const d=a[i]-b[i]; s+=d*d;} return s; };
+const proj = (v, pca) => [0,1].map(j => pca.comp[j].reduce((s,c,i)=> s + c*(v[i]-pca.mean[i]), 0));
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+let token = 0; const nuevoToken = () => ++token;
+
+const centrales = D.centrales || [], N = centrales.length;
+
+/* ---------- estado del escenario ---------- */
+const ICO = {mira:"👁", haz:"✋", calc:"", listo:"✓"};
+function estado(tipo, texto, extra) {
+  const e = $("#estado"); e.innerHTML = ""; const b = h("div", {class:"estado "+tipo}, h("span",{class:"ic"}, ICO[tipo]), h("span",{html:texto}));
+  if (extra) b.append(extra); e.append(b); return b;
+}
+function lienzo(...nodos){ const L=$("#lienzo"); L.innerHTML=""; for (const n of nodos) if (n) L.append(n); }
+const nota = (html, clase="") => h("div", {class:"nota "+clase, html});
+
+/* ---------- componentes ---------- */
+function filaCeldas(valores, opts={}) {
+  // valores: 24 números. opts: {rot, max, dec, chica, colsOn, rotOn, fmt, std}
+  const f = h("div",{class:"fila"+(opts.chica?" chica":"")+(opts.sinNum?" sinnum":"")});
+  f.append(h("div",{class:"rot"+(opts.rotOn?" on":""), title:opts.rot||""}, opts.rot||""));
+  const tk = opts.tec ? TEC[opts.tec] : null;
+  f.append(h("div",{class:"tec", style: tk? `background:${tk[1]}22;color:${tk[1]}` : ""}, tk? tk[0] : ""));
+  valores.forEach((v,k)=>{
+    let bg, dark, t;
+    if (opts.std){ const a=0.12+0.88*Math.min(1,Math.abs(v)/2.3); bg = v>=0? `rgba(26,115,232,${a.toFixed(2)})` : `rgba(197,34,31,${a.toFixed(2)})`; dark = Math.abs(v)<1; t=(v>=0?"+":"")+v.toFixed(1); }
+    else { const fr=Math.min(1, v/opts.max); const a=0.1+0.9*fr; bg=`rgba(26,115,232,${a.toFixed(2)})`; dark = fr<0.45; t = opts.fmt? opts.fmt(v) : (opts.dec===0? Math.round(v) : v.toFixed(opts.dec??2)); }
+    const off = opts.colsOn && !opts.colsOn.includes(k);
+    f.append(h("div",{class:"cel"+(dark?" dark":"")+(off?" off":""), style:`background:${bg}`, title:`${opts.rot||""}, ${k} h, ${t}`}, String(t)));
+  });
+  return f;
+}
+function cabeceraHoras(colsOn){ const f=h("div",{class:"fila"}); f.append(h("div",{class:"rot",style:"color:var(--muted);font-size:12px"},"central")); f.append(h("div",{class:"tec",style:"color:var(--muted)"},"tipo")); for(let k=0;k<24;k++) f.append(h("div",{class:"hh"+((colsOn||[]).includes(k)?" on":"")},String(k))); return f; }
+const ORDEN = [...Array(N).keys()].sort((a,b)=>TECS.indexOf(centrales[a].t)-TECS.indexOf(centrales[b].t) || a-b);
+function tablaFilas(tabla, opts={}){ const w=h("div",{style:"display:flex;flex-direction:column;gap:3px"}); w.append(cabeceraHoras(opts.colsOn)); ORDEN.forEach(i=>{ const fila=tabla[i]; if (opts.solo && !opts.solo.includes(i)) return; w.append(filaCeldas(fila,{...opts, rot:corto(centrales[i].n), tec:centrales[i].t, rotOn:(opts.rowsOn||[]).includes(i), chica:true})); }); return w; }
+
+function curvas(series, opts={}) {
+  const W = opts.w||760, H = opts.h||330, ml=58, mr=16, mt=22, mb=40;
+  const s = sv("svg", {viewBox:`0 0 ${W} ${H}`, style:"width:100%;height:auto;display:block"});
+  const ymax = opts.ymax || Math.max(...series.flatMap(q=>q.y))*1.1;
+  const X = k => ml + k*(W-ml-mr)/23, Y = v => mt + (H-mt-mb)*(1 - v/ymax);
+  for (let i=0;i<=4;i++){ const v = ymax*i/4; s.append(sv("line",{x1:ml,x2:W-mr,y1:Y(v),y2:Y(v),stroke:"#e8eaed"})); s.append(txt(ml-8,Y(v)+4, opts.fmt? opts.fmt(v): es(v,0), {"text-anchor":"end","font-size":12,fill:"#5f6368"})); }
+  for (let k=0;k<24;k+=3) s.append(txt(X(k),H-mb+18,k,{"text-anchor":"middle","font-size":12,fill:"#5f6368"}));
+  s.append(txt((ml+W-mr)/2,H-6,"hora del día",{"text-anchor":"middle","font-size":12.5,fill:"#5f6368"}));
+  if (opts.ylabel) s.append(txt(ml,mt-8,opts.ylabel,{"font-size":12.5,fill:"#5f6368"}));
+  for (const q of series) {
+    const d = q.y.map((v,k)=>(k?"L":"M")+X(k).toFixed(1)+","+Y(v).toFixed(1)).join(" ");
+    s.append(sv("path",{d, fill:"none", stroke:q.color, "stroke-width":q.w||3, opacity:q.alpha??1, "stroke-linejoin":"round"}));
+    if (q.nombre) s.append(txt(X(q.lx??12), Y(q.y[q.lx??12])-9, q.nombre, {"font-size":13,fill:q.color,"font-weight":700,"text-anchor":"middle"}));
+  }
+  for (const a of (opts.anot||[])) s.append(txt(X(a.x),Y(a.y),a.t,{"font-size":13.5,fill:a.color||"#5f6368","text-anchor":"middle","font-weight":600}));
+  return s;
+}
+function leyendaTec(lista=TECS){ return h("div",{class:"leyenda"}, ...lista.map(t=>h("span",{}, h("i",{style:`background:${TEC[t][1]}`}), TEC[t][0]))); }
+function crosstab(filas, cols, M, rotCol) {
+  const t = h("table",{class:"cross"});
+  t.append(h("tr",{}, h("th",{},"tecnología"), ...cols.map(c=>h("th",{}, c===-1? "fuera, sin barrio" : rotCol(c)))));
+  for (const f of filas) t.append(h("tr",{}, h("td",{class:"t",style:`color:${TEC[f][1]}`},TEC[f][0]), ...cols.map(c=>{const v=M[f][c]||0; return h("td",{class: v===0?"z": (c===-1?"r":"v")}, v===0?"·":esN(v));})));
+  return t;
+}
+function crossCentralesKM(lab,k){ const M={}; for(const t of TECS) M[t]={}; lab.forEach((g,i)=>{ M[centrales[i].t][g]=(M[centrales[i].t][g]||0)+1; }); return crosstab(TECS,[...Array(k).keys()],M,c=>"mesa "+LETRA[c]); }
+function crossDias(lab){ const cols=[...new Set(lab)].sort((a,b)=>a-b); const M={}; for(const t of TECS) M[t]={}; lab.forEach((g,i)=>{ const t=centrales[D.dias.central[i]].t; M[t][g]=(M[t][g]||0)+1; }); return crosstab(TECS,cols,M,c=>"barrio "+LETRA[c]); }
+
+/* ---------- helpers del Lab 03 ---------- */
+const REG = ["Antofagasta","Atacama","Coquimbo","Valparaíso","Metropolitana","Biobío","Los Lagos"];
+const verEspacios = s => s.replace(/ /g, "␣");
+function tablaSucia(filas, opts={}) {
+  // filas crudas de demanda_sucia. opts: {num, fecha, resaltar}
+  const t = h("table", {class:"datos", style:"font-family:ui-monospace,Menlo,Consolas,monospace;font-size:14px"});
+  t.append(h("tr", {}, ...["fecha","hora","region","mwh"].map(c => h("th", {class:(opts.resaltar||[]).includes(c)?"hi":""}, c))));
+  filas.forEach(r => t.append(h("tr", {}, h("td", {class:(opts.resaltar||[]).includes("fecha")?"hi":""}, opts.fecha ? r.fecha_es : r.fecha), h("td", {class:"num"}, String(r.hora)), h("td", {class:(opts.resaltar||[]).includes("region")?"hi":""}, opts.espacios ? verEspacios(r.region) : r.region), h("td", {class:(opts.num?"num ":"")+((opts.resaltar||[]).includes("mwh")?"hi":"")}, opts.num ? es(parseFloat(String(r.mwh).replace(",",".")),2) : (typeof r.mwh==="number"? es(r.mwh,2) : "\"" + r.mwh + "\"")))));
+  return t;
+}
+function cajaGrande(op, grande, texto, clase="") { return nota(`<div class="op">${op}</div><div class="grande">${grande}</div>${texto}`, clase); }
+function listaFormas(n, modo) {
+  // modo 0 crudo, 1 sin espacios, 2 title
+  const title = x => x.replace(/\S+/g, w => w[0].toUpperCase()+w.slice(1).toLowerCase());
+  const trans = s => { let x = s; if (modo.strip) x = x.trim(); if (modo.title) x = title(x); return x; };
+  const cuenta = {}; D.formas.forEach(([k,v]) => { const kk = trans(k); cuenta[kk] = (cuenta[kk]||0) + v; });
+  const filas = Object.entries(cuenta).sort((a,b)=>b[1]-a[1]);
+  const w = h("div", {style:"display:grid;grid-template-columns:repeat(3,1fr);gap:4px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px"});
+  filas.slice(0, n).forEach(([k,v]) => w.append(h("div", {style:`display:flex;justify-content:space-between;background:${REG.includes(k)?"var(--azul2)":"var(--celda)"};border-radius:5px;padding:4px 8px`}, h("span", {}, "\"" + verEspacios(k) + "\""), h("b", {}, esN(v)))));
+  return {w, total: filas.length};
+}
+function graficoDia(relleno, conReal) {
+  const W=760, H=340, m={l:60, r:16, t:36, b:44}; const s=sv("svg",{viewBox:`0 0 ${W} ${H}`, style:"width:100%;height:auto;display:block;background:#fafbfc;border-radius:10px"});
+  const vals = D.dia.map(r => r.mwh), ymax = 320;
+  const X = k => m.l + k*(W-m.l-m.r)/23, Y = v => m.t + (H-m.t-m.b)*(1 - v/ymax);
+  for (let i=0;i<=4;i++){ const v=ymax*i/4; s.append(sv("line",{x1:m.l,x2:W-m.r,y1:Y(v),y2:Y(v),stroke:"#e8eaed"})); s.append(txt(m.l-8,Y(v)+4,esN(v),{"text-anchor":"end","font-size":12,fill:"#5f6368"})); }
+  for (let k=0;k<24;k+=3) s.append(txt(X(k),H-m.b+18,k,{"text-anchor":"middle","font-size":12,fill:"#5f6368"}));
+  s.append(txt((m.l+W-m.r)/2,H-6,"hora del 16 de septiembre",{"text-anchor":"middle","font-size":12.5,fill:"#5f6368"}));
+  s.append(txt(m.l,m.t-12,"Valparaíso, MWh por hora. Las horas vacías están marcadas en rojo",{"font-size":13,fill:"#5f6368"}));
+  const col = {cero:"#c5221f", ant:"#d99a00", recta:"#188038"};
+  if (conReal) s.append(sv("path",{d:D.dia_real.map((v,k)=>(k?"L":"M")+X(k)+","+Y(v)).join(" "),fill:"none",stroke:"#9aa0a6","stroke-width":2,"stroke-dasharray":"5 4"}));
+  if (relleno) { const ys = D.dia.map(r => relleno==="borrar" ? r.mwh : r[relleno]); let d="", prev=false; ys.forEach((v,k)=>{ if(v==null){ prev=false; return; } d+=(prev?"L":"M")+X(k)+","+Y(v)+" "; prev=true; }); s.append(sv("path",{d,fill:"none",stroke:col[relleno]||"#1a73e8","stroke-width":2.5})); }
+  D.dia.forEach((r,k) => { if (r.mwh!=null) s.append(sv("circle",{cx:X(k),cy:Y(r.mwh),r:5,fill:"#1a73e8"})); else { const v = relleno && relleno!=="borrar" ? r[relleno] : null; if (v!=null) s.append(sv("circle",{cx:X(k),cy:Y(v),r:6,fill:col[relleno],stroke:"#fff","stroke-width":1.5})); else s.append(sv("rect",{x:X(k)-5,y:m.t,width:10,height:H-m.t-m.b,fill:"#fce8e6"})); } });
+  return s;
+}
+function tablaDia(relleno) {
+  const t = h("table",{class:"datos",style:"font-size:13px"}); const cols = ["hora","mwh"].concat(relleno && relleno!=="borrar" ? [relleno] : []);
+  t.append(h("tr",{}, ...cols.map(c=>h("th",{},c==="mwh"?"como vino":c==="cero"?"poner cero":c==="ant"?"repetir anterior":c==="recta"?"trazar recta":c))));
+  D.dia.forEach(r => t.append(h("tr",{}, h("td",{class:"num"},String(r.hora)), h("td",{class:"num "+(r.mwh==null?"hi2":"")}, r.mwh==null?"vacío":es(r.mwh,2)), ...(relleno && relleno!=="borrar" ? [h("td",{class:"num "+(r.mwh==null?"hi":"")}, r[relleno]==null?"vacío":es(r[relleno],2))] : []))));
+  return t;
+}
+
+
+
+/* ---------- navegación y capítulos ---------- */
+
+const CAPS = [
+{ n:"Antes de empezar", t:"Un archivo que llegó de otra área", pasos:[
+  { tx:`<p>Otra área manda el archivo de demanda de 2024. Pide un número, cuánto consumió cada región en una hora normal. Parece fácil, se abre y se promedia.</p><p>Pero el archivo viene <b>como lo guardó Excel en Chile</b>, con punto y coma, coma decimal y fechas al revés de como las lee pandas. Y trae errores que nadie avisó.</p>`,
+    mas:[["¿Esto pasa en la vida real?","Todo el tiempo. Un archivo que viaja entre áreas pasa por Excel, por correo, por copiar y pegar. En cada paso se le cuela algo. Un analista pasa más tiempo limpiando que calculando, y este lab es ese tiempo."],["¿Por qué no arreglarlo en Excel?","Se puede, pero no queda registro de qué se cambió, y si el archivo llega de nuevo el mes que viene hay que repetirlo a mano. En pandas la limpieza queda escrita y se vuelve a correr sola."]],
+    st(){ estado("mira","Las tres preguntas de hoy."); lienzo(h("div",{class:"portada"}, h("h3",{},"Antes de calcular, diagnosticar"), h("p",{},"Hasta ahora los archivos del curso venían limpios. Este viene como vienen de verdad. El lab no calcula casi nada, revisa."), h("div",{class:"preg"}, h("div",{},h("b",{},"1"),"¿El archivo trae las filas que debería traer, y pandas lo leyó bien?"), h("div",{},h("b",{},"2"),"¿Qué hay escrito de varias formas, y qué está repetido?"), h("div",{},h("b",{},"3"),"¿Qué se hace con los datos que faltan y con los que no pueden ser reales?")))); } },
+  { tx:`<p>Así se ve el archivo tal como llegó, <b>demanda_sucia.csv</b>. Pandas lo abre sin quejarse. Pero mira las comillas en la columna mwh, pandas leyó los números <b>como texto</b>, porque vienen con coma.</p><p>Y cuenta las filas. Son <span class="dato">61.508</span>. Deberían ser 366 días por 24 horas por 7 regiones, <span class="dato">61.488</span>. Sobran 20.</p>`,
+    mas:[["¿Cómo sé cuántas deberían ser?","Pensando en qué es una fila. Aquí una fila es una región en una hora de un día. 2024 tuvo 366 días, un día tiene 24 horas, hay 7 regiones. Esa cuenta se hace antes de abrir el archivo, y es la primera comprobación de cualquier archivo nuevo."],["¿Por qué punto y coma?","Porque en Chile la coma ya se usa para los decimales, 51,95, así que Excel separa las columnas con punto y coma. Pandas por defecto espera coma como separador y punto decimal, al estilo de Estados Unidos. Hay que avisarle."]],
+    st(){ estado("mira","Las seis primeras filas, tal como pandas las leyó. Fíjate en las comillas de mwh."); lienzo(h("div",{class:"dos"}, tablaSucia(D.head,{resaltar:["mwh"]}), cajaGrande("filas del archivo", esN(D.n), `Esperadas <b>${esN(D.esperadas)}</b>, 366 por 24 por 7.<br>Sobran <b>20</b>. Todavía no sabemos cuáles.<br><br>Y mwh vino como texto. Con texto no se puede sumar ni promediar.`))); } },
+]},
+{ n:"Capítulo 1", t:"Leerlo bien desde el comienzo", pasos:[
+  { tx:`<p>"51,95" con coma es texto para pandas, como si fuera una palabra. Si le pides sumar textos, los pega uno detrás de otro o se queja.</p><p>Hay que <b>avisarle</b> que la coma separa los decimales. Marca la casilla y mira cómo la columna cambia de texto a número.</p>`,
+    mas:[["¿Y esto en el cuaderno?","Es decimal=\",\" dentro de read_csv. Una sola opción. Junto con sep=\";\" para el punto y coma. Pandas lee el mismo archivo y lo entiende bien desde el principio, sin arreglar después."],["¿Cómo me doy cuenta?","Con dtypes, que dice el tipo de cada columna. Si mwh aparece como object o string en vez de float, es texto. O más simple, mira si los números quedan alineados a la derecha, los textos van a la izquierda."]],
+    st(){ const op={num:false}; const w=h("div",{}); const c=h("input",{type:"checkbox"}); const lab=h("label",{style:"margin-left:auto;display:flex;gap:6px;align-items:center;cursor:pointer;font-weight:600"},c,"avisar que la coma es decimal");
+      const pinta=()=>{ w.innerHTML=""; w.append(h("div",{class:"dos"}, tablaSucia(D.head,{num:op.num,resaltar:["mwh"]}), op.num? cajaGrande("ahora mwh es número", "51,95", "Alineado a la derecha. Se puede sumar.<br><br>En el cuaderno lo vas a ver como 51.95, con punto, porque así guarda pandas los decimales. La coma era solo la forma de escribirlo en el archivo.<br><br>La demanda total del archivo es <b>"+esN(D.suma)+" MWh</b>. Antes de avisar, esa suma no existía.") : cajaGrande("mwh es texto", "\"51,95\"", "Entre comillas y alineado a la izquierda. Pandas lo ve como una palabra.<br><br>Si pides el total, no sale un número."))); const b=$("#estado").firstChild; b.className="estado "+(op.num?"listo":"haz"); b.querySelector("span:nth-child(2)").textContent = op.num? "Leído como número. Ya se puede calcular." : "Marca la casilla."; };
+      c.onchange=()=>{ op.num=c.checked; pinta(); }; estado("haz","Marca la casilla.",lab); lienzo(w); pinta(); } },
+  { tx:`<p>La fecha tiene otra trampa. <b>01/02/2024</b>, ¿es el 1 de febrero o el 2 de enero? En Chile el día va primero. Pandas, si no se le avisa, supone que primero va el mes, como en Estados Unidos.</p><p>Marca la casilla y mira cómo lee la misma fecha.</p>`,
+    mas:[["¿Da error o no?","Depende del archivo. 01/02/2024 es una fecha válida en los dos órdenes y pandas no tiene cómo saber cuál quisiste. Si alguna fila trae un día mayor que 12, como 13/01/2024, pandas se da cuenta de que el orden no calza y se detiene con un error. Si todas las filas traen días del 1 al 12, no se da cuenta y se equivoca en silencio. Por eso dayfirst=True va siempre, con error o sin él."],["¿Y esto en el cuaderno?","Son dos opciones de read_csv. parse_dates=[\"fecha\"] para que convierta la columna en fecha, y dayfirst=True para que sepa que el día va primero."]],
+    st(){ const op={day:false}; const w=h("div",{}); const c=h("input",{type:"checkbox"}); const lab=h("label",{style:"margin-left:auto;display:flex;gap:6px;align-items:center;cursor:pointer;font-weight:600"},c,"avisar que el día va primero");
+      const ej=[["01/02/2024","1 de febrero de 2024","2 de enero de 2024"],["13/01/2024","13 de enero de 2024","13 de enero de 2024, aquí no hay duda"],["05/03/2024","5 de marzo de 2024","3 de mayo de 2024"]];
+      const pinta=()=>{ w.innerHTML=""; const t=h("table",{class:"datos",style:"font-size:15px"}); t.append(h("tr",{},h("th",{},"en el archivo"),h("th",{class:"hi"},"cómo la lee pandas"))); ej.forEach(([a,b,cc])=>t.append(h("tr",{},h("td",{style:"font-family:ui-monospace,Menlo,monospace"},a),h("td",{class:op.day?"hi":"hi2"},op.day?b:cc)))); w.append(h("div",{class:"dos"}, t, op.day? cajaGrande("con el aviso","día, mes, año","Las fechas quedan como en Chile. El 1 de febrero es el 1 de febrero.") : cajaGrande("sin el aviso","mes, día, año","Pandas supone que el mes va primero. Con este archivo se detiene con un error en la fila 13/01/2024, porque no existe el mes 13. Si el archivo solo tuviera días del 1 al 12, no habría error, y leería 01/02/2024 como 2 de enero sin avisar. Todo el análisis por mes quedaría desplazado."))); const b=$("#estado").firstChild; b.className="estado "+(op.day?"listo":"haz"); b.querySelector("span:nth-child(2)").textContent = op.day? "Las fechas leídas como en Chile." : "Marca la casilla."; };
+      c.onchange=()=>{ op.day=c.checked; pinta(); }; estado("haz","Marca la casilla.",lab); lienzo(w); pinta(); } },
+  { tx:`<p>Con los dos avisos, el mismo archivo queda bien leído desde el comienzo. Números con decimales, fechas de verdad.</p><p class="remate">La primera pregunta, respondida a medias. Pandas ya lo lee bien. Pero siguen sobrando 20 filas.</p>`,
+    st(){ estado("mira","Las mismas seis filas, bien leídas."); const t=h("table",{class:"datos"}); t.append(h("tr",{},...["fecha","hora","region","mwh"].map(c=>h("th",{},c)))); D.head_limpia.forEach(r=>t.append(h("tr",{},h("td",{class:"hi"},r.fecha),h("td",{class:"num"},String(r.hora)),h("td",{},r.region),h("td",{class:"num hi"},es(r.mwh,2))))); lienzo(h("div",{class:"dos"}, t, cajaGrande("demanda total del archivo", esN(D.suma)+" MWh", "Del 1 de enero al 31 de diciembre de 2024. Pero este total todavía tiene adentro las 20 filas que sobran y lo que venga mal escrito."))); } },
+]},
+{ n:"Capítulo 2", t:"Siete regiones escritas de 49 formas", pasos:[
+  { tx:`<p>Son 7 regiones. Pero si se cuenta de cuántas formas distintas viene escrita la columna region, salen <span class="dato">49</span>.</p><p>Mira Biobío. Viene con mayúsculas, con minúsculas, con espacios adelante y con espacios atrás. Para pandas, cada una es una región distinta.</p>`,
+    mas:[["¿De dónde salen los espacios?","De copiar y pegar, de celdas de Excel con un espacio al final que nadie ve. El símbolo ␣ de esta página muestra dónde hay un espacio. En el archivo no se ve, por eso engaña."],["¿Y esto en el cuaderno?","nunique cuenta cuántos valores distintos tiene una columna, y value_counts dice cuántas veces aparece cada uno. Son las dos primeras cosas que se le hacen a cualquier columna de texto."]],
+    st(){ estado("mira","Las 49 formas, de la más común a la menos. Azul, las siete bien escritas. ␣ marca un espacio."); const {w}=listaFormas(49,{}); lienzo(w, nota(`El espacio del medio de Los␣Lagos es parte del nombre y no se toca. Los que estorban son los del comienzo y el final.<br><br>Las siete azules suman casi todas las filas. Las otras 42 formas son <b>errores de escritura</b>, pocas filas cada una, pero suficientes para que cualquier cuenta por región salga mal. Biobío solo aparece de <b>${D.bio.length} formas</b>.`)); } },
+  { tx:`<p>Dos arreglos, y hacen falta los dos. <b>Quitar los espacios</b> del comienzo y del final. E <b>igualar las mayúsculas</b>, primera letra en mayúscula y el resto en minúscula.</p><p>Marca las casillas, una, la otra, las dos, y mira cómo cambia el número de formas.</p>`,
+    mas:[["¿Y esto en el cuaderno?","Dos métodos de texto. .str.strip() quita los espacios de los bordes. .str.title() pone la primera letra de cada palabra en mayúscula y el resto en minúscula. Se aplican a la columna entera de una vez."],["¿Por qué los dos?","Porque cada uno arregla una cosa distinta. Si solo se igualan las mayúsculas, \"Biobío \" con espacio sigue siendo distinta de \"Biobío\". Si solo se quitan los espacios, \"biobío\" sigue siendo distinta de \"Biobío\". El orden entre los dos da lo mismo, pero hay que hacer los dos."]],
+    st(){ const op={strip:false,title:false}; const w=h("div",{}); const n=nota(""); const casillas=h("span",{style:"margin-left:auto;display:flex;gap:16px;align-items:center;font-weight:600"});
+      const pinta=()=>{ const {w:lista,total}=listaFormas(49,op); w.innerHTML=""; w.append(lista); n.innerHTML=`<div class="op">formas distintas</div><div class="grande">${total}</div>${!op.strip&&!op.title?"Como vino el archivo.":op.strip&&!op.title?"Sin espacios al comienzo ni al final. Quedan las diferencias de mayúsculas.":!op.strip&&op.title?"Con las mayúsculas igualadas pero con los espacios todavía ahí. \"Biobío \" con espacio sigue siendo distinta de \"Biobío\". Falta el otro arreglo.":"Con los dos arreglos. <b>Las 7 regiones, y nada más.</b>"}`; const b=$("#estado").firstChild; b.className="estado "+(total===7?"listo":"haz"); b.querySelector("span:nth-child(2)").textContent = total===7? "Siete formas. Las siete regiones." : "Marca las casillas."; };
+      for (const [k,t] of [["strip","quitar espacios"],["title","igualar mayúsculas"]]) { const c=h("input",{type:"checkbox"}); c.onchange=()=>{ op[k]=c.checked; pinta(); }; casillas.append(h("label",{style:"display:flex;gap:5px;align-items:center;cursor:pointer"},c,t)); }
+      estado("haz","Marca las casillas.",casillas); lienzo(h("div",{class:"col"},n,w)); pinta(); } },
+  { tx:`<p>Queda por resolver lo de las 20 filas que sobran. Son <b>copias exactas</b>, la misma región, la misma hora, el mismo valor, dos veces. Pasa cuando se pega un archivo encima de otro.</p><p>Se detectan y se quitan. Quedan <span class="dato">61.488</span>, justo las esperadas.</p><p class="remate">Segunda pregunta respondida. Y la cuenta de filas del principio cerró.</p>`,
+    mas:[["¿Y esto en el cuaderno?","duplicated marca cada fila que es idéntica a una que ya apareció. drop_duplicates deja la primera y quita las copias. Antes de quitarlas conviene contarlas, para ver que cuadren con lo que sobraba."],["¿Y si no fueran idénticas?","Si dos filas tienen la misma región y hora pero distinto valor, no son copias, son una contradicción. duplicated no las marca. Ahí hay que decidir cuál es la buena, y eso es una regla de negocio, no de pandas."]],
+    st(){ estado("mira","Dos de las 20 filas repetidas. Cada una aparece dos veces, por eso se ven cuatro líneas."); const t=h("table",{class:"datos"}); t.append(h("tr",{},...["fecha","hora","region","mwh"].map(c=>h("th",{},c)))); D.dup.forEach((r,i)=>t.append(h("tr",{},h("td",{},r.fecha),h("td",{class:"num"},String(r.hora)),h("td",{},r.region),h("td",{class:"num"},es(r.mwh,2)))));
+      lienzo(h("div",{class:"dos"}, t, cajaGrande("filas repetidas", String(D.ndup), `Se quitan las copias y quedan <b>${esN(D.esperadas)}</b> filas. Las mismas que calculamos antes de abrir el archivo. <b>Cuando la cuenta cierra, se puede seguir.</b>`,"verde"))); } },
+]},
+{ n:"Capítulo 3", t:"Las horas vacías", pasos:[
+  { tx:`<p>Hay otra cosa que no se ve contando filas. Horas que vienen <b>sin dato</b>. La fila está, pero mwh está vacío. En Valparaíso son <span class="dato">248</span> horas del año.</p><p>Este es el 16 de septiembre en Valparaíso. Tiene 8 horas vacías.</p>`,
+    mas:[["¿Por qué no se nota al contar?","Porque la fila existe, solo que la celda está vacía. Al contar filas sale 61.488 y todo parece bien. Hay que contar los vacíos aparte, con isna, columna por columna."],["¿Y en las otras regiones?","Todas tienen. Biobío es la que más, con 322 horas vacías, y Antofagasta la que menos, con 222. En total son 1.844 horas sin dato en el archivo, el 3 por ciento."]],
+    st(){ estado("mira","Las 24 horas del 16 de septiembre en Valparaíso. Las vacías en rojo."); lienzo(h("div",{class:"dos"}, graficoDia(null,false), cajaGrande("horas vacías ese día", "8", "A la 1, 2, 8, 9, 15, 16, 22 y 23. El archivo no dice por qué.<br><br>Si se promedia sin más, pandas <b>salta las vacías</b> y promedia con las 16 que hay. Es una decisión, aunque no la hayas tomado."))); } },
+  { tx:`<p>Qué se hace con una hora vacía. Hay cuatro formas y <b>ninguna es la correcta</b>, cada una es una decisión. Elige una arriba.</p><p>Borrarla. Poner cero. Repetir la hora anterior. Trazar una recta entre la hora anterior y la siguiente.</p>`,
+    mas:[["¿Y esto en el cuaderno?","fillna(0) pone cero. ffill repite el valor anterior. interpolate traza la recta. Y no hacer nada es borrar, porque mean salta los vacíos. Son cuatro columnas nuevas en el cuaderno, una por cada forma."],["¿Cuál conviene?","Depende de qué es el dato. Para una demanda que cambia suave hora a hora, la recta suele ser la mejor. Para un contador que no se mueve, repetir. Poner cero casi nunca, porque inventa una caída que no existió. Lo importante es dejar escrito cuál se eligió."]],
+    st(){ const opciones=[["borrar","Borrar"],["cero","Poner cero"],["ant","Repetir anterior"],["recta","Trazar recta"]]; const botones=h("span",{style:"margin-left:auto;display:flex;gap:6px"}); const w=h("div",{}); const n=nota(""); const tab=h("div",{});
+      const pinta=(k)=>{ w.innerHTML=""; w.append(graficoDia(k,false)); tab.innerHTML=""; tab.append(tablaDia(k)); const p=D.proms[k]; n.innerHTML=`<div class="op">promedio del año en Valparaíso, ${opciones.find(o=>o[0]===k)[1].toLowerCase()}</div><div class="grande">${es(p,1)} MWh</div>${k==="borrar"?"Se promedia solo con las horas que tienen dato. Es lo que hace pandas si no se dice nada.":k==="cero"?"Las 248 horas vacías valen cero. El promedio <b>baja</b>, porque se inventaron 248 horas sin consumo.":k==="ant"?"Cada hora vacía copia la anterior. Si el hueco está en una subida, se queda abajo.":"Cada hora vacía queda en la recta entre la anterior y la siguiente. Sigue la forma del día."}`; botones.querySelectorAll("button").forEach(b=>{ const on=b.dataset.k===k; b.style.background=on?"var(--navy)":"#fff"; b.style.color=on?"#fff":"var(--navy)"; }); };
+      opciones.forEach(([k,t])=>{ const b=h("button",{"data-k":k},t); b.style.cssText="margin:0;background:#fff;color:var(--navy);border:1px solid var(--grid)"; b.onclick=()=>pinta(k); botones.append(b); });
+      estado("haz","Elige qué hacer con las horas vacías.",botones); lienzo(h("div",{class:"dos",style:"grid-template-columns:1fr 240px"},h("div",{},w,n),tab)); pinta("borrar"); } },
+  { tx:`<p>Este curso tiene algo que el trabajo real no tiene, el archivo original sin errores. Así que se puede comprobar cuál forma se acercó más a lo que pasó de verdad.</p><p>La línea gris punteada es la demanda real de ese día. Elige una forma y compárala. Borrar no aparece, porque no inventa ningún valor que comparar.</p>`,
+    mas:[["¿Y en el trabajo real?","No hay con qué comparar. Por eso la decisión se toma pensando en qué es el dato, y se deja escrita en el código y en el informe. Quien lea el resultado tiene que saber que las horas vacías se rellenaron, y cómo."]],
+    st(){ const opciones=[["cero","Poner cero"],["ant","Repetir anterior"],["recta","Trazar recta"]]; const botones=h("span",{style:"margin-left:auto;display:flex;gap:6px"}); const w=h("div",{}); const n=nota("");
+      const err=k=>{ let s=0,c=0; D.dia.forEach((r,i)=>{ if(r.mwh==null){ s+=Math.abs(r[k]-D.dia_real[i]); c++; } }); return s/c; };
+      const pinta=(k)=>{ w.innerHTML=""; w.append(graficoDia(k,true)); n.innerHTML=`<div class="op">error promedio en las 8 horas vacías</div><div class="grande">${es(err(k),1)} MWh</div>${k==="recta"?"<b>La recta es la que menos se equivoca.</b> Sigue la forma del día.":k==="ant"?"Repetir se queda atrás cuando la demanda sube o baja.":"Poner cero se equivoca por todo el valor de la hora. Es la peor en un dato que nunca es cero."}`; botones.querySelectorAll("button").forEach(b=>{ const on=b.dataset.k===k; b.style.background=on?"var(--navy)":"#fff"; b.style.color=on?"#fff":"var(--navy)"; }); };
+      opciones.forEach(([k,t])=>{ const b=h("button",{"data-k":k},t); b.style.cssText="margin:0;background:#fff;color:var(--navy);border:1px solid var(--grid)"; b.onclick=()=>pinta(k); botones.append(b); });
+      estado("haz","Elige una forma y compárala con la línea gris, la demanda real.",botones); lienzo(h("div",{class:"dos"},w,n)); pinta("cero"); } },
+]},
+{ n:"Capítulo 4", t:"Lo que no puede ser real", pasos:[
+  { tx:`<p>Queda lo último. Valores que están, pero <b>no pueden ser reales</b>. Una demanda negativa no existe. Y una hora con diez veces el consumo normal tampoco.</p><p>Mira Atacama. El mínimo es <span class="dato">menos 42,6</span> y el máximo <span class="dato">442,7</span>, cuando el promedio es 35.</p>`,
+    mas:[["¿Y esto en el cuaderno?","describe resume una columna en ocho números, cuántos, promedio, dispersión, mínimo, los tres cuartiles y máximo. Es la primera mirada a cualquier columna numérica. Aquí basta con el mínimo y el máximo para ver que algo anda mal."],["¿De dónde salen?","De un sensor que se cayó, de un signo mal escrito, de una unidad distinta en una fila. El archivo no lo dice. Lo que sí se puede decir es que no son demanda real, y eso es una regla de negocio, no de pandas."]],
+    st(){ const r=D.imposibles.Atacama; estado("mira","Atacama, el mínimo y el máximo del año."); lienzo(h("div",{class:"dos",style:"grid-template-columns:1fr 1fr 1fr"}, cajaGrande("mínimo", es(r.min,1)+" MWh", "Una demanda negativa. No existe.", "ambar"), cajaGrande("promedio", es(r.prom,1)+" MWh", "Lo normal de una hora en Atacama."), cajaGrande("máximo", es(r.max,1)+" MWh", `Casi ${Math.round(r.max/r.prom)} veces el promedio en una sola hora.`, "ambar")), nota(`Con solo mirar el mínimo y el máximo ya se sabe que hay valores imposibles. Lo que no dice el archivo es cuántos, ni cuál es el límite. <b>El límite lo pones tú</b>, con una regla de negocio.`)); } },
+  { tx:`<p>Tu turno. Dos reglas. La demanda no puede ser negativa. Y una hora con más de <b>tantas veces</b> el promedio es sospechosa.</p><p>Elige la región y mueve cuántas veces. Con 1 marca miles de horas, porque casi la mitad del año está sobre el promedio. Con 3 marca solo las que de verdad no pueden ser. El límite es una decisión.</p>`,
+    mas:[["¿Qué se hace con ellas?","Lo mismo que con las vacías, se decide y se deja escrito. Lo más común es dejarlas vacías y tratarlas como un hueco más. Borrarlas sin avisar es la peor opción, porque el informe sale con un número que nadie sabe de dónde vino."],["¿Y esto en el cuaderno?","Son dos filtros, igual que en el Lab 02. una[una[\"mwh\"] < 0] para las negativas y una[una[\"mwh\"] > veces * promedio] para los picos. El deslizador del cuaderno cambia veces."]],
+    st(){ const sel=h("select",{style:"font-size:15px;padding:4px 8px;border-radius:6px"}); REG.forEach(r=>sel.append(h("option",{value:r},r))); sel.value="Atacama"; const sl=h("input",{type:"range",min:1,max:10,value:3}); const val=h("span",{style:"font-weight:800;font-size:18px;min-width:30px"},"3"); const ctrl=h("span",{style:"margin-left:auto;display:flex;gap:10px;align-items:center"},sel,"veces el promedio",sl,val); estado("haz","Elige la región y mueve el límite.",ctrl); const w=h("div",{}); lienzo(w);
+      const pinta=()=>{ const r=D.imposibles[sel.value], k=+sl.value; val.textContent=k; w.innerHTML=""; w.append(h("div",{class:"dos",style:"grid-template-columns:1fr 1fr"}, cajaGrande("horas con demanda negativa", String(r.neg), "Regla uno. Siempre son imposibles, no dependen del límite.", "ambar"), cajaGrande(`horas sobre ${k} ${k===1?"vez":"veces"} el promedio`, esN(r.picos[k]), k===1? "Con 1 vez no sirve. Marca casi medio año, porque casi la mitad de las horas está sobre el promedio." : k>=8? "Con un límite tan alto empiezan a escaparse picos que sí son imposibles." : "Con "+k+" veces quedan solo las horas que no pueden ser reales. Es un límite razonable para la demanda.", k===1||k>=8?"ambar":"verde")), nota(`${sel.value}, promedio <b>${es(r.prom,1)}</b> MWh, mínimo <b>${es(r.min,1)}</b>, máximo <b>${es(r.max,1)}</b>.`)); };
+      sel.onchange=pinta; sl.oninput=pinta; pinta(); } },
+]},
+{ n:"Cierre", t:"Lo que se revisa antes de calcular", pasos:[
+  { tx:`<p>Las tres preguntas, respondidas.</p><p><b>1.</b> Pandas leía los números como texto y las fechas con el mes primero. Se arregla avisando cómo viene escrito el archivo.</p><p><b>2.</b> Siete regiones escritas de 49 formas, por espacios y mayúsculas, y las 20 filas que sobraban eran copias. Se igualan y se quitan.</p><p><b>3.</b> Las horas vacías se rellenan con una decisión que se deja escrita, y los valores imposibles se marcan con una regla de negocio.</p>`,
+    st(){ estado("mira","El orden de una limpieza."); lienzo(h("div",{class:"portada"}, nota(`<b>Contar antes de abrir.</b> Cuántas filas deberían venir. Si la cuenta no cierra, algo sobra o falta.`,"verde"), h("div",{style:"height:10px"}), nota(`<b>Leer bien desde el comienzo.</b> Separador, decimal, fechas. Avisarle a pandas cómo viene escrito, no arreglar después.`), h("div",{style:"height:10px"}), nota(`<b>Mirar cada columna de texto.</b> Cuántas formas distintas, y por qué. Espacios y mayúsculas son casi siempre.`), h("div",{style:"height:10px"}), nota(`<b>Decidir qué hacer con lo que falta y lo imposible.</b> Y dejarlo escrito. Ninguna decisión es la correcta, pero todas tienen que ser visibles.`))); } },
+  { tx:`<p>Ahora, al Colab. El cuaderno guiado tiene seis pasos en clase, que son estos cuatro capítulos, y tres estudios para la casa.</p>`,
+    st(){ estado("mira","El cuaderno del Lab 03 guiado."); lienzo(h("div",{class:"portada"}, h("h3",{},"Lab 03 guiado"), h("p",{},"Paso 1, cómo llegó el archivo. Paso 2, el número y la fecha. Paso 3, las 49 formas. Paso 4, las repetidas. Paso 5, las horas vacías. Paso 6, lo imposible. Para la casa, los Estudios 1 a 3."), h("p",{}, h("a",{href:"https://colab.research.google.com/github/RodrigoMSB/curso-python-minergia/blob/main/modulos/modulo03/lab_guiado.ipynb",target:"_blank",style:"color:var(--azul);font-weight:700"},"Abrir el Lab 03 guiado en Colab")))); } },
+]},
+];
+
+
+let cap=0, paso=0;
+function render(){
+  const C=CAPS[cap], P=C.pasos[paso]; nuevoToken();
+  $("#capnum").textContent = C.n; $("#h2").textContent = C.t; $("#texto").innerHTML = P.tx;
+  P.st();
+  if (P.mas){ const caja=h("div",{class:"masbox",style:"display:none"}); const fila=h("div",{class:"mas"}); P.mas.forEach(([t,html],i)=>{ const b=h("button",{},t); b.onclick=()=>{ const on=b.classList.contains("on"); fila.querySelectorAll("button").forEach(x=>x.classList.remove("on")); if(on){ caja.style.display="none"; } else { b.classList.add("on"); caja.innerHTML=html; caja.style.display="block"; } }; fila.append(b); }); $("#lienzo").append(h("div",{style:"font-size:13px;color:var(--muted);margin-top:6px"},"Para saber más, toca un botón."), fila, caja); }
+  $("#prev").disabled = cap===0 && paso===0; $("#next").disabled = cap===CAPS.length-1 && paso===C.pasos.length-1;
+  $("#next").textContent = paso===C.pasos.length-1 && cap<CAPS.length-1 ? "Siguiente capítulo" : "Siguiente";
+  const d=$("#dots"); d.innerHTML=""; C.pasos.forEach((_,i)=>d.append(h("i",{class:i===paso?"on":""})));
+  document.querySelectorAll("#caps button").forEach((b,i)=>b.classList.toggle("on",i===cap));
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+function ir(d){ if(d>0){ if(paso<CAPS[cap].pasos.length-1) paso++; else if(cap<CAPS.length-1){cap++;paso=0;} } else { if(paso>0) paso--; else if(cap>0){cap--;paso=CAPS[cap].pasos.length-1;} } render(); }
+$("#prev").onclick=()=>ir(-1); $("#next").onclick=()=>ir(1);
+document.addEventListener("keydown",e=>{ if(e.target.tagName==="INPUT") return; if(e.key==="ArrowRight") ir(1); if(e.key==="ArrowLeft") ir(-1); });
+CAPS.forEach((c,i)=>$("#caps").append(h("button",{onclick:()=>{cap=i;paso=0;render();}}, i===0?"Inicio": i===CAPS.length-1?"Cierre":"Cap. "+i)));
+render();
+</script>
+</body>
+</html>

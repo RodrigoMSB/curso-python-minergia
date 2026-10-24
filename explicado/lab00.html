@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lab 00 · Cinco ideas de Python</title>
+<style>
+:root{--ink:#202124;--muted:#5f6368;--grid:#dadce0;--surf:#fff;--head:#f1f3f4;--celda:#f8f9fa;--navy:#0b3d62;
+--azul:#1a73e8;--azul2:#e8f0fe;--ambar:#d99a00;--ambar2:#fef3d6;--verde:#188038;--verde2:#e6f4ea;--rojo:#c5221f;--rojo2:#fce8e6;--morado:#7b4fc9;--gris:#80868b;}
+*{box-sizing:border-box}
+html,body{margin:0;background:#f4f5f7;color:var(--ink);font-family:-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;font-size:17px;line-height:1.45}
+header{background:var(--navy);color:#fff;padding:14px 24px;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+header h1{font-size:19px;margin:0;font-weight:700}
+header .sub{font-size:13px;opacity:.8}
+nav.caps{display:flex;gap:6px;margin-left:auto;flex-wrap:wrap}
+nav.caps button{background:rgba(255,255,255,.12);color:#fff;border:0;border-radius:999px;padding:6px 13px;font-size:13px;cursor:pointer}
+nav.caps button.on{background:#fff;color:var(--navy);font-weight:700}
+main{display:grid;grid-template-columns:390px 1fr;gap:18px;padding:18px 24px;max-width:1540px;margin:0 auto;align-items:start}
+@media (max-width:980px){main{grid-template-columns:1fr;padding:12px 16px}}
+.panel{background:var(--surf);border:1px solid var(--grid);border-radius:14px;padding:20px 22px}
+.story{display:flex;flex-direction:column;position:sticky;top:12px}
+.capnum{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:1.2px;font-weight:700}
+.story h2{font-size:23px;margin:4px 0 14px;line-height:1.2}
+.story .texto{font-size:17.5px}
+.story .texto p{margin:0 0 12px}
+.story .texto b{color:var(--navy)}
+.dato{display:inline;background:var(--ambar2);color:#5c4700;border-radius:6px;padding:0 6px;font-weight:700}
+.remate{background:var(--ambar2);border-left:6px solid var(--ambar);padding:10px 12px;border-radius:0 8px 8px 0;margin:12px 0 0;color:#5c4700;font-weight:600}
+.navsteps{display:flex;align-items:center;gap:10px;margin-top:14px;border-top:1px solid var(--grid);padding-top:14px}
+.navsteps button{border:0;border-radius:10px;padding:10px 16px;font-size:15px;cursor:pointer;background:var(--head);color:var(--ink);font-weight:600}
+.navsteps button.pri{background:var(--azul);color:#fff}
+.navsteps button:disabled{opacity:.35;cursor:default}
+.dots{display:flex;gap:5px;margin-left:auto}
+.dots i{width:9px;height:9px;border-radius:50%;background:var(--grid);display:block}
+.dots i.on{background:var(--azul)}
+/* escenario */
+.stage{display:flex;flex-direction:column;gap:12px}
+.estado{display:flex;align-items:center;gap:12px;border-radius:10px;padding:10px 14px;font-size:16px;font-weight:600}
+.estado.mira{background:var(--azul2);color:var(--navy)}
+.estado.haz{background:var(--ambar2);color:#5c4700}
+.estado.calc{background:#fff4e5;color:#8a4b00}
+.estado.listo{background:var(--verde2);color:#14532d}
+.estado .ic{width:30px;height:30px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:15px;font-weight:800;flex:none;background:#fff}
+.estado.calc .ic{border:3px solid #f0b060;border-top-color:transparent;animation:gira 1s linear infinite}
+@keyframes gira{to{transform:rotate(360deg)}}
+.estado button{margin-left:auto;border:0;border-radius:8px;padding:8px 14px;font-size:15px;font-weight:700;cursor:pointer;background:var(--navy);color:#fff}
+.estado button:disabled{opacity:.4;cursor:default}
+.estado input[type=range]{width:200px}
+.lienzo{flex:1;display:flex;flex-direction:column;gap:12px}
+.dos{display:grid;grid-template-columns:1fr 320px;gap:16px;align-items:start}
+.col{display:flex;flex-direction:column;gap:12px}
+@media (max-width:1200px){.dos{grid-template-columns:1fr}}
+.nota{background:var(--celda);border:1px solid var(--grid);border-radius:12px;padding:14px 16px;font-size:16px;line-height:1.5}
+.nota b{color:var(--navy)}
+.nota .grande{font-size:30px;font-weight:800;color:var(--navy);line-height:1.1;margin:4px 0}
+.nota .op{font-size:14px;color:var(--muted)}
+.nota.ambar{background:var(--ambar2);border-color:#f0d58a;color:#5c4700}
+.nota.verde{background:var(--verde2);border-color:#b7dcc1;color:#14532d}
+.nota.ambar b,.nota.verde b{color:inherit}
+/* tablas */
+table.datos{border-collapse:separate;border-spacing:3px;font-size:15px;font-variant-numeric:tabular-nums}
+table.datos th{background:var(--head);color:var(--muted);font-weight:700;padding:8px 12px;text-align:left;border-radius:5px}
+table.datos td{background:var(--celda);padding:8px 12px;border-radius:5px}
+table.datos td.num{text-align:right}
+table.datos .hi{background:var(--azul2)!important;color:var(--azul);font-weight:700}
+table.datos .hi2{background:var(--ambar2)!important;color:#5c4700;font-weight:700}
+table.datos tr.dim td{opacity:.35}
+/* filas de celdas grandes */
+.fila{display:grid;grid-template-columns:150px 64px repeat(24,1fr);gap:3px;align-items:center;font-variant-numeric:tabular-nums}
+.fila .tec{font-size:12px;font-weight:700;padding:3px 6px;border-radius:4px;text-align:center}
+.fila.sinnum .cel, .fila.chica.sinnum .cel{height:22px;padding:0;font-size:0;line-height:22px}
+.fila.sinnum .cel:hover{outline:2px solid var(--ink)}
+.fila .rot{font-size:14px;font-weight:700;padding-right:6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fila .hh{text-align:center;font-size:12px;color:var(--muted);font-weight:700}
+.fila .cel{text-align:center;border-radius:5px;padding:9px 0;font-size:12.5px;color:#fff;font-weight:600;transition:all .4s}
+.fila .cel.dark{color:var(--ink)}
+.fila.chica .cel{padding:4px 0;font-size:11px}
+.fila.chica .rot{font-size:12.5px;font-weight:600}
+.fila .cel.off{opacity:.15}
+.fila .hh.on{background:var(--ambar2);color:#5c4700;border-radius:4px}
+.fila .rot.on{color:var(--azul)}
+.tira{display:flex;flex-wrap:wrap;gap:2px;align-items:flex-end;height:90px}
+.tira i{display:block;width:5px;background:var(--azul);opacity:.7;border-radius:1px 1px 0 0}
+svg text{font-family:inherit}
+.leyenda{display:flex;gap:14px;flex-wrap:wrap;font-size:14px;color:var(--muted)}
+.leyenda span{display:inline-flex;align-items:center;gap:6px}
+.leyenda i{width:13px;height:13px;border-radius:50%;display:inline-block}
+.cross{border-collapse:separate;border-spacing:2px;font-size:14px;font-variant-numeric:tabular-nums}
+.cross th{background:var(--head);color:var(--muted);padding:4px 10px;border-radius:4px;font-weight:700}
+.cross td{background:var(--celda);padding:4px 10px;text-align:center;border-radius:4px;min-width:46px}
+.cross td.z{color:#c0c4c8}
+.cross td.v{background:var(--azul2);color:var(--azul);font-weight:700}
+.cross td.r{background:var(--rojo2);color:var(--rojo);font-weight:700}
+.cross td.t{text-align:left;font-weight:700}
+.portada{display:flex;flex-direction:column;justify-content:center;padding:10px 6px}
+.portada h3{font-size:30px;margin:0 0 10px;color:var(--navy);line-height:1.15}
+.portada p{font-size:18px;max-width:680px}
+.preg{display:grid;gap:10px;margin-top:14px;max-width:680px}
+.preg div{background:var(--azul2);border-radius:10px;padding:10px 14px;font-size:16px;color:var(--navy);display:flex;gap:10px}
+.preg b{background:var(--azul);color:#fff;border-radius:50%;width:26px;height:26px;display:inline-flex;align-items:center;justify-content:center;flex:none;font-size:14px}
+.mas{display:flex;gap:10px;flex-wrap:wrap;margin-top:4px}
+.mas button{border:1px solid var(--grid);background:#fff;border-radius:999px;padding:8px 14px;font-size:14.5px;cursor:pointer;color:var(--navy);font-weight:600}
+.mas button.on{background:var(--navy);color:#fff;border-color:var(--navy)}
+.masbox{background:#fff;border:1px solid var(--navy);border-radius:12px;padding:14px 16px;font-size:16px;line-height:1.5}
+.masbox b{color:var(--navy)}
+footer{text-align:center;color:var(--muted);font-size:12.5px;padding:10px 0 24px}
+kbd{border:1px solid var(--grid);border-radius:4px;padding:0 5px;background:#fff;font-size:12px}
+.parpadea{animation:pp .5s 3}
+@keyframes pp{50%{opacity:.15}}
+</style>
+</head>
+<body>
+<header>
+  <div><h1>Lab 00 · Cinco ideas de Python</h1><div class="sub">Análisis Avanzado de Datos con Python · Subsecretaría de Energía · con los datos del curso</div></div>
+  <nav class="caps" id="caps"></nav>
+</header>
+<main>
+  <section class="panel story">
+    <div class="capnum" id="capnum"></div>
+    <h2 id="h2"></h2>
+    <div class="texto" id="texto"></div>
+    <div class="navsteps">
+      <button id="prev">Anterior</button>
+      <button id="next" class="pri">Siguiente</button>
+      <div class="dots" id="dots"></div>
+    </div>
+  </section>
+  <section class="panel stage">
+    <div id="estado"></div>
+    <div class="lienzo" id="lienzo"></div>
+  </section>
+</main>
+<footer>Se avanza con los botones o con las flechas del teclado <kbd>→</kbd> <kbd>←</kbd>. Las cifras de las centrales salen de los archivos de datos del curso, que son inventados para el curso.</footer>
+<script>
+const D = {};
+</script>
+<script>
+/* ---------- utilidades ---------- */
+const TEC = {hidro:["hidro","#1a73e8"], solar:["solar","#d99a00"], eolica:["eólica","#188038"], gas:["gas","#c5221f"], carbon:["carbón","#7b4fc9"], diesel:["diésel","#80868b"]};
+const TECS = ["carbon","gas","hidro","eolica","solar","diesel"];
+const LETRA = ["A","B","C","D","E","F","G","H"];
+const es = (x, d=1) => x.toLocaleString("es-CL", {minimumFractionDigits:d, maximumFractionDigits:d});
+const esN = x => x.toLocaleString("es-CL");
+const $ = s => document.querySelector(s);
+const h = (tag, attrs={}, ...kids) => { const e = document.createElement(tag); for (const [k,v] of Object.entries(attrs)) { if (k==="class") e.className=v; else if (k==="style") e.style.cssText=v; else if (k==="html") e.innerHTML=v; else if (k.startsWith("on")) e[k]=v; else e.setAttribute(k,v);} for (const k of kids) e.append(k); return e; };
+const NS = "http://www.w3.org/2000/svg";
+const sv = (tag, attrs={}) => { const e = document.createElementNS(NS, tag); for (const [k,v] of Object.entries(attrs)) e.setAttribute(k, v); return e; };
+const txt = (x,y,t,attrs={}) => { const e=sv("text",{x,y,...attrs}); e.textContent=t; return e; };
+const corto = n => n.replace(/^(Central|Carboeléctrica|Termoeléctrica|Parque Solar|Eólica|Diésel) /,"");
+const dist2 = (a,b) => { let s=0; for (let i=0;i<a.length;i++){const d=a[i]-b[i]; s+=d*d;} return s; };
+const proj = (v, pca) => [0,1].map(j => pca.comp[j].reduce((s,c,i)=> s + c*(v[i]-pca.mean[i]), 0));
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+let token = 0; const nuevoToken = () => ++token;
+
+const centrales = D.centrales || [], N = centrales.length;
+
+/* ---------- estado del escenario ---------- */
+const ICO = {mira:"👁", haz:"✋", calc:"", listo:"✓"};
+function estado(tipo, texto, extra) {
+  const e = $("#estado"); e.innerHTML = ""; const b = h("div", {class:"estado "+tipo}, h("span",{class:"ic"}, ICO[tipo]), h("span",{html:texto}));
+  if (extra) b.append(extra); e.append(b); return b;
+}
+function lienzo(...nodos){ const L=$("#lienzo"); L.innerHTML=""; for (const n of nodos) if (n) L.append(n); }
+const nota = (html, clase="") => h("div", {class:"nota "+clase, html});
+
+/* ---------- componentes ---------- */
+function filaCeldas(valores, opts={}) {
+  // valores: 24 números. opts: {rot, max, dec, chica, colsOn, rotOn, fmt, std}
+  const f = h("div",{class:"fila"+(opts.chica?" chica":"")+(opts.sinNum?" sinnum":"")});
+  f.append(h("div",{class:"rot"+(opts.rotOn?" on":""), title:opts.rot||""}, opts.rot||""));
+  const tk = opts.tec ? TEC[opts.tec] : null;
+  f.append(h("div",{class:"tec", style: tk? `background:${tk[1]}22;color:${tk[1]}` : ""}, tk? tk[0] : ""));
+  valores.forEach((v,k)=>{
+    let bg, dark, t;
+    if (opts.std){ const a=0.12+0.88*Math.min(1,Math.abs(v)/2.3); bg = v>=0? `rgba(26,115,232,${a.toFixed(2)})` : `rgba(197,34,31,${a.toFixed(2)})`; dark = Math.abs(v)<1; t=(v>=0?"+":"")+v.toFixed(1); }
+    else { const fr=Math.min(1, v/opts.max); const a=0.1+0.9*fr; bg=`rgba(26,115,232,${a.toFixed(2)})`; dark = fr<0.45; t = opts.fmt? opts.fmt(v) : (opts.dec===0? Math.round(v) : v.toFixed(opts.dec??2)); }
+    const off = opts.colsOn && !opts.colsOn.includes(k);
+    f.append(h("div",{class:"cel"+(dark?" dark":"")+(off?" off":""), style:`background:${bg}`, title:`${opts.rot||""}, ${k} h, ${t}`}, String(t)));
+  });
+  return f;
+}
+function cabeceraHoras(colsOn){ const f=h("div",{class:"fila"}); f.append(h("div",{class:"rot",style:"color:var(--muted);font-size:12px"},"central")); f.append(h("div",{class:"tec",style:"color:var(--muted)"},"tipo")); for(let k=0;k<24;k++) f.append(h("div",{class:"hh"+((colsOn||[]).includes(k)?" on":"")},String(k))); return f; }
+const ORDEN = [...Array(N).keys()].sort((a,b)=>TECS.indexOf(centrales[a].t)-TECS.indexOf(centrales[b].t) || a-b);
+function tablaFilas(tabla, opts={}){ const w=h("div",{style:"display:flex;flex-direction:column;gap:3px"}); w.append(cabeceraHoras(opts.colsOn)); ORDEN.forEach(i=>{ const fila=tabla[i]; if (opts.solo && !opts.solo.includes(i)) return; w.append(filaCeldas(fila,{...opts, rot:corto(centrales[i].n), tec:centrales[i].t, rotOn:(opts.rowsOn||[]).includes(i), chica:true})); }); return w; }
+
+function curvas(series, opts={}) {
+  const W = opts.w||760, H = opts.h||330, ml=58, mr=16, mt=22, mb=40;
+  const s = sv("svg", {viewBox:`0 0 ${W} ${H}`, style:"width:100%;height:auto;display:block"});
+  const ymax = opts.ymax || Math.max(...series.flatMap(q=>q.y))*1.1;
+  const X = k => ml + k*(W-ml-mr)/23, Y = v => mt + (H-mt-mb)*(1 - v/ymax);
+  for (let i=0;i<=4;i++){ const v = ymax*i/4; s.append(sv("line",{x1:ml,x2:W-mr,y1:Y(v),y2:Y(v),stroke:"#e8eaed"})); s.append(txt(ml-8,Y(v)+4, opts.fmt? opts.fmt(v): es(v,0), {"text-anchor":"end","font-size":12,fill:"#5f6368"})); }
+  for (let k=0;k<24;k+=3) s.append(txt(X(k),H-mb+18,k,{"text-anchor":"middle","font-size":12,fill:"#5f6368"}));
+  s.append(txt((ml+W-mr)/2,H-6,"hora del día",{"text-anchor":"middle","font-size":12.5,fill:"#5f6368"}));
+  if (opts.ylabel) s.append(txt(ml,mt-8,opts.ylabel,{"font-size":12.5,fill:"#5f6368"}));
+  for (const q of series) {
+    const d = q.y.map((v,k)=>(k?"L":"M")+X(k).toFixed(1)+","+Y(v).toFixed(1)).join(" ");
+    s.append(sv("path",{d, fill:"none", stroke:q.color, "stroke-width":q.w||3, opacity:q.alpha??1, "stroke-linejoin":"round"}));
+    if (q.nombre) s.append(txt(X(q.lx??12), Y(q.y[q.lx??12])-9, q.nombre, {"font-size":13,fill:q.color,"font-weight":700,"text-anchor":"middle"}));
+  }
+  for (const a of (opts.anot||[])) s.append(txt(X(a.x),Y(a.y),a.t,{"font-size":13.5,fill:a.color||"#5f6368","text-anchor":"middle","font-weight":600}));
+  return s;
+}
+function leyendaTec(lista=TECS){ return h("div",{class:"leyenda"}, ...lista.map(t=>h("span",{}, h("i",{style:`background:${TEC[t][1]}`}), TEC[t][0]))); }
+function crosstab(filas, cols, M, rotCol) {
+  const t = h("table",{class:"cross"});
+  t.append(h("tr",{}, h("th",{},"tecnología"), ...cols.map(c=>h("th",{}, c===-1? "fuera, sin barrio" : rotCol(c)))));
+  for (const f of filas) t.append(h("tr",{}, h("td",{class:"t",style:`color:${TEC[f][1]}`},TEC[f][0]), ...cols.map(c=>{const v=M[f][c]||0; return h("td",{class: v===0?"z": (c===-1?"r":"v")}, v===0?"·":esN(v));})));
+  return t;
+}
+function crossCentralesKM(lab,k){ const M={}; for(const t of TECS) M[t]={}; lab.forEach((g,i)=>{ M[centrales[i].t][g]=(M[centrales[i].t][g]||0)+1; }); return crosstab(TECS,[...Array(k).keys()],M,c=>"mesa "+LETRA[c]); }
+function crossDias(lab){ const cols=[...new Set(lab)].sort((a,b)=>a-b); const M={}; for(const t of TECS) M[t]={}; lab.forEach((g,i)=>{ const t=centrales[D.dias.central[i]].t; M[t][g]=(M[t][g]||0)+1; }); return crosstab(TECS,cols,M,c=>"barrio "+LETRA[c]); }
+
+/* ---------- helpers del Lab 00 ---------- */
+const CENT5 = [["Río Manso Alto",420,0.56,"hidro"],["Pampa Alta",230,0.25,"solar"],["Cerro Negro",160,0.34,"eolica"],["Bahía Norte",375,0.50,"gas"],["Respaldo Cordillera",45,0.03,"diesel"]];
+function celda(codigo, salida, opts={}) {
+  // una celda de Colab dibujada. codigo: líneas; salida: texto o nodo
+  const w = h("div",{style:"border:1px solid var(--grid);border-radius:10px;overflow:hidden;background:#fff"});
+  const cab = h("div",{style:"display:flex;align-items:flex-start;gap:10px;background:#f7f8fa;padding:10px 12px"});
+  const play = h("div",{style:`width:30px;height:30px;border-radius:50%;background:${opts.listo?"var(--verde)":"var(--navy)"};color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;flex:none`},"▶");
+  const cod = h("pre",{style:"margin:0;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13.5px;line-height:1.6;white-space:pre-wrap;flex:1"});
+  codigo.forEach(l => cod.append(h("div",{style: l.startsWith("#") ? "color:#6a737d" : ""}, l)));
+  cab.append(play, cod); w.append(cab);
+  if (salida !== undefined && salida !== null) { const out = h("div",{style:"padding:10px 14px 10px 52px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13.5px;white-space:pre-wrap;border-top:1px solid var(--grid)"}); if (typeof salida === "string") out.textContent = salida; else out.append(salida); w.append(out); }
+  return w;
+}
+function caja(etiqueta, valor, color="#1a73e8") {
+  return h("div",{style:`display:inline-flex;flex-direction:column;align-items:center;border:2px solid ${color};border-radius:10px;padding:8px 14px;min-width:120px;background:#fff;margin:4px`}, h("div",{style:`font-family:ui-monospace,Menlo,monospace;font-size:12px;color:${color};font-weight:700`},etiqueta), h("div",{style:"font-size:22px;font-weight:800;margin-top:2px"},String(valor)));
+}
+function cajaGrande(op, grande, texto, clase="") { return nota(`<div class="op">${op}</div><div class="grande">${grande}</div>${texto}`, clase); }
+const control = (label, min, max, val, step=1) => { const sl=h("input",{type:"range",min,max,value:val,step}); const v=h("span",{style:"font-weight:800;font-size:17px;min-width:48px"},String(val)); return {sl, v, nodo:h("span",{style:"display:flex;gap:8px;align-items:center"},label,sl,v)}; };
+function tablaCinco(conEnergia, categoriaFn) {
+  const t = h("table",{class:"datos",style:"font-size:14px"}); const cols=["central","potencia_mw","factor_planta"].concat(conEnergia?["mwh_dia"]:[]).concat(categoriaFn?["categoria"]:[]);
+  t.append(h("tr",{},...cols.map(c=>h("th",{class:(c==="mwh_dia"&&conEnergia)||(c==="categoria")?"hi":""},c))));
+  CENT5.forEach(([n,p,f,tec])=>{ const e=p*24*f; const cat=categoriaFn?categoriaFn(p):null; t.append(h("tr",{}, h("td",{},n), h("td",{class:"num"},String(p)), h("td",{class:"num"},es(f,2)), ...(conEnergia?[h("td",{class:"num hi"},es(e,1))]:[]), ...(categoriaFn?[h("td",{class:"hi"},cat)]:[]))); });
+  return t;
+}
+
+
+
+/* ---------- navegación y capítulos ---------- */
+
+const CAPS = [
+{ n:"Antes de empezar", t:"Lo mínimo de Python para el curso", pasos:[
+  { tx:`<p>Este lab es para quien nunca programó. Son cinco ideas de Python, nada más, y con eso alcanza para todo el curso.</p><p>Un dato con nombre. Una cuenta. Una lista de datos. Una decisión. Y una tabla, que es lo que maneja pandas, la herramienta de Python para tablas con la que se trabaja todo el curso. Cada una con las centrales del curso.</p>`,
+    mas:[["¿Tengo que memorizar algo?","No. En el curso el código viene escrito. Lo que hay que saber es leerlo y cambiar un valor. Este lab muestra qué significa cada pedazo, para que después no sea una caja negra."],["¿Y si nunca programé?","Mejor. Las cinco ideas son las de una planilla. Una celda con nombre, una fórmula, una columna, un si esto entonces aquello, una tabla. Python las escribe con palabras en vez de con el mouse."]],
+    st(){ estado("mira","Las cinco ideas."); lienzo(h("div",{class:"portada"}, h("h3",{},"Cinco ideas, un lab"), h("p",{},"Todo el curso se apoya en estas cinco. Las demás son variaciones."), h("div",{class:"preg"}, h("div",{},h("b",{},"1"),"Un dato se guarda con un nombre, para usarlo después."), h("div",{},h("b",{},"2"),"Con los datos guardados se hacen cuentas."), h("div",{},h("b",{},"3"),"Una lista junta varios datos y se resume de una vez."), h("div",{},h("b",{},"4"),"Python decide entre caminos con una pregunta."), h("div",{},h("b",{},"5"),"Una tabla junta listas como columnas, y ahí empieza pandas.")))); } },
+]},
+{ n:"Capítulo 1", t:"Un dato con nombre", pasos:[
+  { tx:`<p>En Python un dato se guarda con un <b>nombre</b>, con el signo igual. Como una caja con etiqueta. Después se usa el nombre y Python saca lo que hay adentro.</p><p>Tres datos de Río Manso Alto. Haz clic en <b>Correr la celda</b>, arriba a la derecha. En Colab el botón es el círculo con la flecha, a la izquierda de la celda.</p>`,
+    mas:[["¿Por qué el signo igual?","En Python el igual no pregunta si dos cosas son iguales, guarda. potencia_mw = 420 se lee como potencia_mw recibe 420. Para preguntar si son iguales se usan dos signos, ==, que aparece en el cuaderno."],["¿Qué es la f antes de las comillas?","Es una frase con huecos. Lo que va entre llaves se reemplaza por el dato guardado. f\"{nombre} tiene {potencia_mw} MW\" arma la frase con lo que hay en las cajas. Sin la f, las llaves se imprimirían tal cual."]],
+    st(){ const cod=['# Tres datos de la central, cada uno guardado con su nombre.','nombre = "Central Río Manso Alto"','potencia_mw = 420','factor_planta = 0.56','','print(f"{nombre} tiene {potencia_mw} MW y un factor de planta de {factor_planta}")']; const w=h("div",{},celda(cod,null)); const btn=h("button",{},"Correr la celda"); estado("haz","Haz clic en Correr la celda.",btn); const n=nota("Tres cajas. Todavía no se ha corrido nada."); lienzo(h("div",{class:"col"},w,h("div",{style:"text-align:center"},caja("nombre","Central Río Manso Alto"),caja("potencia_mw",420),caja("factor_planta",0.56)),n));
+      btn.onclick=()=>{ btn.disabled=true; w.innerHTML=""; w.append(celda(cod,"Central Río Manso Alto tiene 420 MW y un factor de planta de 0.56",{listo:true})); n.innerHTML="La última línea armó la frase sacando los tres datos de sus cajas. <b>Donde dice {potencia_mw}, Python puso 420.</b> Fíjate que Python escribe los decimales con punto, 0.56. En las tablas de esta página van con coma, como en Chile."; estado("listo","Corrida. La respuesta aparece bajo la celda."); }; } },
+  { tx:`<p>Con los datos guardados se hacen cuentas. La energía es <b>potencia por tiempo</b>. Una central de 300 MW durante 24 horas produce 300 por 24, 7.200 MWh.</p><p>Mueve la potencia y las horas. En el cuaderno estos dos controles son un deslizador y un campo.</p>`,
+    mas:[["¿MW y MWh no son lo mismo?","No. MW es potencia, cuánto puede producir en un instante, como la velocidad de un auto. MWh es energía, cuánto produjo en un tiempo, como los kilómetros recorridos. 300 MW durante 24 horas son 7.200 MWh, igual que 100 kilómetros por hora durante 3 horas son 300 kilómetros."]],
+    st(){ const p=control("potencia_mw",50,500,300,10), hs=control("horas",1,48,24); const ctrl=h("span",{style:"margin-left:auto;display:flex;gap:16px"},p.nodo,hs.nodo); estado("haz","Prueba.",ctrl); const w=h("div",{}); lienzo(w);
+      const pinta=()=>{ const P=+p.sl.value,H=+hs.sl.value; p.v.textContent=P; hs.v.textContent=H; w.innerHTML=""; w.append(h("div",{class:"col"}, celda([`potencia_mw = ${P}`,`horas = ${H}`,'','# La energía es potencia por tiempo. MW por horas da MWh.','energia_mwh = potencia_mw * horas','print(f"Una central de {potencia_mw} MW operando {horas} horas produce {energia_mwh} MWh.")'], `Una central de ${P} MW operando ${H} horas produce ${P*H} MWh.`,{listo:true}), cajaGrande("energia_mwh", esN(P*H)+" MWh", `${P} por ${H}. Cada vez que mueves un control, la celda se vuelve a correr con los datos nuevos. <b>Así se trabaja todo el curso.</b>`))); };
+      p.sl.oninput=pinta; hs.sl.oninput=pinta; pinta(); } },
+]},
+{ n:"Capítulo 2", t:"Una lista de datos", pasos:[
+  { tx:`<p>Cinco centrales, cinco potencias. En vez de cinco cajas, <b>una lista</b>. Va entre corchetes, con los datos separados por comas.</p><p>A una lista se le pueden pedir cosas de una vez. Cuántos datos tiene, cuánto suman, cuál es el mayor. Elige un cálculo.</p>`,
+    mas:[["¿Por qué una lista y no cinco cajas?","Porque con cinco cajas hay que sumarlas a mano, potencia1 + potencia2 + potencia3 y así. Con una lista, sum las suma todas, tengan 5 o 5.000. Y en el curso las listas tienen miles."],["¿Qué más se le puede pedir?","len cuenta, sum suma, max y min dan el mayor y el menor. sorted las ordena. Y una columna de una tabla de pandas es una lista con más poderes, que se ve en el Capítulo 4."]],
+    st(){ const ops=[["total","sum(potencias)","1230","La suma de las cinco."],["promedio","sum(potencias) / len(potencias)","246.0","La suma dividida por cuántas son, 1.230 entre 5. Python escribe los decimales con punto, y pone .0 cuando el resultado de una división es exacto."],["la más grande","max(potencias)","420","Río Manso Alto."],["la más chica","min(potencias)","45","Respaldo Cordillera."]]; const sel=h("select",{style:"font-size:15px;padding:4px 8px;border-radius:6px"}); ops.forEach(o=>sel.append(h("option",{value:o[0]},o[0]))); const ctrl=h("span",{style:"margin-left:auto;display:flex;gap:8px;align-items:center"},"calculo",sel); estado("haz","Elige un cálculo.",ctrl); const w=h("div",{}); lienzo(w);
+      const pinta=()=>{ const o=ops.find(x=>x[0]===sel.value); w.innerHTML=""; w.append(h("div",{class:"col"}, h("div",{style:"text-align:center"},...CENT5.map(c=>caja(c[0],c[1]))), celda(['# Una lista va entre corchetes, con los datos separados por comas.','potencias = [420, 230, 160, 375, 45]','',`print("Cantidad de centrales", len(potencias))`,`print("${o[0]}", ${o[1]}, "MW")`], `Cantidad de centrales 5\n${o[0]} ${o[2]} MW`,{listo:true}), cajaGrande(o[0], o[2].replace(".0","")+" MW", o[3]+" <b>Una sola palabra hace el cálculo sobre toda la lista.</b>"))); };
+      sel.onchange=pinta; pinta(); } },
+]},
+{ n:"Capítulo 3", t:"Una decisión", pasos:[
+  { tx:`<p>Python decide con una pregunta. <b>if</b> pregunta, y si la respuesta es sí, hace lo que sigue. <b>elif</b> es otra pregunta si la primera fue no. <b>else</b> es lo que queda.</p><p>¿Una central es chica, mediana o grande? Menos de 100 MW es chica, menos de 300 mediana, el resto grande. Mueve la potencia.</p>`,
+    mas:[["¿Por qué la sangría?","Las líneas que van más adentro son las que dependen de la pregunta. Python sabe qué hacer en cada caso por la sangría, no por llaves ni por puntos y comas. Cuatro espacios es la costumbre."],["¿Qué pasa con 100 exacto?","100 no es menor que 100, así que la primera pregunta da no. Pasa a la segunda, 100 es menor que 300, sí. Es mediana. Los cortes se leen con cuidado, menor que no es lo mismo que menor o igual."]],
+    st(){ const p=control("potencia",0,500,230,10); const ctrl=h("span",{style:"margin-left:auto"},p.nodo); estado("haz","Mueve la potencia.",ctrl); const w=h("div",{}); lienzo(w);
+      const pinta=()=>{ const P=+p.sl.value; p.v.textContent=P; const cat = P<100?"chica":P<300?"mediana":"grande"; const linea = P<100?1:P<300?3:5; const cod=[`potencia = ${P}`,'if potencia < 100:','    categoria = "chica"','elif potencia < 300:','    categoria = "mediana"','else:','    categoria = "grande"','print(f"Con {potencia} MW la central es {categoria}")']; w.innerHTML=""; const c=celda(cod,`Con ${P} MW la central es ${cat}`,{listo:true}); c.querySelectorAll("pre > div").forEach((d,i)=>{ if (i===linea+1) d.style.cssText+="background:#fef3d6;border-radius:4px"; }); w.append(h("div",{class:"col"}, c, cajaGrande("categoria", cat, P<100? "Menor que 100, la primera pregunta dio sí. Python hizo esa línea y saltó las demás." : P<300? "No es menor que 100, pero sí menor que 300. La segunda pregunta dio sí." : "Ninguna de las dos preguntas dio sí. Queda el else."))); };
+      p.sl.oninput=pinta; pinta(); } },
+  { tx:`<p>Los cortes son una decisión de quien analiza, no de Python. Mueve los dos cortes y mira cuántas de las cinco centrales caen en cada categoría.</p><p>Con 100 y 300 hay una chica, dos medianas y dos grandes. Con otros cortes, otra respuesta. Los mismos datos.</p>`,
+    mas:[["¿Y esto en el cuaderno?","Es un for que recorre la lista de potencias y, para cada una, hace la pregunta del paso anterior. for potencia in potencias repite lo de adentro cinco veces, una por central. Es la forma de aplicar una decisión a una lista."],["¿Cuál es el corte correcto?","No hay. Depende de para qué. Para planificar mantenimiento puede ser uno, para informar a la jefatura otro. Lo importante es que el corte se vea en el código, para que quien lea el resultado sepa con qué regla se hizo."]],
+    st(){ const c1=control("corte_chica",50,200,100,10), c2=control("corte_grande",200,450,300,10); const ctrl=h("span",{style:"margin-left:auto;display:flex;gap:16px"},c1.nodo,c2.nodo); estado("haz","Mueve los cortes.",ctrl); const w=h("div",{}); lienzo(w);
+      const pinta=()=>{ const A=+c1.sl.value,B=+c2.sl.value; c1.v.textContent=A; c2.v.textContent=B; const cat=p=>p<A?"chica":p<B?"mediana":"grande"; const cnt={chica:0,mediana:0,grande:0}; CENT5.forEach(c=>cnt[cat(c[1])]++); w.innerHTML=""; w.append(h("div",{class:"col"}, h("div",{class:"dos",style:"grid-template-columns:1fr 1fr 1fr"}, cajaGrande("chicas, menos de "+A, String(cnt.chica), ""), cajaGrande(`medianas, de ${A} a menos de ${B}`, String(cnt.mediana), ""), cajaGrande("grandes, "+B+" o más", String(cnt.grande), "")), tablaCinco(false,cat), nota(`<b>Los mismos cinco datos.</b> Lo que cambia es la regla, los dos cortes. En el cuaderno los cortes están escritos en el código, para que quien lo lea sepa con qué regla se contó.`))); };
+      c1.sl.oninput=pinta; c2.sl.oninput=pinta; pinta(); } },
+]},
+{ n:"Capítulo 4", t:"Una tabla", pasos:[
+  { tx:`<p>Una tabla junta varias listas como <b>columnas</b>. Las arma <b>pandas</b>, la herramienta de Python para tablas, y a cada tabla le dice DataFrame. Las cinco centrales con su potencia y su factor de planta, que es qué parte de su potencia usan en promedio.</p><p>Con una tabla se calcula una columna nueva para todas las filas de una vez. La energía de un día es potencia por 24 horas por el factor. Haz clic.</p>`,
+    mas:[["¿Qué es pandas?","Es la herramienta de Python para tablas. Se importa con import pandas as pd y desde ahí todo lo que empieza con pd es de pandas. DataFrame es el nombre que le da a una tabla."],["¿Por qué una columna de una vez?","Porque pandas aplica la cuenta a cada fila solo, sin que uno escriba un for. tabla[\"potencia_mw\"] * 24 * tabla[\"factor_planta\"] hace las cinco multiplicaciones, o las 175.680 si la tabla fuera la del Lab 02."]],
+    st(){ const w=h("div",{},tablaCinco(false)); const btn=h("button",{},"Calcular la columna"); estado("haz","Haz clic para calcular mwh_dia.",btn); const n=nota("Cinco filas, tres columnas. La tabla es un DataFrame de pandas."); lienzo(h("div",{class:"col"}, celda(['import pandas as pd','tabla = pd.DataFrame({','    "central": ["Río Manso Alto", "Pampa Alta", "Cerro Negro", "Bahía Norte", "Respaldo Cordillera"],','    "potencia_mw": [420, 230, 160, 375, 45],','    "factor_planta": [0.56, 0.25, 0.34, 0.50, 0.03],','})','# Energía de un día, potencia por 24 horas por el factor de planta.','tabla["mwh_dia"] = tabla["potencia_mw"] * 24 * tabla["factor_planta"]'],null), w, n));
+      btn.onclick=()=>{ btn.disabled=true; w.innerHTML=""; w.append(tablaCinco(true)); n.innerHTML="Río Manso Alto, <b>420 por 24 por 0,56 es 5.644,8 MWh</b> en un día. Respaldo Cordillera, 45 por 24 por 0,03, apenas 32,4. La columna se calculó para las cinco filas con una sola línea."; estado("listo","Columna nueva, mwh_dia, para las cinco filas."); }; } },
+  { tx:`<p>La pregunta del lab. ¿Cuánta energía producen en un día las centrales grandes, las medianas y las chicas? Es juntar todo, la tabla, la decisión y la suma.</p><p>Elige una categoría. Los cortes quedan en 100 y 300.</p>`,
+    mas:[["¿Y esto en el cuaderno?","Es el Paso 8 del cuaderno. Un filtro sobre la tabla, tabla[tabla[\"potencia_mw\"] >= 300], que deja las filas grandes, y después la suma de su columna mwh_dia. El filtro es la misma pregunta del Capítulo 3, hecha a cada fila."]],
+    st(){ const sel=h("select",{style:"font-size:15px;padding:4px 8px;border-radius:6px"}); ["chica","mediana","grande"].forEach(c=>sel.append(h("option",{value:c},c))); sel.value="grande"; const ctrl=h("span",{style:"margin-left:auto;display:flex;gap:8px;align-items:center"},"categoria",sel); estado("haz","Elige una categoría.",ctrl); const w=h("div",{}); lienzo(w);
+      const pinta=()=>{ const k=sel.value; const cat=p=>p<100?"chica":p<300?"mediana":"grande"; const el=CENT5.filter(c=>cat(c[1])===k); const tot=el.reduce((a,c)=>a+c[1]*24*c[2],0); w.innerHTML=""; const t=tablaCinco(true,cat); t.querySelectorAll("tr").forEach((tr,i)=>{ if(i&&cat(CENT5[i-1][1])!==k) tr.classList.add("dim"); }); w.append(h("div",{class:"col"}, cajaGrande(`energía de un día de las centrales ${k}s`, es(tot,1)+" MWh", `${el.length} ${el.length===1?"central":"centrales"}, ${el.map(c=>c[0]).join(" y ")}. ${k==="grande"?"Dos centrales grandes producen más que las otras tres juntas.":k==="mediana"?"Pampa Alta es solar y Cerro Negro eólica, por eso con 390 MW entre las dos producen menos que una sola grande.":"Respaldo Cordillera casi no produce, es un diésel de respaldo con factor 0,03."}`,"verde"), t)); };
+      sel.onchange=pinta; pinta(); } },
+]},
+{ n:"Cierre", t:"Las cinco ideas", pasos:[
+  { tx:`<p>Un dato se guarda con un nombre. Con los datos se hacen cuentas. Una lista junta datos y se resume con una palabra. if, elif y else deciden con preguntas, en orden. Y una tabla junta listas como columnas, y le calcula columnas nuevas de una vez.</p><p>Con esto se lee todo el código del curso.</p>`,
+    st(){ estado("mira","Lo que se lleva el alumno."); lienzo(h("div",{class:"portada"}, nota(`<b>El código del curso viene escrito.</b> Lo que hay que saber es leerlo. Dónde está el dato, dónde la cuenta, dónde la decisión. Y qué valor cambiar para que la respuesta cambie.`,"verde"), h("div",{style:"height:10px"}), nota(`<b>La regla se escribe en el código.</b> Los cortes de chica, mediana y grande no los decide Python, los decide quien analiza. Y quedan a la vista.`))); } },
+  { tx:`<p>Ahora, al Colab. El cuaderno guiado tiene ocho pasos, que son estos cuatro capítulos. Es opcional, para quien nunca programó.</p>`,
+    st(){ estado("mira","El cuaderno del Lab 00 guiado."); lienzo(h("div",{class:"portada"}, h("h3",{},"Lab 00 guiado"), h("p",{},"Pasos 1 y 2, datos con nombre y la energía. Pasos 3 y 4, la lista. Pasos 5 y 6, la decisión y los cortes. Pasos 7 y 8, la tabla y la pregunta del lab."), h("p",{}, h("a",{href:"https://colab.research.google.com/github/RodrigoMSB/curso-python-minergia/blob/main/modulos/modulo00/lab_guiado.ipynb",target:"_blank",style:"color:var(--azul);font-weight:700"},"Abrir el Lab 00 guiado en Colab")))); } },
+]},
+];
+
+
+let cap=0, paso=0;
+function render(){
+  const C=CAPS[cap], P=C.pasos[paso]; nuevoToken();
+  $("#capnum").textContent = C.n; $("#h2").textContent = C.t; $("#texto").innerHTML = P.tx;
+  P.st();
+  if (P.mas){ const caja=h("div",{class:"masbox",style:"display:none"}); const fila=h("div",{class:"mas"}); P.mas.forEach(([t,html],i)=>{ const b=h("button",{},t); b.onclick=()=>{ const on=b.classList.contains("on"); fila.querySelectorAll("button").forEach(x=>x.classList.remove("on")); if(on){ caja.style.display="none"; } else { b.classList.add("on"); caja.innerHTML=html; caja.style.display="block"; } }; fila.append(b); }); $("#lienzo").append(h("div",{style:"font-size:13px;color:var(--muted);margin-top:6px"},"Para saber más, toca un botón."), fila, caja); }
+  $("#prev").disabled = cap===0 && paso===0; $("#next").disabled = cap===CAPS.length-1 && paso===C.pasos.length-1;
+  $("#next").textContent = paso===C.pasos.length-1 && cap<CAPS.length-1 ? "Siguiente capítulo" : "Siguiente";
+  const d=$("#dots"); d.innerHTML=""; C.pasos.forEach((_,i)=>d.append(h("i",{class:i===paso?"on":""})));
+  document.querySelectorAll("#caps button").forEach((b,i)=>b.classList.toggle("on",i===cap));
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+function ir(d){ if(d>0){ if(paso<CAPS[cap].pasos.length-1) paso++; else if(cap<CAPS.length-1){cap++;paso=0;} } else { if(paso>0) paso--; else if(cap>0){cap--;paso=CAPS[cap].pasos.length-1;} } render(); }
+$("#prev").onclick=()=>ir(-1); $("#next").onclick=()=>ir(1);
+document.addEventListener("keydown",e=>{ if(e.target.tagName==="INPUT") return; if(e.key==="ArrowRight") ir(1); if(e.key==="ArrowLeft") ir(-1); });
+CAPS.forEach((c,i)=>$("#caps").append(h("button",{onclick:()=>{cap=i;paso=0;render();}}, i===0?"Inicio": i===CAPS.length-1?"Cierre":"Cap. "+i)));
+render();
+</script>
+</body>
+</html>

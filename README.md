@@ -41,6 +41,24 @@ Para quien ya programa y quiere profundizar. Tienen más ejercicios y temas que 
 | **04** · Minería de datos | [Abrir en Colab](https://colab.research.google.com/github/RodrigoMSB/curso-python-minergia/blob/main/modulos/modulo04/lab.ipynb) | [Guía](https://github.com/RodrigoMSB/curso-python-minergia/blob/main/modulos/modulo04/guia_alumno.pdf) |
 | **05** · Aprendizaje no supervisado | [Abrir en Colab](https://colab.research.google.com/github/RodrigoMSB/curso-python-minergia/blob/main/modulos/modulo05/lab.ipynb) | [Guía](https://github.com/RodrigoMSB/curso-python-minergia/blob/main/modulos/modulo05/guia_alumno.pdf) |
 
+## El curso explicado paso a paso
+
+Una página por laboratorio que cuenta el cuaderno de principio a fin, con las mismas tablas y cifras, animaciones y controles para probar. Se avanza con los botones o con las flechas del teclado. Sirve para mirar antes de la clase, durante, o para repasar después, sin tener el cuaderno abierto.
+
+| Página | En línea | En el repositorio |
+|---|---|---|
+| Índice | [abrir](https://rodrigomsb.github.io/curso-python-minergia/explicado/) | [explicado/index.html](explicado/index.html) |
+| Preparativos, Python con un almacén y Colab sin miedo | [abrir](https://rodrigomsb.github.io/curso-python-minergia/explicado/preparativos.html) | [explicado/preparativos.html](explicado/preparativos.html) |
+| Lab 00, Cinco ideas de Python | [abrir](https://rodrigomsb.github.io/curso-python-minergia/explicado/lab00.html) | [explicado/lab00.html](explicado/lab00.html) |
+| Lab 01, Traer datos y juntarlos | [abrir](https://rodrigomsb.github.io/curso-python-minergia/explicado/lab01.html) | [explicado/lab01.html](explicado/lab01.html) |
+| Lab 02, Cuatro movimientos sobre una tabla | [abrir](https://rodrigomsb.github.io/curso-python-minergia/explicado/lab02.html) | [explicado/lab02.html](explicado/lab02.html) |
+| Lab 03, Antes de calcular, diagnosticar | [abrir](https://rodrigomsb.github.io/curso-python-minergia/explicado/lab03.html) | [explicado/lab03.html](explicado/lab03.html) |
+| Lab 04, Qué va junto y qué viene después | [abrir](https://rodrigomsb.github.io/curso-python-minergia/explicado/lab04.html) | [explicado/lab04.html](explicado/lab04.html) |
+| Lab 05, Agrupar sin respuesta correcta | [abrir](https://rodrigomsb.github.io/curso-python-minergia/explicado/lab05.html) | [explicado/lab05.html](explicado/lab05.html) |
+| Lab 06, Un gráfico que se entiende solo | [abrir](https://rodrigomsb.github.io/curso-python-minergia/explicado/lab06.html) | [explicado/lab06.html](explicado/lab06.html) |
+
+Las páginas no necesitan conexión ni instalación. Descargadas al computador se abren con doble clic en cualquier navegador.
+
 ## Cómo se abre un laboratorio
 
 1. Haz clic en **Abrir en Colab** del módulo que corresponda. El notebook se abre en tu
