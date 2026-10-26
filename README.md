@@ -59,6 +59,19 @@ Una página por laboratorio que cuenta el cuaderno de principio a fin, con las m
 
 Las páginas no necesitan conexión ni instalación. Descargadas al computador se abren con doble clic en cualquier navegador.
 
+## Las presentaciones
+
+Las láminas que se usan en clase, en formato PowerPoint. Las guiadas acompañan paso a paso el cuaderno guiado. Las cortas son la versión resumida que se usa cuando el tiempo es menos.
+
+| Módulo | Presentación |
+|---|---|
+| **01** · Importar y unir datos | [Simulador_Lab01_guiado.pptx](presentaciones/Simulador_Lab01_guiado.pptx) |
+| **02** · Manipulación de datos | [Simulador_Lab02_guiado.pptx](presentaciones/Simulador_Lab02_guiado.pptx) |
+| **03** · Limpieza y análisis exploratorio | [Simulador_Lab03_guiado.pptx](presentaciones/Simulador_Lab03_guiado.pptx) |
+| **04** · Minería de datos | [Simulador_Lab04_guiado.pptx](presentaciones/Simulador_Lab04_guiado.pptx) y [Simulador_Lab04_corto.pptx](presentaciones/Simulador_Lab04_corto.pptx) |
+| **05** · Aprendizaje no supervisado | [Simulador_Lab05_corto.pptx](presentaciones/Simulador_Lab05_corto.pptx) |
+| **06** · Visualización de datos | [Simulador_Lab06_corto.pptx](presentaciones/Simulador_Lab06_corto.pptx) |
+
 ## Cómo se abre un laboratorio
 
 1. Haz clic en **Abrir en Colab** del módulo que corresponda. El notebook se abre en tu
